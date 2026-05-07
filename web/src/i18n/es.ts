@@ -30,4 +30,11 @@ export const es = {
   noData: 'Todavía no hay datos para mostrar.',
   mockLoginHint: 'Modo demo activado',
   monthOrganizerMessage: '¡Te toca organizar este mes, dale!',
+  voteFieldFun: 'Diversión',
+  voteFieldCost: 'Coste',
+  voteFieldOriginality: 'Originalidad',
+  eventTypeRegular: 'Regular',
+  eventTypeExtended: 'Plan extendido',
+  eventTypeMonthly: 'Evento del mes',
+  eventTypeTrip: 'Viaje',
 } as const

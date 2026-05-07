@@ -28,6 +28,11 @@ export function MonthlyEventPage() {
   }, [])
 
   const currentMonth = new Date().getMonth() + 1
+  const voteLabels = {
+    fun: es.voteFieldFun,
+    cost: es.voteFieldCost,
+    originality: es.voteFieldOriginality,
+  } as const
 
   return (
     <section className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -128,7 +133,7 @@ export function MonthlyEventPage() {
           >
             {(['fun', 'cost', 'originality'] as const).map((field) => (
               <label key={field} className="block text-sm">
-                {field}
+                {voteLabels[field]}
                 <input
                   type="range"
                   min={1}

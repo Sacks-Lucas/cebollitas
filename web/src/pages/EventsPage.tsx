@@ -46,11 +46,10 @@ export function EventsPage() {
         </select>
         <select value={eventType} onChange={(e) => setEventType(e.target.value)} className="rounded border p-2">
           <option value="">{es.filterByType}</option>
-          {['regular', 'extended', 'monthly_event', 'trip'].map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
+          <option value="regular">{es.eventTypeRegular}</option>
+          <option value="extended">{es.eventTypeExtended}</option>
+          <option value="monthly_event">{es.eventTypeMonthly}</option>
+          <option value="trip">{es.eventTypeTrip}</option>
         </select>
         <select value={attendeeId} onChange={(e) => setAttendeeId(e.target.value)} className="rounded border p-2">
           <option value="">{es.filterByAttendee}</option>

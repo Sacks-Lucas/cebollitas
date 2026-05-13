@@ -1,0 +1,7 @@
+- All code, identifiers, comments, and commits must be written in English.
+- All end-user UI strings must be written in rioplatense Spanish.
+- Keep TypeScript strict mode enabled in the frontend.
+- Use Python type hints and Pydantic models in the backend.
+- Write and maintain unit tests for `api/services/scoring_service.py` with pytest.
+- Never log decrypted vote payloads.
+- Never expose individual vote payloads through any endpoint; return only aggregates.

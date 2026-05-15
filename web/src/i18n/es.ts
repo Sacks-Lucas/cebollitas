@@ -19,6 +19,7 @@ export const es = {
   eventType: 'Tipo de evento',
   attendees: 'Asistentes',
   organizer: 'Organizador',
+  noOrganizer: 'Sin organizador',
   actions: 'Acciones',
   creator: 'Creador',
   filterByMonth: 'Filtrar por mes',

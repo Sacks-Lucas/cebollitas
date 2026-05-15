@@ -24,12 +24,12 @@ class AuthResponse(BaseModel):
 
 class EventBase(BaseModel):
     title: str = Field(min_length=1, max_length=100)
-    description: str = Field(min_length=1, max_length=500)
+    description: str = Field(min_length=1, max_length=1000)
     date: date
     eventType: EventType
     isExtension: bool = False
     attendeeIds: list[str] = Field(default_factory=list)
-    organizerId: str
+    organizerId: str | None = None
 
 
 class EventCreate(EventBase):

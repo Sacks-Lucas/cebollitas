@@ -14,7 +14,7 @@ export type Event = {
   eventType: EventType
   isExtension: boolean
   attendeeIds: string[]
-  organizerId: string
+  organizerId: string | null
   creatorId: string
   createdAt: string
   updatedAt: string

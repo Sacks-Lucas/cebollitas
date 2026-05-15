@@ -100,7 +100,7 @@ export function MonthlyEventPage() {
             }}
           >
             <input name="title" placeholder={es.title} className="w-full rounded border p-2" required maxLength={100} />
-            <textarea name="description" placeholder={es.description} className="w-full rounded border p-2" required maxLength={500} />
+            <textarea name="description" placeholder={es.description} className="w-full rounded border p-2" required maxLength={1000} />
             <input name="date" type="date" className="w-full rounded border p-2" required />
             <input
               name="attendees"

@@ -7,21 +7,22 @@ import type { Event, EventType, User } from '../types'
 
 const schema = z.object({
   title: z.string().min(1).max(100),
-  description: z.string().min(1).max(500),
+  description: z.string().min(1).max(1000),
   date: z.string().min(1),
   eventType: z.enum(['regular', 'extended', 'trip']),
   isExtension: z.boolean(),
   attendeeIds: z.array(z.string()).min(4, es.minAttendeesError),
-  organizerId: z.string().min(1),
+  organizerId: z.string(),
 })
 
 type FormValues = z.infer<typeof schema>
+type SubmitValues = Omit<FormValues, 'organizerId'> & { organizerId: string | null }
 
 type Props = {
   users: User[]
   initial?: Event
   onClose: () => void
-  onSubmit: (values: FormValues) => Promise<void>
+  onSubmit: (values: SubmitValues) => Promise<void>
 }
 
 export function EventModal({ users, initial, onClose, onSubmit }: Props) {
@@ -35,7 +36,7 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
           eventType: initial.eventType === 'monthly_event' ? 'regular' : (initial.eventType as EventType),
           isExtension: initial.isExtension,
           attendeeIds: initial.attendeeIds,
-          organizerId: initial.organizerId,
+          organizerId: initial.organizerId ?? '',
         }
       : { title: '', description: '', date: '', eventType: 'regular', isExtension: false, attendeeIds: [], organizerId: '' },
   })
@@ -44,7 +45,7 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
       <form
         onSubmit={handleSubmit(async (values) => {
-          await onSubmit(values)
+          await onSubmit({ ...values, organizerId: values.organizerId === '' ? null : values.organizerId })
           onClose()
         })}
         className="w-full max-w-xl space-y-3 rounded-lg bg-white p-4 dark:bg-argentina-navy"
@@ -61,7 +62,7 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
           <input type="checkbox" {...register('isExtension')} /> ¿Es extensión de un plan previo?
         </label>
         <select {...register('organizerId')} className="w-full rounded border p-2">
-          <option value="">{es.organizer}</option>
+          <option value="">{es.noOrganizer}</option>
           {users.map((user) => (
             <option key={user.id} value={user.id}>
               {user.name}

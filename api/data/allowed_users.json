@@ -1,7 +1,62 @@
 [
   {
-    "name": "Lucas Sacks",
-    "email": "sackslm0@gmail.com",
-    "id": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b"
+    "id": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "name": "Axel Reynoso",
+    "email": "axel.reynoso@cebollitas.local"
+  },
+  {
+    "id": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "name": "Santiago Cala",
+    "email": "santiago.cala@cebollitas.local"
+  },
+  {
+    "id": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "name": "Ignacio Calvo",
+    "email": "ignacio.calvo@cebollitas.local"
+  },
+  {
+    "id": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "name": "Carlos Martinez Devesa",
+    "email": "carlos.martinez@cebollitas.local"
+  },
+  {
+    "id": "d67d6488-0fd4-5564-850e-2026a5d24b91",
+    "name": "Fernando Suarez",
+    "email": "fernando.suarez@cebollitas.local"
+  },
+  {
+    "id": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "name": "Lucas Mateo Sacks",
+    "email": "sackslm0@gmail.com"
+  },
+  {
+    "id": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "name": "Mateo Lozano",
+    "email": "mateo.lozano@cebollitas.local"
+  },
+  {
+    "id": "f215c0a0-0045-5e2e-86e2-679268be55e1",
+    "name": "Nicolas Escobar",
+    "email": "nicolas.escobar@cebollitas.local"
+  },
+  {
+    "id": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "name": "Martin Petrone",
+    "email": "martin.petrone@cebollitas.local"
+  },
+  {
+    "id": "95466925-bea9-59a3-b675-45005906a39a",
+    "name": "Renzo Tamburella",
+    "email": "renzo.tamburella@cebollitas.local"
+  },
+  {
+    "id": "9e538569-f18f-5bbc-b23e-37b31fb63b6d",
+    "name": "Sebastian Arias",
+    "email": "sebastian.arias@cebollitas.local"
+  },
+  {
+    "id": "074271a9-ee53-5095-ab44-ade280393ad4",
+    "name": "Ignacio Taricco",
+    "email": "ignacio.taricco@cebollitas.local"
   }
 ]

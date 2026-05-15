@@ -1,1 +1,349 @@
-[]
+[
+  {
+    "id": "07275922-7673-42af-a82f-91076cf7e152",
+    "title": "Juntada nocturna en casa PETRO",
+    "description": "En la noche de un sabado petro se DIGNO a poner casa para que puedan escabiar los pibes, donde vimos un fer totalmente desacatado llevando el contador de \"puta\" hasta los 25, el juego ni en pedo donde descubrimos que en realidad no es petro sino perro y una busqueda de un nuevo fernet que quedó en vino baratto y sirroso",
+    "date": "2026-01-10",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "ba5a688f-6dd2-45de-b538-e8892d2e9fe7",
+    "title": "Juntada Post partido en casa PETRO",
+    "description": "Nueva juntada de simios nueva cagada, los monos jugaron nuevamente al ni en pedo donde petro preocupó a todos, incluso a la ex de Renzo, y volcando un vaso de fernet. Carlitos tuvo que reportarse cada 10 minutos por lo que estuvo viendo más el celular, luckytas sacks estuvo más rojo que nunca y se hicieron tantas cosas gays que no puedo ni describirlo",
+    "date": "2026-01-17",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "6ae30ed9-255d-464a-a834-e28b95ef5c8b",
+    "title": "Juntada Canton Cala",
+    "description": "Amor de verano",
+    "date": "2026-01-24",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "0b1605ce-7cae-5c31-b609-b5858fc62292",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "creatorId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "12f3f854-bf86-447d-b2eb-3adceb6c8f0a",
+    "title": "Evento Petro: Paintball ",
+    "description": "Tiro tiro tiro apuñalada apuñalada",
+    "date": "2026-01-31",
+    "eventType": "monthly_event",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "0b1605ce-7cae-5c31-b609-b5858fc62292",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a",
+      "9e538569-f18f-5bbc-b23e-37b31fb63b6d",
+      "074271a9-ee53-5095-ab44-ade280393ad4"
+    ],
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "c07cdb52-8687-480b-a38d-6412180168ae",
+    "title": "Evento Cala: Joda Canton",
+    "description": "Se vino el evento anual de calaneitor en el canton en donde podemos describir a la noche en un antes y un despues. Nose en que momento se rompió todo pero hubieron tequilazos que hicieron vomitar al famoso TEQUILAMAN, hubieron volteretas, bailes de patin / danza, y una dormida en el sillón epica donde se le escupió el asado a fernandito",
+    "date": "2026-02-21",
+    "eventType": "monthly_event",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "f215c0a0-0045-5e2e-86e2-679268be55e1",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "creatorId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "55dc8996-3229-44c3-bbc4-becd4f749333",
+    "title": "Juntada Extra: Continuacion Canton",
+    "description": "La continuacion de los muchachos que se quedaron a bancar los trapos del grupo y no los putitos que se fueron tempranito porque les agarró sueñito. Hubo panchopaluza vegana (literal), pileta, chamuyo, y hasta el grupo volvió cantando CHANO a todo pulmon con 2 minitas (planazo)",
+    "date": "2026-02-22",
+    "eventType": "extended",
+    "isExtension": true,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": null,
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "a2365d8e-5d83-4877-b97a-a67894398170",
+    "title": "Juntada depto Carlitos ",
+    "description": "Se vino la primer juntada en el depto de carlitos y la novia (y un futuro CHIUAHUA) en donde los monos fueron monos como siempre obligando, en una escena digna de los tres chiflados, a carlitos a manchar su propio sillon dentro de una previa para salir por pompeya",
+    "date": "2026-03-07",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "0b1605ce-7cae-5c31-b609-b5858fc62292",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "creatorId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "cb01d276-21ee-4952-af87-928e5cd8bf88",
+    "title": "Juntada de novias (Y fer) casa anto",
+    "description": "Se dio la juntada del nuevo gremio de novias (y fer) en donde jugaro (si, otra vez. No se cansan eh? la verdad no se les cae otra idea?) al ni en pedo pero version mas light. Lo unico importante de la noche fue que fer terminó, cual vieja con ruleros en peluqueria, chusmeando de sus desamorios con las novias",
+    "date": "2026-03-15",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2"
+    ],
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "a626c4e2-c228-4937-816b-9d9ef70ae239",
+    "title": "Evento Renzo: Patin sobre hielo",
+    "description": "En el dia de la fecha se descubrió como unos monos pueden patinar sobre hielo siendo el peor carlitos que no salio de la barra, seguido de fer que actuó de novio gay del anterior, sacks sin pena ni gloria, cala que parecia mi nono de 80 años, renzo que se cayó 20 veces, PETRO SORPRENDIO CON SU NULA CAPACIDAD MOTRIZ y Mateo que era obvio que iba a ser el mejor",
+    "date": "2026-03-21",
+    "eventType": "monthly_event",
+    "isExtension": false,
+    "attendeeIds": [
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "95466925-bea9-59a3-b675-45005906a39a",
+    "creatorId": "95466925-bea9-59a3-b675-45005906a39a",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "03a13943-7e36-4a80-ae6d-0961888b03a2",
+    "title": "Juntada Express: Pompeya",
+    "description": "Luego del evento los pibes se fueron a pompeya donde, no pasó mucho, pero lo unico que se puede destacar es que renzo tiró un pajaro muerto adentro del auto de UN BOLUDO QUE SE OLVIDÓ EL AUTO ABIERTO, QUE AGRADEZCA QUE NO LE ROBARON POR GIL. (ah y por culpa de fer)",
+    "date": "2026-03-21",
+    "eventType": "extended",
+    "isExtension": true,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": null,
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "5ba4b6d7-5009-4525-b94a-f58ce0e300cb",
+    "title": "Cumple de Anto",
+    "description": "Se vino se vino se vino el cumple de anto y el encuentro entre Renzo y su ex, en donde a los monos no se le ocurrió mejor tema que hablar de CASAMIENTO, HIJOS, VIVIR JUNTOS Y PROYECTOS DE FAMILIA (no hubo sexo al final)",
+    "date": "2026-03-28",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a",
+      "9e538569-f18f-5bbc-b23e-37b31fb63b6d"
+    ],
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "a528fc58-cb71-4c34-80fa-0afdc0eb297b",
+    "title": "Joda casa Renzo",
+    "description": "Se vino la joda por el cumple de Renzo en donde hubieron dos integrantes que perdieron la memoria luego de un Beerpong salvaje, pasando absolutamente de todo donde el mvp de la noche se lo llevó gonzalito quebrando absolutamente toda la Bacha luego de someterse al Beerpong. cala intento chamuyarse a una asexual de la peor forma posible, sebi por fin trajo a sus amigas (solo 2), el pela y Axel interactuaron con todo el mundo y sacks sacks sacks... héroe.",
+    "date": "2026-04-11",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "0b1605ce-7cae-5c31-b609-b5858fc62292",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "f215c0a0-0045-5e2e-86e2-679268be55e1",
+      "95466925-bea9-59a3-b675-45005906a39a",
+      "9e538569-f18f-5bbc-b23e-37b31fb63b6d"
+    ],
+    "organizerId": "95466925-bea9-59a3-b675-45005906a39a",
+    "creatorId": "95466925-bea9-59a3-b675-45005906a39a",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "fa64fb70-cb48-481d-acce-40aefca70973",
+    "title": "Noche en la terraza de palermo",
+    "description": "Los muchachos guiados por calaneitor fueron a algo tan palermitano que nadie conocía más allá de CABA. Los muchachos, como siempre, salieron ganar ganar ganar llevándose el mvp de la noche cala y, entre todos, terminando con un grupo de dos entrerrianas, una venezolana y una ecuatoriana. Mención especial para el irlandés borracho, la española, el chileno, el tipo de ESPN que se levanta a las 3 am pa trabajar y los de Quilmes (tipazos). Y el veneco que fue absolutamente solo y era medio raro",
+    "date": "2026-04-17",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "creatorId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "4c80ea5f-ca34-4ddd-be20-589ccd350bf6",
+    "title": "Misa con el padre Guillherme",
+    "description": "Es sábado de misa y los mononeurales se confiezan por sus pecados en una fiesta tecno de un cura en plaza de mayo, siendo violados cada vez que habia que caminar, yendo a comer empanadas (que nadie le va a pagar s nacho) y teniendo la noche más matada posible dando vueltitas hasta encontrar algo GRATIS",
+    "date": "2026-04-18",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "0b1605ce-7cae-5c31-b609-b5858fc62292",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": null,
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "0a2fc187-cad3-4e61-a119-9a0c65a0d551",
+    "title": "Evento Mateo: Carreritas a lo colapa",
+    "description": "Se vino el evento de mateo en donde los monos demostraron sus habilidades de manejo en un simulador de COLAPA, claramente todos unos burros que no sabian ni poner primera destacando lo TRAMPOSO QUE ES NACHITO y pesimo que es fer manejando, al final fuimos a comer donde se notaba a un renzo MORIBUNDO con proglemas gastricos e incluso fecales",
+    "date": "2026-05-25",
+    "eventType": "monthly_event",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a",
+      "074271a9-ee53-5095-ab44-ade280393ad4"
+    ],
+    "organizerId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "creatorId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "847315b5-4ad9-47d3-b8ae-76648c28aba1",
+    "title": "Cumple Luckytas SACKS",
+    "description": "Arrancó el cumple de luquitas sacks donde se hizo una previa en donde vino (atencion) la esposa de axelito a escabiar con los pibes, se puede decir que renzo esta robando puntos porque llego a 1 hora de irnos al boliche pero LLEGO (acompañado encima)",
+    "date": "2026-05-01",
+    "eventType": "regular",
+    "isExtension": false,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+      "f215c0a0-0045-5e2e-86e2-679268be55e1",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a",
+      "074271a9-ee53-5095-ab44-ade280393ad4"
+    ],
+    "organizerId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  },
+  {
+    "id": "90a40e4a-50fd-4d32-bc33-ab36a5390cb8",
+    "title": "Juntada extra: Salida a chinito",
+    "description": "SE RESPIRAN NUEVOS AIRES EN EL GRUPO",
+    "date": "2026-05-02",
+    "eventType": "extended",
+    "isExtension": true,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "f215c0a0-0045-5e2e-86e2-679268be55e1",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": null,
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-05-15T01:34:26.112412+00:00",
+    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+  }
+]

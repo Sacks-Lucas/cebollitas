@@ -1,10 +1,19 @@
 import hashlib
 import json
 import os
+from datetime import datetime, timedelta, timezone
 
 from cryptography.fernet import Fernet
 
 from repositories.data_store import votes_repo
+
+
+VOTING_WINDOW_DAYS = 30
+
+
+def is_voting_open(event: dict) -> bool:
+    created_at = datetime.fromisoformat(event["createdAt"])
+    return datetime.now(timezone.utc) - created_at <= timedelta(days=VOTING_WINDOW_DAYS)
 
 
 def get_fernet() -> Fernet:

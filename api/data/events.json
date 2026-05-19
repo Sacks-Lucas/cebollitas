@@ -1,5 +1,24 @@
 [
   {
+    "id": "1fa9330b-2f20-468b-933e-3412e845a91a",
+    "title": "Juntada Express: Comida en tipas CJ",
+    "description": "Después de un partido donde se erraron la vida los monos decidieron ir a comer aprovechado el cumple del chico con la rata en la cabeza",
+    "date": "2026-01-07",
+    "eventType": "extended",
+    "isExtension": true,
+    "attendeeIds": [
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "d67d6488-0fd4-5564-850e-2026a5d24b91",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+      "95466925-bea9-59a3-b675-45005906a39a"
+    ],
+    "organizerId": null,
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-05-18T23:38:06.868826+00:00",
+    "updatedAt": "2026-05-18T23:38:06.868826+00:00"
+  },
+  {
     "id": "07275922-7673-42af-a82f-91076cf7e152",
     "title": "Juntada nocturna en casa PETRO",
     "description": "En la noche de un sabado petro se DIGNO a poner casa para que puedan escabiar los pibes, donde vimos un fer totalmente desacatado llevando el contador de \"puta\" hasta los 25, el juego ni en pedo donde descubrimos que en realidad no es petro sino perro y una busqueda de un nuevo fernet que quedó en vino baratto y sirroso",
@@ -64,6 +83,7 @@
     "description": "Tiro tiro tiro apuñalada apuñalada",
     "date": "2026-01-31",
     "eventType": "monthly_event",
+    "voteAverage": 7.0,
     "isExtension": false,
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
@@ -88,6 +108,7 @@
     "description": "Se vino el evento anual de calaneitor en el canton en donde podemos describir a la noche en un antes y un despues. Nose en que momento se rompió todo pero hubieron tequilazos que hicieron vomitar al famoso TEQUILAMAN, hubieron volteretas, bailes de patin / danza, y una dormida en el sillón epica donde se le escupió el asado a fernandito",
     "date": "2026-02-21",
     "eventType": "monthly_event",
+    "voteAverage": 7.0,
     "isExtension": false,
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
@@ -167,6 +188,7 @@
     "description": "En el dia de la fecha se descubrió como unos monos pueden patinar sobre hielo siendo el peor carlitos que no salio de la barra, seguido de fer que actuó de novio gay del anterior, sacks sin pena ni gloria, cala que parecia mi nono de 80 años, renzo que se cayó 20 veces, PETRO SORPRENDIO CON SU NULA CAPACIDAD MOTRIZ y Mateo que era obvio que iba a ser el mejor",
     "date": "2026-03-21",
     "eventType": "monthly_event",
+    "voteAverage": 8.0,
     "isExtension": false,
     "attendeeIds": [
       "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
@@ -285,8 +307,9 @@
     "id": "0a2fc187-cad3-4e61-a119-9a0c65a0d551",
     "title": "Evento Mateo: Carreritas a lo colapa",
     "description": "Se vino el evento de mateo en donde los monos demostraron sus habilidades de manejo en un simulador de COLAPA, claramente todos unos burros que no sabian ni poner primera destacando lo TRAMPOSO QUE ES NACHITO y pesimo que es fer manejando, al final fuimos a comer donde se notaba a un renzo MORIBUNDO con proglemas gastricos e incluso fecales",
-    "date": "2026-05-25",
+    "date": "2026-04-25",
     "eventType": "monthly_event",
+    "voteAverage": 8.0,
     "isExtension": false,
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",

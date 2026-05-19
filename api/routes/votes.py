@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from dependencies import get_current_user
 from models.schemas import HasVotedResponse, VoteAverage, VoteCreate
 from repositories.data_store import events_repo, votes_repo
-from services.vote_service import build_voter_hash, decrypt_event_scores, get_fernet, has_voted
+from services.vote_service import build_voter_hash, decrypt_event_scores, get_fernet, has_voted, is_voting_open
 
 router = APIRouter(prefix="/api/votes", tags=["votes"])
 
@@ -26,6 +26,12 @@ def cast_vote(payload: VoteCreate, current_user: dict = Depends(get_current_user
 
     if has_voted(payload.eventId, current_user["id"]):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Ya votaste este evento.")
+
+    if not is_voting_open(event):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="El período de votación cerró (30 días desde la creación).",
+        )
 
     fernet = get_fernet()
     encrypted_payload = fernet.encrypt(

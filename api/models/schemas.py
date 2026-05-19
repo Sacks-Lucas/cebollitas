@@ -47,6 +47,24 @@ class Event(EventBase):
     creatorId: str
     createdAt: datetime
     updatedAt: datetime
+    voteAverage: float | None = None
+
+
+class UserRef(BaseModel):
+    id: str
+    name: str
+
+
+class EventDetail(BaseModel):
+    id: str
+    title: str
+    description: str
+    date: date
+    eventType: EventType
+    isExtension: bool
+    voteAverage: float | None = None
+    organizer: UserRef | None = None
+    attendees: list[UserRef] = Field(default_factory=list)
 
 
 class VoteCreate(BaseModel):
@@ -72,6 +90,7 @@ class RankingRow(BaseModel):
     name: str
     totalPoints: int
     attendancePercentage: int
+    absences: int
 
 
 class MonthlyEventCard(BaseModel):

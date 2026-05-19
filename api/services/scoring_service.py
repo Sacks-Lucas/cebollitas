@@ -2,59 +2,46 @@ import math
 from collections import defaultdict
 
 
-def attendee_points_for_event(event_type: str) -> int:
-    if event_type == "regular":
-        return 30
-    if event_type == "extended":
-        return 15
-    if event_type == "monthly_event":
-        return 40
-    if event_type == "trip":
-        return 70
-    return 0
+ATTENDEE_POINTS = 30
+ORGANIZER_POINTS = 40
+EXTENDED_POINTS = 15
+MONTHLY_ATTENDEE_POINTS = 40
 
 
-def organizer_points_for_event(event: dict, vote_average: float | None = None) -> int:
-    event_type = event["eventType"]
-    if event_type == "regular":
-        return 40
-    if event_type == "extended":
-        return 0
-    if event_type == "monthly_event":
-        return math.ceil((vote_average or 0) * 10)
-    if event_type == "trip":
-        return 0
-    return 0
-
-
-def compute_rankings(users: list[dict], events: list[dict], vote_averages: dict[str, float]) -> list[dict]:
-    totals = defaultdict(int)
-    attendance = defaultdict(int)
+def compute_rankings(users: list[dict], events: list[dict]) -> list[dict]:
+    totals: dict[str, int] = defaultdict(int)
+    attendance: dict[str, int] = defaultdict(int)
 
     total_events = len(events)
     for event in events:
-        attendee_points = attendee_points_for_event(event["eventType"])
+        event_type = event.get("eventType")
+        organizer_id = event.get("organizerId")
         for attendee_id in event.get("attendeeIds", []):
-            totals[attendee_id] += attendee_points
             attendance[attendee_id] += 1
 
-        organizer_id = event.get("organizerId")
-        if organizer_id:
-            totals[organizer_id] += organizer_points_for_event(event, vote_averages.get(event["id"]))
+            if event_type == "extended":
+                totals[attendee_id] += EXTENDED_POINTS
+            elif event_type == "monthly_event":
+                if attendee_id == organizer_id:
+                    totals[attendee_id] += math.ceil((event.get("voteAverage") or 0) * 10)
+                else:
+                    totals[attendee_id] += MONTHLY_ATTENDEE_POINTS
+            elif attendee_id == organizer_id:
+                totals[attendee_id] += ORGANIZER_POINTS
+            else:
+                totals[attendee_id] += ATTENDEE_POINTS
 
     ranking = []
     for user in users:
         attended = attendance[user["id"]]
-        attendance_pct = 0
-        if total_events > 0:
-            attendance_pct = round((attended / total_events) * 100)
-
+        attendance_pct = round((attended / total_events) * 100) if total_events > 0 else 0
         ranking.append(
             {
                 "userId": user["id"],
                 "name": user["name"],
                 "totalPoints": totals[user["id"]],
                 "attendancePercentage": attendance_pct,
+                "absences": total_events - attended,
             }
         )
 

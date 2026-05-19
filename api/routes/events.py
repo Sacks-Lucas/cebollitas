@@ -4,8 +4,8 @@ from uuid import uuid4
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
 from dependencies import get_current_user
-from models.schemas import Event, EventCreate, EventUpdate
-from repositories.data_store import events_repo
+from models.schemas import Event, EventCreate, EventDetail, EventUpdate, UserRef
+from repositories.data_store import events_repo, get_allowed_users
 
 router = APIRouter(prefix="/api/events", tags=["events"])
 
@@ -63,6 +63,35 @@ def get_event(event_id: str, _: dict = Depends(get_current_user)) -> Event:
     if not event:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado.")
     return Event.model_validate(event)
+
+
+@router.get("/{event_id}/detail", response_model=EventDetail)
+def get_event_detail(event_id: str, _: dict = Depends(get_current_user)) -> EventDetail:
+    events = events_repo.read()
+    event = next((item for item in events if item["id"] == event_id), None)
+    if not event:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado.")
+
+    users_by_id = {u["id"]: u for u in get_allowed_users()}
+    attendees = [
+        UserRef(id=u["id"], name=u["name"])
+        for attendee_id in event.get("attendeeIds", [])
+        if (u := users_by_id.get(attendee_id)) is not None
+    ]
+    organizer_user = users_by_id.get(event.get("organizerId") or "")
+    organizer = UserRef(id=organizer_user["id"], name=organizer_user["name"]) if organizer_user else None
+
+    return EventDetail(
+        id=event["id"],
+        title=event["title"],
+        description=event["description"],
+        date=event["date"],
+        eventType=event["eventType"],
+        isExtension=event["isExtension"],
+        voteAverage=event.get("voteAverage"),
+        organizer=organizer,
+        attendees=attendees,
+    )
 
 
 @router.put("/{event_id}", response_model=Event)

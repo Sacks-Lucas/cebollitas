@@ -33,3 +33,20 @@ export type MonthlyEventCard = {
   organizerName: string
   event: Event | null
 }
+
+export type UserRef = {
+  id: string
+  name: string
+}
+
+export type EventDetail = {
+  id: string
+  title: string
+  description: string
+  date: string
+  eventType: EventType
+  isExtension: boolean
+  voteAverage: number | null
+  organizer: UserRef | null
+  attendees: UserRef[]
+}

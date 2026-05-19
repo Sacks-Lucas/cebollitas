@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
-  @apply bg-white text-argentina-navy antialiased dark:bg-argentina-navyDeep dark:text-white;
+  margin: 0;
+  @apply bg-white dark:bg-argentina-navyDeep;
+}
+
+body {
+  @apply text-argentina-navy antialiased dark:text-white;
 }
 
 #root {

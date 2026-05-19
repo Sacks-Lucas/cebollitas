@@ -41,4 +41,7 @@ export const es = {
   eventTypeExtended: 'Plan extendido',
   eventTypeMonthly: 'Evento del mes',
   eventTypeTrip: 'Viaje',
+  eventTypeSportsBonus: 'Bonus deportivo',
+  close: 'Cerrar',
+  eventAttendeesCount: 'asistentes',
 } as const

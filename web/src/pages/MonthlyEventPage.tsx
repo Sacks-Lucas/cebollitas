@@ -9,6 +9,12 @@ function monthName(month: number) {
   return new Date(2026, month - 1, 1).toLocaleString('es-AR', { month: 'long' })
 }
 
+const VOTING_WINDOW_MS = 30 * 24 * 60 * 60 * 1000
+
+function isVotingClosed(event: Event): boolean {
+  return Date.now() - new Date(event.createdAt).getTime() > VOTING_WINDOW_MS
+}
+
 export function MonthlyEventPage() {
   const { user } = useAuth()
   const [cards, setCards] = useState<MonthlyEventCard[]>([])
@@ -17,6 +23,7 @@ export function MonthlyEventPage() {
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null)
   const [votingEvent, setVotingEvent] = useState<Event | null>(null)
   const [scores, setScores] = useState({ fun: 5, cost: 5, originality: 5 })
+  const [votedStatus, setVotedStatus] = useState<Record<string, boolean>>({})
 
   const load = () => {
     void api.get<MonthlyEventCard[]>('/api/monthly-events').then((response) => setCards(response.data))
@@ -26,6 +33,18 @@ export function MonthlyEventPage() {
     load()
     void api.get<User[]>('/api/users').then((response) => setUsers(response.data))
   }, [])
+
+  useEffect(() => {
+    const eventIds = cards.map((card) => card.event?.id).filter((id): id is string => Boolean(id))
+    if (eventIds.length === 0) return
+    void Promise.all(
+      eventIds.map((id) =>
+        api
+          .get<{ hasVoted: boolean }>(`/api/votes/has-voted?eventId=${id}`)
+          .then((response) => [id, response.data.hasVoted] as const),
+      ),
+    ).then((results) => setVotedStatus(Object.fromEntries(results)))
+  }, [cards])
 
   const currentMonth = new Date().getMonth() + 1
   const voteLabels = {
@@ -41,10 +60,10 @@ export function MonthlyEventPage() {
         const canCreate = card.month === currentMonth && !card.event && organizer?.id === user?.id
 
         return (
-          <article key={card.month} className="rounded-lg bg-argentina-celeste/10 p-4 dark:bg-argentina-navy">
+          <article key={card.month} className="rounded-lg border border-argentina-celeste/30 bg-argentina-celeste/10 p-4 shadow-md dark:border-argentina-celeste/40 dark:bg-argentina-navy">
             <h3 className="font-semibold capitalize">{monthName(card.month)}</h3>
             <p className="text-sm">Organizador: {card.organizerName}</p>
-            {card.event ? <p className="text-sm">Evento: {card.event.title}</p> : <p className="text-sm">Sin evento cargado</p>}
+            {card.event ? <p className="text-sm">{card.event.title}</p> : <p className="text-sm">Sin evento cargado</p>}
             {canCreate ? (
               <button
                 type="button"
@@ -57,16 +76,11 @@ export function MonthlyEventPage() {
                 {es.createMonthlyEvent}
               </button>
             ) : null}
-            {card.event ? (
+            {card.event && card.event.attendeeIds.includes(user?.id ?? '') && !votedStatus[card.event.id] && !isVotingClosed(card.event) ? (
               <button
                 type="button"
                 className="mt-2 rounded border border-argentina-celeste px-3 py-1"
-                onClick={async () => {
-                  const { data } = await api.get<{ hasVoted: boolean }>(`/api/votes/has-voted?eventId=${card.event?.id}`)
-                  if (!data.hasVoted && card.event.attendeeIds.includes(user?.id ?? '')) {
-                    setVotingEvent(card.event)
-                  }
-                }}
+                onClick={() => setVotingEvent(card.event)}
               >
                 {es.rankMonthlyEvent}
               </button>

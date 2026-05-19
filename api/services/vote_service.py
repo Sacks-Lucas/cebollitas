@@ -33,6 +33,17 @@ def has_voted(event_id: str, voter_id: str) -> bool:
     return any(vote["voterIdHash"] == voter_hash for vote in votes)
 
 
+def get_user_vote(event_id: str, voter_id: str) -> dict | None:
+    voter_hash = build_voter_hash(voter_id, event_id)
+    votes = votes_repo.read()
+    for vote in votes:
+        if vote["voterIdHash"] != voter_hash or vote["eventId"] != event_id:
+            continue
+        fernet = get_fernet()
+        return json.loads(fernet.decrypt(vote["encryptedPayload"].encode()).decode())
+    return None
+
+
 def decrypt_event_scores(event_id: str) -> list[float]:
     votes = votes_repo.read()
     fernet = get_fernet()

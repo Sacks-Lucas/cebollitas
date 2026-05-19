@@ -4,9 +4,16 @@ from uuid import uuid4
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
 from dependencies import get_current_user
-from models.schemas import HasVotedResponse, VoteAverage, VoteCreate
+from models.schemas import HasVotedResponse, MyVote, VoteAverage, VoteCreate
 from repositories.data_store import events_repo, votes_repo
-from services.vote_service import build_voter_hash, decrypt_event_scores, get_fernet, has_voted, is_voting_open
+from services.vote_service import (
+    build_voter_hash,
+    decrypt_event_scores,
+    get_fernet,
+    get_user_vote,
+    has_voted,
+    is_voting_open,
+)
 
 router = APIRouter(prefix="/api/votes", tags=["votes"])
 
@@ -55,6 +62,14 @@ def cast_vote(payload: VoteCreate, current_user: dict = Depends(get_current_user
 @router.get("/has-voted", response_model=HasVotedResponse)
 def check_has_voted(eventId: str = Query(...), current_user: dict = Depends(get_current_user)) -> HasVotedResponse:
     return HasVotedResponse(hasVoted=has_voted(eventId, current_user["id"]))
+
+
+@router.get("/my-vote", response_model=MyVote | None)
+def get_my_vote(eventId: str = Query(...), current_user: dict = Depends(get_current_user)) -> MyVote | None:
+    vote = get_user_vote(eventId, current_user["id"])
+    if not vote:
+        return None
+    return MyVote(fun=vote["fun"], cost=vote["cost"], originality=vote["originality"])
 
 
 @router.get("/{event_id}/average", response_model=VoteAverage)

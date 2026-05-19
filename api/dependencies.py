@@ -1,6 +1,7 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
+from services.admin_service import is_admin
 from services.auth_service import decode_access_token
 
 security = HTTPBearer()
@@ -16,3 +17,9 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
         }
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido.") from exc
+
+
+def get_admin_user(current_user: dict = Depends(get_current_user)) -> dict:
+    if not is_admin(current_user):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Acceso de admin requerido.")
+    return current_user

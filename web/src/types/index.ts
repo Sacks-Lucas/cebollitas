@@ -12,6 +12,9 @@ export type Event = {
   description: string
   date: string
   eventType: EventType
+  location: string | null
+  amount: number | null
+  imageUrl: string | null
   attendeeIds: string[]
   organizerId: string | null
   creatorId: string
@@ -38,12 +41,21 @@ export type UserRef = {
   name: string
 }
 
+export type MyVote = {
+  fun: number
+  cost: number
+  originality: number
+}
+
 export type EventDetail = {
   id: string
   title: string
   description: string
   date: string
   eventType: EventType
+  location: string | null
+  amount: number | null
+  imageUrl: string | null
   voteAverage: number | null
   organizer: UserRef | null
   attendees: UserRef[]

@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { api } from '../services/api'
 import type { User } from '../types'
@@ -7,6 +7,7 @@ type AuthContextValue = {
   user: User | null
   token: string | null
   isAuthenticated: boolean
+  isAdmin: boolean
   loginWithGoogleToken: (googleToken: string) => Promise<void>
   logout: () => void
 }
@@ -22,6 +23,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return raw ? (JSON.parse(raw) as User) : null
   })
   const [token, setToken] = useState<string | null>(() => localStorage.getItem(TOKEN_KEY))
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  useEffect(() => {
+    if (!token) return
+    void api
+      .get<{ isAdmin: boolean }>('/api/admin/me')
+      .then((response) => setIsAdmin(Boolean(response.data.isAdmin)))
+      .catch(() => setIsAdmin(false))
+  }, [token])
 
   const loginWithGoogleToken = async (googleToken: string) => {
     const { data } = await api.post('/api/auth/google', { token: googleToken })
@@ -34,13 +44,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null)
     setToken(null)
+    setIsAdmin(false)
     localStorage.removeItem(USER_KEY)
     localStorage.removeItem(TOKEN_KEY)
   }
 
   const value = useMemo(
-    () => ({ user, token, isAuthenticated: Boolean(user && token), loginWithGoogleToken, logout }),
-    [token, user],
+    () => ({ user, token, isAuthenticated: Boolean(user && token), isAdmin, loginWithGoogleToken, logout }),
+    [token, user, isAdmin],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

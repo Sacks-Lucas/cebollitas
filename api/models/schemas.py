@@ -27,6 +27,9 @@ class EventBase(BaseModel):
     description: str = Field(min_length=1, max_length=1000)
     date: date
     eventType: EventType
+    location: str | None = Field(default=None, max_length=200)
+    amount: float | None = Field(default=None, ge=0)
+    imageUrl: str | None = Field(default=None, max_length=500)
     attendeeIds: list[str] = Field(default_factory=list)
     organizerId: str | None = None
 
@@ -60,6 +63,9 @@ class EventDetail(BaseModel):
     description: str
     date: date
     eventType: EventType
+    location: str | None = None
+    amount: float | None = None
+    imageUrl: str | None = None
     voteAverage: float | None = None
     organizer: UserRef | None = None
     attendees: list[UserRef] = Field(default_factory=list)
@@ -99,3 +105,9 @@ class MonthlyEventCard(BaseModel):
 
 class HasVotedResponse(BaseModel):
     hasVoted: bool
+
+
+class MyVote(BaseModel):
+    fun: int
+    cost: int
+    originality: int

@@ -11,3 +11,10 @@ api.interceptors.request.use((config) => {
   }
   return config
 })
+
+export function resolveApiUrl(path: string | null | undefined): string {
+  if (!path) return ''
+  if (/^https?:\/\//i.test(path)) return path
+  const base = api.defaults.baseURL ?? ''
+  return `${base}${path.startsWith('/') ? '' : '/'}${path}`
+}

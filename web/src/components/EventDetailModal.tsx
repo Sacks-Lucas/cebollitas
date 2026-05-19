@@ -35,11 +35,11 @@ export function EventDetailModal({ eventId, onClose }: Props) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md space-y-3 rounded-lg bg-white p-4 shadow-xl dark:bg-argentina-navy"
+        className="w-full max-w-md space-y-3 rounded-lg bg-white p-4 shadow-2xl dark:bg-argentina-navy"
         onClick={(e) => e.stopPropagation()}
       >
         {detail ? (
@@ -52,17 +52,17 @@ export function EventDetailModal({ eventId, onClose }: Props) {
             </header>
             <p className="text-sm">{detail.description}</p>
             <dl className="space-y-1 text-xs">
-              <div className="flex flex-wrap gap-1">
-                <dt className="font-semibold">{es.attendees}:</dt>
-                <dd>{detail.attendees.length > 0 ? detail.attendees.map((a) => a.name).join(', ') : '-'}</dd>
+              <div className="flex gap-1">
+                <dt className="font-semibold">{es.date}:</dt>
+                <dd>{detail.date.slice(0, 10)}</dd>
               </div>
               <div className="flex gap-1">
                 <dt className="font-semibold">{es.organizer}:</dt>
                 <dd>{detail.organizer?.name ?? es.noOrganizer}</dd>
               </div>
-              <div className="flex gap-1">
-                <dt className="font-semibold">{es.date}:</dt>
-                <dd>{detail.date.slice(0, 10)}</dd>
+              <div className="flex flex-wrap gap-1">
+                <dt className="font-semibold">{es.attendees}:</dt>
+                <dd>{detail.attendees.length > 0 ? detail.attendees.map((a) => a.name).join(', ') : '-'}</dd>
               </div>
             </dl>
             <button

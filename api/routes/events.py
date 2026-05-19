@@ -26,6 +26,8 @@ def list_events(
     if attendeeId:
         events = [event for event in events if attendeeId in event.get("attendeeIds", [])]
 
+    events.sort(key=lambda event: (event["date"], event.get("createdAt", "")), reverse=True)
+
     return [Event.model_validate(event) for event in events]
 
 

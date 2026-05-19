@@ -12,7 +12,6 @@ export type Event = {
   description: string
   date: string
   eventType: EventType
-  isExtension: boolean
   attendeeIds: string[]
   organizerId: string | null
   creatorId: string
@@ -45,7 +44,6 @@ export type EventDetail = {
   description: string
   date: string
   eventType: EventType
-  isExtension: boolean
   voteAverage: number | null
   organizer: UserRef | null
   attendees: UserRef[]

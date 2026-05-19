@@ -5,6 +5,7 @@ import { Layout } from './components/Layout'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './contexts/ThemeContext'
+import { ToastProvider } from './contexts/ToastContext'
 import { AdminPage } from './pages/AdminPage'
 import { EventsPage } from './pages/EventsPage'
 import { LoginPage } from './pages/LoginPage'
@@ -17,22 +18,24 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={googleClientId}>
       <ThemeProvider>
-        <AuthProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route element={<Layout />}>
-                  <Route path="/rankings" element={<RankingsPage />} />
-                  <Route path="/eventos" element={<EventsPage />} />
-                  <Route path="/evento-del-mes" element={<MonthlyEventPage />} />
-                  <Route path="/admin" element={<AdminPage />} />
+        <ToastProvider>
+          <AuthProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route element={<Layout />}>
+                    <Route path="/rankings" element={<RankingsPage />} />
+                    <Route path="/eventos" element={<EventsPage />} />
+                    <Route path="/evento-del-mes" element={<MonthlyEventPage />} />
+                    <Route path="/admin" element={<AdminPage />} />
+                  </Route>
                 </Route>
-              </Route>
-              <Route path="*" element={<Navigate to="/rankings" replace />} />
-            </Routes>
-          </BrowserRouter>
-        </AuthProvider>
+                <Route path="*" element={<Navigate to="/rankings" replace />} />
+              </Routes>
+            </BrowserRouter>
+          </AuthProvider>
+        </ToastProvider>
       </ThemeProvider>
     </GoogleOAuthProvider>
   )

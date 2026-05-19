@@ -108,19 +108,19 @@ EVENT_META: dict[int, dict] = {
     8:  {"type": "monthly_event", "org": "Petro",  "vote_avg": 7.0},
     9:  {"skip": True},                              # Crucero (trip, deferred)
     10: {"type": "monthly_event", "org": "Cala",   "vote_avg": 7.0},
-    11: {"type": "extended",      "org": None},      # Continuación Canton (isExtension)
+    11: {"type": "extended",      "org": None},      # Continuación Canton
     12: {"type": "regular",       "org": "Carlos"},
     13: {"skip": True},                              # Rosario (trip, sin asistentes)
     14: {"type": "regular",       "org": "Petro"},
     15: {"type": "monthly_event", "org": "Renzo",  "vote_avg": 8.0},
-    16: {"type": "extended",      "org": None},      # Express: Pompeya (isExtension)
+    16: {"type": "extended",      "org": None},      # Express: Pompeya
     17: {"type": "regular",       "org": "Petro"},
     18: {"type": "regular",       "org": "Renzo"},
     19: {"type": "regular",       "org": "Cala"},
     20: {"type": "regular",       "org": None},      # Misa: evento público, sin organizer
     21: {"type": "monthly_event", "org": "Winnie", "vote_avg": 8.0},
     22: {"type": "regular",       "org": "Lucky"},
-    23: {"type": "extended",      "org": None},      # Extra: Chinito (isExtension)
+    23: {"type": "extended",      "org": None},      # Extra: Chinito
     25: {"skip": True},                              # Evento Nacho: ???? (placeholder)
 }
 
@@ -214,7 +214,6 @@ def main() -> None:
 
         event_type   = meta["type"]
         org_nick     = meta.get("org")
-        is_extension = event_type == "extended"
 
         # Attendees: columns E..P with numeric value > 0
         attendee_nicks = [
@@ -234,7 +233,6 @@ def main() -> None:
             "description": description,
             "date":        date_str,
             "eventType":   event_type,
-            "isExtension": is_extension,
             "attendeeIds": attendee_ids,
             "organizerId": organizer_id,
             "creatorId":   creator_id,

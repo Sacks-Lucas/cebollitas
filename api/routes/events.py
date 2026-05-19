@@ -87,7 +87,6 @@ def get_event_detail(event_id: str, _: dict = Depends(get_current_user)) -> Even
         description=event["description"],
         date=event["date"],
         eventType=event["eventType"],
-        isExtension=event["isExtension"],
         voteAverage=event.get("voteAverage"),
         organizer=organizer,
         attendees=attendees,

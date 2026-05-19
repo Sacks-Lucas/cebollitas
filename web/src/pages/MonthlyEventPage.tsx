@@ -102,7 +102,6 @@ export function MonthlyEventPage() {
                 description: formData.get('description'),
                 date: formData.get('date'),
                 eventType: 'monthly_event',
-                isExtension: false,
                 attendeeIds: String(formData.get('attendees') ?? '')
                   .split(',')
                   .map((value) => value.trim())

@@ -2,6 +2,7 @@ import { Pencil } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 
 import { useAuth } from '../contexts/AuthContext'
+import { useToast } from '../contexts/ToastContext'
 import { es } from '../i18n/es'
 import { api } from '../services/api'
 import type { Event, EventType, User } from '../types'
@@ -26,6 +27,7 @@ const eventTypeBadgeClass: Record<EventType, string> = {
 
 export function EventsPage() {
   const { user } = useAuth()
+  const { showToast } = useToast()
   const [events, setEvents] = useState<Event[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [showModal, setShowModal] = useState(false)
@@ -54,22 +56,34 @@ export function EventsPage() {
   return (
     <section className="space-y-4">
       <div className="flex flex-wrap items-center gap-2">
-        <select value={month} onChange={(e) => setMonth(e.target.value)} className="rounded border p-2">
+        <select
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+          className="rounded border border-argentina-celeste/40 bg-white p-2 text-argentina-navyDeep dark:border-argentina-celeste/40 dark:bg-argentina-navy dark:text-white"
+        >
           <option value="">{es.filterByMonth}</option>
-          {Array.from({ length: 12 }, (_, idx) => (
+          {es.months.map((name, idx) => (
             <option key={idx + 1} value={idx + 1}>
-              {idx + 1}
+              {name}
             </option>
           ))}
         </select>
-        <select value={eventType} onChange={(e) => setEventType(e.target.value)} className="rounded border p-2">
+        <select
+          value={eventType}
+          onChange={(e) => setEventType(e.target.value)}
+          className="rounded border border-argentina-celeste/40 bg-white p-2 text-argentina-navyDeep dark:border-argentina-celeste/40 dark:bg-argentina-navy dark:text-white"
+        >
           <option value="">{es.filterByType}</option>
           <option value="regular">{es.eventTypeRegular}</option>
           <option value="extended">{es.eventTypeExtended}</option>
           <option value="monthly_event">{es.eventTypeMonthly}</option>
           <option value="trip">{es.eventTypeTrip}</option>
         </select>
-        <select value={attendeeId} onChange={(e) => setAttendeeId(e.target.value)} className="rounded border p-2">
+        <select
+          value={attendeeId}
+          onChange={(e) => setAttendeeId(e.target.value)}
+          className="rounded border border-argentina-celeste/40 bg-white p-2 text-argentina-navyDeep dark:border-argentina-celeste/40 dark:bg-argentina-navy dark:text-white"
+        >
           <option value="">{es.filterByAttendee}</option>
           {users.map((member) => (
             <option key={member.id} value={member.id}>
@@ -154,16 +168,19 @@ export function EventsPage() {
           initial={editing}
           onClose={() => setShowModal(false)}
           onSubmit={async (values) => {
-            const payload = {
-              ...values,
-              eventType: values.isExtension ? ('extended' as EventType) : values.eventType,
+            const isEditing = Boolean(editing)
+            try {
+              if (editing) {
+                await api.put(`/api/events/${editing.id}`, values)
+              } else {
+                await api.post('/api/events', values)
+              }
+              showToast(isEditing ? es.eventUpdatedSuccess : es.eventCreatedSuccess, 'success')
+              load()
+            } catch (err) {
+              showToast(es.eventSaveError, 'error')
+              throw err
             }
-            if (editing) {
-              await api.put(`/api/events/${editing.id}`, payload)
-            } else {
-              await api.post('/api/events', payload)
-            }
-            load()
           }}
         />
       ) : null}

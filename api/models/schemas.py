@@ -27,7 +27,6 @@ class EventBase(BaseModel):
     description: str = Field(min_length=1, max_length=1000)
     date: date
     eventType: EventType
-    isExtension: bool = False
     attendeeIds: list[str] = Field(default_factory=list)
     organizerId: str | None = None
 
@@ -61,7 +60,6 @@ class EventDetail(BaseModel):
     description: str
     date: date
     eventType: EventType
-    isExtension: bool
     voteAverage: float | None = None
     organizer: UserRef | None = None
     attendees: list[UserRef] = Field(default_factory=list)

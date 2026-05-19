@@ -25,6 +25,7 @@ export type RankingRow = {
   name: string
   totalPoints: number
   attendancePercentage: number
+  absences: number
 }
 
 export type MonthlyEventCard = {

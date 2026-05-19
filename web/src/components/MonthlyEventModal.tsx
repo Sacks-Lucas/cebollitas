@@ -122,7 +122,12 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
             ) : null}
           </div>
           <div className="space-y-1">
-            <textarea {...register('description')} placeholder={es.description} className={fieldClass} />
+            <textarea
+              {...register('description')}
+              placeholder={es.description}
+              rows={6}
+              className={`${fieldClass} min-h-[8rem] resize-y`}
+            />
             {formState.errors.description ? (
               <p className="text-sm text-red-600">{formState.errors.description.message}</p>
             ) : null}

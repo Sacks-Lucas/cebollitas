@@ -84,7 +84,8 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
             <textarea
               {...register('description')}
               placeholder={es.description}
-              className={fieldClass}
+              rows={6}
+              className={`${fieldClass} min-h-[8rem] resize-y`}
             />
             {formState.errors.description ? (
               <p className="text-sm text-red-600">{formState.errors.description.message}</p>

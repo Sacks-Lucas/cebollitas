@@ -41,6 +41,18 @@ export type UserRef = {
   name: string
 }
 
+export type Trip = {
+  id: string
+  title: string
+  description: string
+  startDate: string
+  endDate: string
+  destination: string
+  attendeeIds: string[]
+  createdAt: string
+  updatedAt: string
+}
+
 export type MyVote = {
   fun: number
   cost: number

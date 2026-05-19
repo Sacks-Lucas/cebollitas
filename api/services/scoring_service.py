@@ -6,13 +6,14 @@ ATTENDEE_POINTS = 30
 ORGANIZER_POINTS = 40
 EXTENDED_POINTS = 15
 MONTHLY_ATTENDEE_POINTS = 40
+TRIP_POINTS = 70
 
 
-def compute_rankings(users: list[dict], events: list[dict]) -> list[dict]:
+def compute_rankings(users: list[dict], events: list[dict], trips: list[dict] | None = None) -> list[dict]:
+    trips = trips or []
     totals: dict[str, int] = defaultdict(int)
     attendance: dict[str, int] = defaultdict(int)
 
-    total_events = len(events)
     for event in events:
         event_type = event.get("eventType")
         organizer_id = event.get("organizerId")
@@ -30,6 +31,12 @@ def compute_rankings(users: list[dict], events: list[dict]) -> list[dict]:
                 totals[attendee_id] += ORGANIZER_POINTS
             else:
                 totals[attendee_id] += ATTENDEE_POINTS
+
+    for trip in trips:
+        for attendee_id in trip.get("attendeeIds", []):
+            totals[attendee_id] += TRIP_POINTS
+
+    total_events = len(events)
 
     ranking = []
     for user in users:

@@ -9,6 +9,7 @@ DATA_DIR = BASE_DIR / "data"
 allowed_users_repo = JsonRepository(DATA_DIR / "allowed_users.json")
 monthly_assignments_repo = JsonRepository(DATA_DIR / "monthly_assignments.json")
 events_repo = JsonRepository(DATA_DIR / "events.json")
+trips_repo = JsonRepository(DATA_DIR / "trips.json")
 votes_repo = JsonRepository(DATA_DIR / "votes.json")
 
 

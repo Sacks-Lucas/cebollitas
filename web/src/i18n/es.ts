@@ -66,6 +66,8 @@ export const es = {
   voteSaveError: 'No se pudo registrar el voto',
   myVote: 'Mi puntaje',
   voteNotCast: 'Todavía no votaste este evento',
+  destination: 'Destino',
+  tripDateRange: 'Del {start} al {end}',
   months: [
     'Enero',
     'Febrero',

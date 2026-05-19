@@ -1,0 +1,20 @@
+[
+  {
+    "id": "3f8b2c4d-9a1e-4f5b-8c2d-6e7a8b9c0d1e",
+    "title": "Vacaciones CRUCERO",
+    "description": "Indescriptible, pasó de todo",
+    "startDate": "2026-02-12",
+    "endDate": "2026-02-12",
+    "destination": "Crucero",
+    "attendeeIds": [
+      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+      "95466925-bea9-59a3-b675-45005906a39a",
+      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2"
+    ],
+    "createdAt": "2026-05-19T12:00:00+00:00",
+    "updatedAt": "2026-05-19T12:00:00+00:00"
+  }
+]

@@ -71,6 +71,20 @@ class EventDetail(BaseModel):
     attendees: list[UserRef] = Field(default_factory=list)
 
 
+class Trip(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    title: str = Field(min_length=1, max_length=100)
+    description: str = Field(min_length=1, max_length=1000)
+    startDate: date
+    endDate: date
+    destination: str = Field(min_length=1, max_length=200)
+    attendeeIds: list[str] = Field(default_factory=list)
+    createdAt: datetime
+    updatedAt: datetime
+
+
 class VoteCreate(BaseModel):
     eventId: str
     fun: int = Field(ge=1, le=10)

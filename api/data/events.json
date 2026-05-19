@@ -350,28 +350,5 @@
     "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
     "createdAt": "2026-05-15T01:34:26.112412+00:00",
     "updatedAt": "2026-05-15T01:34:26.112412+00:00"
-  },
-  {
-    "title": "Cumple Yaz",
-    "description": "Descripción ejemplo 2",
-    "date": "2026-05-16",
-    "eventType": "regular",
-    "attendeeIds": [
-      "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
-      "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
-      "47de9e03-2a5d-5952-a137-4898a07bb7ed",
-      "d67d6488-0fd4-5564-850e-2026a5d24b91",
-      "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
-      "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
-      "f215c0a0-0045-5e2e-86e2-679268be55e1",
-      "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
-      "95466925-bea9-59a3-b675-45005906a39a",
-      "9e538569-f18f-5bbc-b23e-37b31fb63b6d"
-    ],
-    "organizerId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
-    "id": "e104234f-dbe9-4d44-8855-023a17d1b3ec",
-    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
-    "createdAt": "2026-05-19T17:23:25.298481+00:00",
-    "updatedAt": "2026-05-19T17:33:49.226439+00:00"
   }
 ]

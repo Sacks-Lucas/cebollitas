@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import { es } from '../i18n/es'
 import { api } from '../services/api'
-import type { Event, EventType, User } from '../types'
+import type { Event, EventType, Trip, User } from '../types'
 import { EventDetailModal } from '../components/EventDetailModal'
 import { EventModal } from '../components/EventModal'
 
@@ -25,10 +25,15 @@ const eventTypeBadgeClass: Record<EventType, string> = {
   sports_bonus: 'bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-200',
 }
 
+type ListItem =
+  | { kind: 'event'; data: Event; sortKey: string }
+  | { kind: 'trip'; data: Trip; sortKey: string }
+
 export function EventsPage() {
   const { user } = useAuth()
   const { showToast } = useToast()
   const [events, setEvents] = useState<Event[]>([])
+  const [trips, setTrips] = useState<Trip[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [showModal, setShowModal] = useState(false)
   const [editing, setEditing] = useState<Event | undefined>()
@@ -44,7 +49,13 @@ export function EventsPage() {
     if (month) params.set('month', month)
     if (eventType) params.set('type', eventType)
     if (attendeeId) params.set('attendeeId', attendeeId)
+
+    const tripParams = new URLSearchParams()
+    if (month) tripParams.set('month', month)
+    if (attendeeId) tripParams.set('attendeeId', attendeeId)
+
     void api.get<Event[]>(`/api/events?${params.toString()}`).then((res) => setEvents(res.data))
+    void api.get<Trip[]>(`/api/trips?${tripParams.toString()}`).then((res) => setTrips(res.data))
   }
 
   useEffect(() => {
@@ -52,6 +63,21 @@ export function EventsPage() {
   }, [])
 
   useEffect(load, [month, eventType, attendeeId])
+
+  const items: ListItem[] = useMemo(() => {
+    const eventItems: ListItem[] = events.map((event) => ({
+      kind: 'event',
+      data: event,
+      sortKey: `${event.date}|${event.createdAt}`,
+    }))
+    const visibleTrips = eventType && eventType !== 'trip' ? [] : trips
+    const tripItems: ListItem[] = visibleTrips.map((trip) => ({
+      kind: 'trip',
+      data: trip,
+      sortKey: `${trip.startDate}|${trip.createdAt}`,
+    }))
+    return [...eventItems, ...tripItems].sort((a, b) => b.sortKey.localeCompare(a.sortKey))
+  }, [events, trips, eventType])
 
   return (
     <section className="space-y-4">
@@ -103,11 +129,38 @@ export function EventsPage() {
         </button>
       </div>
 
-      {events.length === 0 ? (
+      {items.length === 0 ? (
         <p>{es.noData}</p>
       ) : (
         <ul className="space-y-3">
-          {events.map((event) => {
+          {items.map((item) => {
+            if (item.kind === 'trip') {
+              const trip = item.data
+              const sameDay = trip.startDate === trip.endDate
+              const dateText = sameDay
+                ? trip.startDate.slice(0, 10)
+                : `${trip.startDate.slice(0, 10)} → ${trip.endDate.slice(0, 10)}`
+              return (
+                <li
+                  key={`trip-${trip.id}`}
+                  className="flex flex-col gap-2 rounded-lg border border-argentina-celeste/40 bg-green-50 p-4 shadow-lg shadow-argentina-celeste/20 transition dark:border-argentina-celeste/50 dark:bg-green-900/20 dark:shadow-black/60 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${eventTypeBadgeClass.trip}`}>
+                        {eventTypeLabel.trip}
+                      </span>
+                      <h3 className="truncate font-semibold">{trip.title}</h3>
+                    </div>
+                    <p className="text-xs text-argentina-celesteDark dark:text-argentina-celeste/80">
+                      {dateText} · {es.destination}: {trip.destination} · {trip.attendeeIds.length} {es.eventAttendeesCount}
+                    </p>
+                  </div>
+                </li>
+              )
+            }
+
+            const event = item.data
             const isOwner = user?.id === event.creatorId
             const isMonthly = event.eventType === 'monthly_event'
             return (

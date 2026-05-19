@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import admin, auth, events, monthly_events, rankings, users, votes
+from routes import admin, auth, events, monthly_events, rankings, trips, users, votes
 
 load_dotenv()
 
@@ -24,6 +24,7 @@ app.include_router(users.router)
 app.include_router(events.router)
 app.include_router(rankings.router)
 app.include_router(monthly_events.router)
+app.include_router(trips.router)
 app.include_router(votes.router)
 app.include_router(admin.router)
 

@@ -25,6 +25,12 @@ def cast_vote(payload: VoteCreate, current_user: dict = Depends(get_current_user
     if not event:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado.")
 
+    if event.get("eventType") != "monthly_event":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Solo se pueden votar eventos del mes.",
+        )
+
     if current_user["id"] not in event.get("attendeeIds", []):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,

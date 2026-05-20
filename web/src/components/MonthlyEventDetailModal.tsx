@@ -36,6 +36,7 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
               <img
                 src={resolveApiUrl(detail.imageUrl)}
                 alt={detail.title}
+                style={{ objectPosition: detail.imagePosition ?? '50% 50%' }}
                 className="h-48 w-full shrink-0 object-cover"
               />
             ) : (
@@ -62,7 +63,7 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
                     <dd>{detail.location}</dd>
                   </>
                 ) : null}
-                {detail.amount !== null && detail.amount !== undefined ? (
+                {detail.amount ? (
                   <>
                     <dt className="font-semibold">{es.amount}:</dt>
                     <dd>{currencyFormatter.format(detail.amount)}</dd>

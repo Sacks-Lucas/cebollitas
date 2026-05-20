@@ -18,6 +18,7 @@ type MonthlyEventPayload = {
   location: string
   amount: number
   imageUrl: string
+  imagePosition: string
   eventType: 'monthly_event'
   organizerId: string | null
   attendeeIds: string[]

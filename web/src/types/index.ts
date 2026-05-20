@@ -15,6 +15,7 @@ export type Event = {
   location: string | null
   amount: number | null
   imageUrl: string | null
+  imagePosition: string | null
   attendeeIds: string[]
   organizerId: string | null
   creatorId: string
@@ -68,6 +69,7 @@ export type EventDetail = {
   location: string | null
   amount: number | null
   imageUrl: string | null
+  imagePosition: string | null
   voteAverage: number | null
   organizer: UserRef | null
   attendees: UserRef[]

@@ -99,6 +99,7 @@ export function MonthlyEventPage() {
               <img
                 src={resolveApiUrl(card.event.imageUrl)}
                 alt={card.event.title}
+                style={{ objectPosition: card.event.imagePosition ?? '50% 50%' }}
                 className="h-32 w-full object-cover"
               />
             ) : (
@@ -132,7 +133,7 @@ export function MonthlyEventPage() {
                       {es.location}: {card.event.location}
                     </p>
                   ) : null}
-                  {card.event.amount !== null && card.event.amount !== undefined ? (
+                  {card.event.amount ? (
                     <p className="text-xs text-argentina-celesteDark dark:text-argentina-celeste/80">
                       {es.amount}: {currencyFormatter.format(card.event.amount)}
                     </p>

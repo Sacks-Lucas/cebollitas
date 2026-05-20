@@ -92,6 +92,7 @@ def get_event_detail(event_id: str, _: dict = Depends(get_current_user)) -> Even
         location=event.get("location"),
         amount=event.get("amount"),
         imageUrl=event.get("imageUrl"),
+        imagePosition=event.get("imagePosition"),
         voteAverage=event.get("voteAverage"),
         organizer=organizer,
         attendees=attendees,

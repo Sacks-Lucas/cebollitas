@@ -1,14 +1,29 @@
+import { useRef } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createPortal } from 'react-dom'
-import { ImagePlus, Loader2, Trash2 } from 'lucide-react'
+import { ImagePlus, Loader2, Move, Trash2 } from 'lucide-react'
 
 import { es } from '../i18n/es'
 import { resolveApiUrl } from '../services/api'
 import { useToast } from '../contexts/ToastContext'
 import { useUploadMonthlyEventImage } from '../hooks/useImages'
 import type { Event, User } from '../types'
+
+const DEFAULT_POSITION = '50% 50%'
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value))
+}
+
+function parsePosition(value: string | null | undefined): { x: number; y: number } {
+  if (!value) return { x: 50, y: 50 }
+  const [rawX, rawY] = value.split(' ')
+  const x = Number.parseFloat(rawX)
+  const y = Number.parseFloat(rawY)
+  return { x: Number.isFinite(x) ? x : 50, y: Number.isFinite(y) ? y : 50 }
+}
 
 const fieldClass =
   'w-full rounded border border-argentina-celeste/40 bg-white p-2 text-argentina-navyDeep placeholder:text-gray-400 dark:border-argentina-celeste/40 dark:bg-argentina-navy dark:text-white dark:placeholder:text-argentina-celeste/40'
@@ -28,6 +43,7 @@ const schema = z.object({
   location: z.string().trim().min(1, { error: es.locationRequired }).max(200),
   amount: z.coerce.number({ error: es.amountRequired }).min(0, { error: es.amountRequired }),
   imageUrl: z.string().min(1, { error: es.imageRequired }),
+  imagePosition: z.string().default(DEFAULT_POSITION),
   attendeeIds: z.array(z.string()).min(4, { error: es.minAttendeesError }),
 })
 
@@ -55,6 +71,7 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
           location: initial.location ?? '',
           amount: initial.amount ?? 0,
           imageUrl: initial.imageUrl ?? '',
+          imagePosition: initial.imagePosition ?? DEFAULT_POSITION,
           attendeeIds: initial.attendeeIds,
         }
       : {
@@ -64,14 +81,18 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
           location: '',
           amount: 0,
           imageUrl: '',
+          imagePosition: DEFAULT_POSITION,
           attendeeIds: [],
         },
   })
 
   const uploadImage = useUploadMonthlyEventImage()
   const imageUrl = useWatch({ control, name: 'imageUrl' })
+  const imagePosition = useWatch({ control, name: 'imagePosition' }) ?? DEFAULT_POSITION
   const isSubmitting = formState.isSubmitting
   const isUploading = uploadImage.isPending
+
+  const dragRef = useRef<{ startX: number; startY: number; posX: number; posY: number; width: number; height: number } | null>(null)
 
   const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -80,12 +101,48 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
     try {
       const url = await uploadImage.mutateAsync(file)
       setValue('imageUrl', url, { shouldValidate: true })
+      setValue('imagePosition', DEFAULT_POSITION)
     } catch {
       showToast(es.imageUploadError, 'error')
     }
   }
 
-  const clearImage = () => setValue('imageUrl', '', { shouldValidate: true })
+  const clearImage = () => {
+    setValue('imageUrl', '', { shouldValidate: true })
+    setValue('imagePosition', DEFAULT_POSITION)
+  }
+
+  const handleDragStart = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.preventDefault()
+    event.currentTarget.setPointerCapture(event.pointerId)
+    const rect = event.currentTarget.getBoundingClientRect()
+    const current = parsePosition(imagePosition)
+    dragRef.current = {
+      startX: event.clientX,
+      startY: event.clientY,
+      posX: current.x,
+      posY: current.y,
+      width: rect.width,
+      height: rect.height,
+    }
+  }
+
+  const handleDragMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current
+    if (!drag) return
+    const dx = event.clientX - drag.startX
+    const dy = event.clientY - drag.startY
+    const nextX = clamp(drag.posX - (dx / drag.width) * 100, 0, 100)
+    const nextY = clamp(drag.posY - (dy / drag.height) * 100, 0, 100)
+    setValue('imagePosition', `${Math.round(nextX)}% ${Math.round(nextY)}%`)
+  }
+
+  const handleDragEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+    dragRef.current = null
+  }
 
   return createPortal(
     <div
@@ -157,11 +214,24 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
             <label className="block text-sm font-medium">{es.image}</label>
             {imageUrl ? (
               <div className="relative">
-                <img
-                  src={resolveApiUrl(imageUrl)}
-                  alt={es.image}
-                  className="max-h-48 w-full rounded border border-argentina-celeste/40 object-cover"
-                />
+                <div
+                  onPointerDown={handleDragStart}
+                  onPointerMove={handleDragMove}
+                  onPointerUp={handleDragEnd}
+                  onPointerCancel={handleDragEnd}
+                  className="group relative h-48 w-full cursor-move touch-none overflow-hidden rounded border border-argentina-celeste/40 select-none"
+                >
+                  <img
+                    src={resolveApiUrl(imageUrl)}
+                    alt={es.image}
+                    draggable={false}
+                    style={{ objectPosition: imagePosition }}
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-black/40 py-1 text-[11px] font-medium text-white opacity-0 transition group-hover:opacity-100">
+                    <Move size={12} /> {es.imageReposition}
+                  </div>
+                </div>
                 <div className="mt-2 flex gap-2">
                   <label className="flex cursor-pointer items-center gap-1 rounded border border-argentina-celeste/60 px-3 py-1 text-sm text-argentina-celesteDark hover:bg-argentina-celeste/10 dark:text-argentina-celeste dark:hover:bg-argentina-celeste/20">
                     <ImagePlus size={14} /> {es.changeImage}

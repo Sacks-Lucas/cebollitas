@@ -57,6 +57,7 @@ export const es = {
   uploadImage: 'Subir imagen',
   changeImage: 'Cambiar imagen',
   removeImage: 'Quitar imagen',
+  imageReposition: 'Arrastrá para acomodar',
   locationRequired: 'La ubicación es obligatoria',
   amountRequired: 'El monto es obligatorio',
   imageRequired: 'La imagen es obligatoria',

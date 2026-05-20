@@ -44,6 +44,13 @@ def get_user_vote(event_id: str, voter_id: str) -> dict | None:
     return None
 
 
+def get_event_general_average(event_id: str) -> int | None:
+    scores = decrypt_event_scores(event_id)
+    if not scores:
+        return None
+    return round(sum(scores) / len(scores))
+
+
 def decrypt_event_scores(event_id: str) -> list[float]:
     votes = votes_repo.read()
     fernet = get_fernet()

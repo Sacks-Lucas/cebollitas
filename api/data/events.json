@@ -74,12 +74,13 @@
     "updatedAt": "2026-05-15T01:34:26.112412+00:00"
   },
   {
-    "id": "12f3f854-bf86-447d-b2eb-3adceb6c8f0a",
-    "title": "Evento Petro: Paintball ",
+    "title": "Evento Petro: Paintball",
     "description": "Tiro tiro tiro apuñalada apuñalada",
     "date": "2026-01-31",
     "eventType": "monthly_event",
-    "voteAverage": 7.0,
+    "location": "Comando Urbano Paintball",
+    "amount": 15000.0,
+    "imageUrl": "/api/monthly-events/images/8c6665036dc0443bb74aab0e897895ef.jpg",
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
       "0b1605ce-7cae-5c31-b609-b5858fc62292",
@@ -93,17 +94,21 @@
       "074271a9-ee53-5095-ab44-ade280393ad4"
     ],
     "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "id": "12f3f854-bf86-447d-b2eb-3adceb6c8f0a",
     "creatorId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
     "createdAt": "2026-05-15T01:34:26.112412+00:00",
-    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+    "updatedAt": "2026-05-20T01:23:46.051237+00:00",
+    "voteAverage": 7.0
   },
   {
-    "id": "c07cdb52-8687-480b-a38d-6412180168ae",
     "title": "Evento Cala: Joda Canton",
-    "description": "Se vino el evento anual de calaneitor en el canton en donde podemos describir a la noche en un antes y un despues. Nose en que momento se rompió todo pero hubieron tequilazos que hicieron vomitar al famoso TEQUILAMAN, hubieron volteretas, bailes de patin / danza, y una dormida en el sillón epica donde se le escupió el asado a fernandito",
+    "description": "Se vino el evento anual de calaneitor en el canton en donde podemos describir a la noche en un antes y un despues. Nose en que momento se rompió todo pero hubieron tequilazos que hicieron vomitar al famoso TEQUILAMAN, hubieron volteretas, bailes de patin / danza, y una dormida en el sillón epica donde se le escupió el asado a fernandito. PD: no habia una mejor foto",
     "date": "2026-02-21",
     "eventType": "monthly_event",
-    "voteAverage": 7.0,
+    "location": "El Canton - Escobar",
+    "amount": 0.0,
+    "imageUrl": "/api/monthly-events/images/d445534d1e584955ac56565ba9c2411a.jpg",
+    "imagePosition": "44% 58%",
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
       "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
@@ -115,9 +120,10 @@
       "95466925-bea9-59a3-b675-45005906a39a"
     ],
     "organizerId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "id": "c07cdb52-8687-480b-a38d-6412180168ae",
     "creatorId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
     "createdAt": "2026-05-15T01:34:26.112412+00:00",
-    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+    "updatedAt": "2026-05-20T02:15:39.495390+00:00"
   },
   {
     "id": "55dc8996-3229-44c3-bbc4-becd4f749333",
@@ -174,12 +180,13 @@
     "updatedAt": "2026-05-15T01:34:26.112412+00:00"
   },
   {
-    "id": "a626c4e2-c228-4937-816b-9d9ef70ae239",
     "title": "Evento Renzo: Patin sobre hielo",
     "description": "En el dia de la fecha se descubrió como unos monos pueden patinar sobre hielo siendo el peor carlitos que no salio de la barra, seguido de fer que actuó de novio gay del anterior, sacks sin pena ni gloria, cala que parecia mi nono de 80 años, renzo que se cayó 20 veces, PETRO SORPRENDIO CON SU NULA CAPACIDAD MOTRIZ y Mateo que era obvio que iba a ser el mejor",
     "date": "2026-03-21",
     "eventType": "monthly_event",
-    "voteAverage": 8.0,
+    "location": "Margal - Caballito",
+    "amount": 15000.0,
+    "imageUrl": "/api/monthly-events/images/31134590b3ec48b3ac1853efed3e446d.jpg",
     "attendeeIds": [
       "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
       "47de9e03-2a5d-5952-a137-4898a07bb7ed",
@@ -190,9 +197,11 @@
       "95466925-bea9-59a3-b675-45005906a39a"
     ],
     "organizerId": "95466925-bea9-59a3-b675-45005906a39a",
+    "id": "a626c4e2-c228-4937-816b-9d9ef70ae239",
     "creatorId": "95466925-bea9-59a3-b675-45005906a39a",
     "createdAt": "2026-05-15T01:34:26.112412+00:00",
-    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+    "updatedAt": "2026-05-20T01:23:41.116026+00:00",
+    "voteAverage": 8.0
   },
   {
     "id": "03a13943-7e36-4a80-ae6d-0961888b03a2",
@@ -289,12 +298,13 @@
     "updatedAt": "2026-05-15T01:34:26.112412+00:00"
   },
   {
-    "id": "0a2fc187-cad3-4e61-a119-9a0c65a0d551",
     "title": "Evento Mateo: Carreritas a lo colapa",
     "description": "Se vino el evento de mateo en donde los monos demostraron sus habilidades de manejo en un simulador de COLAPA, claramente todos unos burros que no sabian ni poner primera destacando lo TRAMPOSO QUE ES NACHITO y pesimo que es fer manejando, al final fuimos a comer donde se notaba a un renzo MORIBUNDO con proglemas gastricos e incluso fecales",
     "date": "2026-04-25",
     "eventType": "monthly_event",
-    "voteAverage": 8.0,
+    "location": "Simuladores en palermo",
+    "amount": 15000.0,
+    "imageUrl": "/api/monthly-events/images/08b2bc40c8db4f9696fdbd2db8c76ee0.jpg",
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
       "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
@@ -306,9 +316,11 @@
       "074271a9-ee53-5095-ab44-ade280393ad4"
     ],
     "organizerId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "id": "0a2fc187-cad3-4e61-a119-9a0c65a0d551",
     "creatorId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
     "createdAt": "2026-05-15T01:34:26.112412+00:00",
-    "updatedAt": "2026-05-15T01:34:26.112412+00:00"
+    "updatedAt": "2026-05-20T01:49:07.152837+00:00",
+    "voteAverage": 8.0
   },
   {
     "id": "847315b5-4ad9-47d3-b8ae-76648c28aba1",

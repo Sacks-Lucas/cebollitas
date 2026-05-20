@@ -69,6 +69,7 @@ class EventDetail(BaseModel):
     imageUrl: str | None = None
     imagePosition: str | None = None
     voteAverage: float | None = None
+    generalAverage: int | None = None
     organizer: UserRef | None = None
     attendees: list[UserRef] = Field(default_factory=list)
 

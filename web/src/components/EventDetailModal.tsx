@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { es } from '../i18n/es'
-import { api } from '../services/api'
-import type { EventDetail, EventType } from '../types'
+import { useEventDetail } from '../hooks/useEvents'
+import type { EventType } from '../types'
 
 const eventTypeLabel: Record<EventType, string> = {
   regular: es.eventTypeRegular,
@@ -27,11 +26,7 @@ type Props = {
 }
 
 export function EventDetailModal({ eventId, onClose }: Props) {
-  const [detail, setDetail] = useState<EventDetail | null>(null)
-
-  useEffect(() => {
-    void api.get<EventDetail>(`/api/events/${eventId}/detail`).then((res) => setDetail(res.data))
-  }, [eventId])
+  const { data: detail } = useEventDetail(eventId)
 
   return createPortal(
     <div

@@ -1,6 +1,8 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 
-import { api } from '../services/api'
+import { useAdminMe } from '../hooks/useAdmin'
+import { useLoginWithGoogle } from '../hooks/useAuth'
 import type { User } from '../types'
 
 type AuthContextValue = {
@@ -18,23 +20,20 @@ const USER_KEY = 'user'
 const TOKEN_KEY = 'token'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const queryClient = useQueryClient()
   const [user, setUser] = useState<User | null>(() => {
     const raw = localStorage.getItem(USER_KEY)
     return raw ? (JSON.parse(raw) as User) : null
   })
   const [token, setToken] = useState<string | null>(() => localStorage.getItem(TOKEN_KEY))
-  const [isAdmin, setIsAdmin] = useState(false)
 
-  useEffect(() => {
-    if (!token) return
-    void api
-      .get<{ isAdmin: boolean }>('/api/admin/me')
-      .then((response) => setIsAdmin(Boolean(response.data.isAdmin)))
-      .catch(() => setIsAdmin(false))
-  }, [token])
+  const adminQuery = useAdminMe(Boolean(token))
+  const isAdmin = Boolean(adminQuery.data?.isAdmin)
+
+  const loginMutation = useLoginWithGoogle()
 
   const loginWithGoogleToken = async (googleToken: string) => {
-    const { data } = await api.post('/api/auth/google', { token: googleToken })
+    const data = await loginMutation.mutateAsync(googleToken)
     setUser(data.user)
     setToken(data.token)
     localStorage.setItem(USER_KEY, JSON.stringify(data.user))
@@ -44,13 +43,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null)
     setToken(null)
-    setIsAdmin(false)
     localStorage.removeItem(USER_KEY)
     localStorage.removeItem(TOKEN_KEY)
+    queryClient.clear()
   }
 
   const value = useMemo(
     () => ({ user, token, isAuthenticated: Boolean(user && token), isAdmin, loginWithGoogleToken, logout }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [token, user, isAdmin],
   )
 

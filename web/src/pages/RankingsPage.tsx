@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react'
-
-import { api } from '../services/api'
 import { es } from '../i18n/es'
-import type { RankingRow } from '../types'
+import { useRankings } from '../hooks/useRankings'
 
 const medals = ['🥇', '🥈', '🥉']
 
 export function RankingsPage() {
-  const [rows, setRows] = useState<RankingRow[]>([])
-
-  useEffect(() => {
-    void api.get<RankingRow[]>('/api/rankings').then((response) => setRows(response.data))
-  }, [])
+  const { data: rows = [] } = useRankings()
 
   return (
     <section className="space-y-4">

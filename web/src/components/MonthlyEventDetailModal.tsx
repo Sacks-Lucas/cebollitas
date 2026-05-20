@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { ImageIcon } from 'lucide-react'
 
 import { es } from '../i18n/es'
-import { api, resolveApiUrl } from '../services/api'
-import type { EventDetail, MyVote } from '../types'
+import { resolveApiUrl } from '../services/api'
+import { useEventDetail } from '../hooks/useEvents'
+import { useMyVote } from '../hooks/useVotes'
 
 const currencyFormatter = new Intl.NumberFormat('es-AR', {
   style: 'currency',
@@ -18,16 +18,8 @@ type Props = {
 }
 
 export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
-  const [detail, setDetail] = useState<EventDetail | null>(null)
-  const [myVote, setMyVote] = useState<MyVote | null>(null)
-
-  useEffect(() => {
-    void api.get<EventDetail>(`/api/events/${eventId}/detail`).then((res) => setDetail(res.data))
-    void api
-      .get<MyVote | null>(`/api/votes/my-vote?eventId=${eventId}`)
-      .then((res) => setMyVote(res.data ?? null))
-      .catch(() => setMyVote(null))
-  }, [eventId])
+  const { data: detail } = useEventDetail(eventId)
+  const { data: myVote } = useMyVote(eventId)
 
   return createPortal(
     <div

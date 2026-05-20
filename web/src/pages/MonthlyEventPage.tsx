@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { ImageIcon, Pencil } from 'lucide-react'
 
 import { es } from '../i18n/es'
-import { api, resolveApiUrl } from '../services/api'
-import type { Event, MonthlyEventCard, User } from '../types'
+import { resolveApiUrl } from '../services/api'
+import type { Event, MonthlyEventCard } from '../types'
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
+import { useMonthlyEvents, useCreateMonthlyEvent, useUpdateMonthlyEvent } from '../hooks/useMonthlyEvents'
+import { useUsers } from '../hooks/useUsers'
+import { useCastVote, useHasVotedMany } from '../hooks/useVotes'
 import { MonthlyEventModal } from '../components/MonthlyEventModal'
 import { MonthlyEventDetailModal } from '../components/MonthlyEventDetailModal'
 
@@ -29,40 +32,27 @@ function isVotingClosed(event: Event): boolean {
 export function MonthlyEventPage() {
   const { user, isAdmin } = useAuth()
   const { showToast } = useToast()
-  const [cards, setCards] = useState<MonthlyEventCard[]>([])
-  const [users, setUsers] = useState<User[]>([])
+  const { data: cards = [] } = useMonthlyEvents()
+  const { data: users = [] } = useUsers()
+  const createMonthlyEvent = useCreateMonthlyEvent()
+  const updateMonthlyEvent = useUpdateMonthlyEvent()
+  const castVote = useCastVote()
+
   const [editingCard, setEditingCard] = useState<{ card: MonthlyEventCard; event?: Event } | null>(null)
   const [votingEvent, setVotingEvent] = useState<Event | null>(null)
   const [scores, setScores] = useState({ fun: 5, cost: 5, originality: 5 })
-  const [isVoting, setIsVoting] = useState(false)
   const [detailsEvent, setDetailsEvent] = useState<Event | null>(null)
+
+  const eventIds = useMemo(
+    () => cards.map((card) => card.event?.id).filter((id): id is string => Boolean(id)),
+    [cards],
+  )
+  const votedStatus = useHasVotedMany(eventIds)
 
   const openVoteModal = (event: Event) => {
     setScores({ fun: 5, cost: 5, originality: 5 })
     setVotingEvent(event)
   }
-  const [votedStatus, setVotedStatus] = useState<Record<string, boolean>>({})
-
-  const load = () => {
-    void api.get<MonthlyEventCard[]>('/api/monthly-events').then((response) => setCards(response.data))
-  }
-
-  useEffect(() => {
-    load()
-    void api.get<User[]>('/api/users').then((response) => setUsers(response.data))
-  }, [])
-
-  useEffect(() => {
-    const eventIds = cards.map((card) => card.event?.id).filter((id): id is string => Boolean(id))
-    if (eventIds.length === 0) return
-    void Promise.all(
-      eventIds.map((id) =>
-        api
-          .get<{ hasVoted: boolean }>(`/api/votes/has-voted?eventId=${id}`)
-          .then((response) => [id, response.data.hasVoted] as const),
-      ),
-    ).then((results) => setVotedStatus(Object.fromEntries(results)))
-  }, [cards])
 
   const currentMonth = new Date().getMonth() + 1
   const voteLabels = {
@@ -198,22 +188,21 @@ export function MonthlyEventPage() {
             const isAssignedOrganizer = organizer?.id === user?.id
             const payload = {
               ...values,
-              eventType: 'monthly_event',
+              eventType: 'monthly_event' as const,
               organizerId: organizer?.id ?? null,
             }
             try {
               if (editingCard.event) {
-                await api.put(`/api/monthly-events/${editingCard.event.id}`, payload)
+                await updateMonthlyEvent.mutateAsync({ eventId: editingCard.event.id, payload })
                 showToast(es.eventUpdatedSuccess, 'success')
               } else {
-                const useAdminEndpoint = isAdmin && !isAssignedOrganizer
-                const path = useAdminEndpoint
-                  ? `/api/admin/monthly-events/${editingCard.card.month}/event`
-                  : `/api/monthly-events/${editingCard.card.month}/event`
-                await api.post(path, payload)
+                await createMonthlyEvent.mutateAsync({
+                  month: editingCard.card.month,
+                  payload,
+                  asAdmin: isAdmin && !isAssignedOrganizer,
+                })
                 showToast(es.eventCreatedSuccess, 'success')
               }
-              load()
             } catch (err) {
               showToast(es.eventSaveError, 'error')
               throw err
@@ -230,23 +219,19 @@ export function MonthlyEventPage() {
         ? createPortal(
             <div
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-              onClick={isVoting ? undefined : () => setVotingEvent(null)}
+              onClick={castVote.isPending ? undefined : () => setVotingEvent(null)}
             >
               <form
                 onClick={(e) => e.stopPropagation()}
                 className="w-full max-w-md overflow-hidden rounded-lg bg-white shadow-2xl dark:bg-argentina-navy"
                 onSubmit={async (event) => {
                   event.preventDefault()
-                  setIsVoting(true)
                   try {
-                    await api.post('/api/votes', { eventId: votingEvent.id, ...scores })
+                    await castVote.mutateAsync({ eventId: votingEvent.id, ...scores })
                     showToast(es.voteSavedSuccess, 'success')
                     setVotingEvent(null)
-                    load()
                   } catch {
                     showToast(es.voteSaveError, 'error')
-                  } finally {
-                    setIsVoting(false)
                   }
                 }}
               >
@@ -296,14 +281,14 @@ export function MonthlyEventPage() {
                   <button
                     type="button"
                     onClick={() => setVotingEvent(null)}
-                    disabled={isVoting}
+                    disabled={castVote.isPending}
                     className="rounded border border-argentina-celeste/60 px-3 py-1 text-argentina-celesteDark transition hover:bg-argentina-celeste/10 disabled:cursor-not-allowed disabled:opacity-50 dark:text-argentina-celeste dark:hover:bg-argentina-celeste/20"
                   >
                     {es.cancel}
                   </button>
                   <button
                     type="submit"
-                    disabled={isVoting}
+                    disabled={castVote.isPending}
                     className="rounded bg-argentina-celeste px-3 py-1 text-white transition hover:bg-argentina-celesteDark disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {es.save}

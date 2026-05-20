@@ -1,11 +1,13 @@
 import { Pencil } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import { es } from '../i18n/es'
-import { api } from '../services/api'
-import type { Event, EventType, Trip, User } from '../types'
+import { useCreateEvent, useEvents, useUpdateEvent } from '../hooks/useEvents'
+import { useTrips } from '../hooks/useTrips'
+import { useUsers } from '../hooks/useUsers'
+import type { Event, EventType, Trip } from '../types'
 import { EventDetailModal } from '../components/EventDetailModal'
 import { EventModal } from '../components/EventModal'
 
@@ -32,9 +34,6 @@ type ListItem =
 export function EventsPage() {
   const { user } = useAuth()
   const { showToast } = useToast()
-  const [events, setEvents] = useState<Event[]>([])
-  const [trips, setTrips] = useState<Trip[]>([])
-  const [users, setUsers] = useState<User[]>([])
   const [showModal, setShowModal] = useState(false)
   const [editing, setEditing] = useState<Event | undefined>()
   const [detailsEvent, setDetailsEvent] = useState<Event | null>(null)
@@ -42,27 +41,13 @@ export function EventsPage() {
   const [eventType, setEventType] = useState('')
   const [attendeeId, setAttendeeId] = useState('')
 
+  const { data: events = [] } = useEvents({ month, type: eventType, attendeeId })
+  const { data: trips = [] } = useTrips({ month, attendeeId })
+  const { data: users = [] } = useUsers()
+  const createEvent = useCreateEvent()
+  const updateEvent = useUpdateEvent()
+
   const userMap = useMemo(() => new Map(users.map((member) => [member.id, member.name])), [users])
-
-  const load = () => {
-    const params = new URLSearchParams()
-    if (month) params.set('month', month)
-    if (eventType) params.set('type', eventType)
-    if (attendeeId) params.set('attendeeId', attendeeId)
-
-    const tripParams = new URLSearchParams()
-    if (month) tripParams.set('month', month)
-    if (attendeeId) tripParams.set('attendeeId', attendeeId)
-
-    void api.get<Event[]>(`/api/events?${params.toString()}`).then((res) => setEvents(res.data))
-    void api.get<Trip[]>(`/api/trips?${tripParams.toString()}`).then((res) => setTrips(res.data))
-  }
-
-  useEffect(() => {
-    void api.get<User[]>('/api/users').then((res) => setUsers(res.data))
-  }, [])
-
-  useEffect(load, [month, eventType, attendeeId])
 
   const items: ListItem[] = useMemo(() => {
     const eventItems: ListItem[] = events.map((event) => ({
@@ -224,12 +209,11 @@ export function EventsPage() {
             const isEditing = Boolean(editing)
             try {
               if (editing) {
-                await api.put(`/api/events/${editing.id}`, values)
+                await updateEvent.mutateAsync({ id: editing.id, payload: values as never })
               } else {
-                await api.post('/api/events', values)
+                await createEvent.mutateAsync(values as never)
               }
               showToast(isEditing ? es.eventUpdatedSuccess : es.eventCreatedSuccess, 'success')
-              load()
             } catch (err) {
               showToast(es.eventSaveError, 'error')
               throw err

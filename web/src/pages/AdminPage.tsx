@@ -1,21 +1,17 @@
 import { es } from '../i18n/es'
-import { api } from '../services/api'
+import { useDownloadBackup } from '../hooks/useAdmin'
 
 export function AdminPage() {
+  const downloadBackup = useDownloadBackup()
+
   return (
     <section className="rounded-lg bg-argentina-celeste/10 p-4 dark:bg-argentina-navy">
       <h2 className="mb-4 text-xl font-semibold">{es.admin}</h2>
       <button
         type="button"
-        className="rounded bg-argentina-celeste px-4 py-2 text-white"
-        onClick={async () => {
-          const response = await api.get('/api/admin/backup', { responseType: 'blob' })
-          const link = document.createElement('a')
-          link.href = window.URL.createObjectURL(response.data)
-          link.download = 'cebollitas-backup.zip'
-          link.click()
-          window.URL.revokeObjectURL(link.href)
-        }}
+        disabled={downloadBackup.isPending}
+        className="rounded bg-argentina-celeste px-4 py-2 text-white disabled:opacity-60"
+        onClick={() => downloadBackup.mutate()}
       >
         {es.backup}
       </button>

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -6,8 +5,9 @@ import { createPortal } from 'react-dom'
 import { ImagePlus, Loader2, Trash2 } from 'lucide-react'
 
 import { es } from '../i18n/es'
-import { api, resolveApiUrl } from '../services/api'
+import { resolveApiUrl } from '../services/api'
 import { useToast } from '../contexts/ToastContext'
+import { useUploadMonthlyEventImage } from '../hooks/useImages'
 import type { Event, User } from '../types'
 
 const fieldClass =
@@ -68,26 +68,20 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
         },
   })
 
-  const [isUploading, setIsUploading] = useState(false)
+  const uploadImage = useUploadMonthlyEventImage()
   const imageUrl = useWatch({ control, name: 'imageUrl' })
   const isSubmitting = formState.isSubmitting
+  const isUploading = uploadImage.isPending
 
   const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     event.target.value = ''
     if (!file) return
-    setIsUploading(true)
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-      const { data } = await api.post<{ url: string }>('/api/monthly-events/images', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      setValue('imageUrl', data.url, { shouldValidate: true })
+      const url = await uploadImage.mutateAsync(file)
+      setValue('imageUrl', url, { shouldValidate: true })
     } catch {
       showToast(es.imageUploadError, 'error')
-    } finally {
-      setIsUploading(false)
     }
   }
 

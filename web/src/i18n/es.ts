@@ -11,6 +11,7 @@ export const es = {
   monthlyEvent: 'Evento del mes',
   admin: 'Admin',
   logout: 'Cerrar sesión',
+  menu: 'Menú',
   createEvent: 'Crear evento',
   createMonthlyEvent: 'Crear evento del mes',
   rankMonthlyEvent: 'Rankear evento del mes',

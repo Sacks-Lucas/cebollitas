@@ -4,7 +4,9 @@ from uuid import uuid4
 
 from fastapi import HTTPException, UploadFile, status
 
-IMAGES_DIR = Path(__file__).resolve().parent.parent / "data" / "images"
+from repositories.data_store import DATA_DIR
+
+IMAGES_DIR = DATA_DIR / "images"
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp"}

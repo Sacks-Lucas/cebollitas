@@ -1,15 +1,18 @@
 import { es } from '../i18n/es'
 import { useRankings } from '../hooks/useRankings'
+import { PageSpinner } from '../components/Spinner'
 
 const medals = ['🥇', '🥈', '🥉']
 
 export function RankingsPage() {
-  const { data: rows = [] } = useRankings()
+  const { data: rows = [], isLoading } = useRankings()
 
   return (
     <section className="space-y-4">
       <h2 className="text-xl font-semibold">{es.rankings}</h2>
-      {rows.length === 0 ? (
+      {isLoading ? (
+        <PageSpinner />
+      ) : rows.length === 0 ? (
         <p>{es.noData}</p>
       ) : (
         <ul className="space-y-3">

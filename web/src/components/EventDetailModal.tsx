@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { es } from '../i18n/es'
 import { useEventDetail } from '../hooks/useEvents'
 import type { EventType } from '../types'
+import { PageSpinner } from './Spinner'
 
 const eventTypeLabel: Record<EventType, string> = {
   regular: es.eventTypeRegular,
@@ -26,7 +27,7 @@ type Props = {
 }
 
 export function EventDetailModal({ eventId, onClose }: Props) {
-  const { data: detail } = useEventDetail(eventId)
+  const { data: detail, isLoading } = useEventDetail(eventId)
 
   return createPortal(
     <div
@@ -37,7 +38,9 @@ export function EventDetailModal({ eventId, onClose }: Props) {
         className="w-full max-w-md space-y-3 rounded-lg bg-white p-4 shadow-2xl dark:bg-argentina-navy"
         onClick={(e) => e.stopPropagation()}
       >
-        {detail ? (
+        {isLoading ? (
+          <PageSpinner />
+        ) : detail ? (
           <>
             <header className="flex flex-wrap items-center gap-2">
               <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${eventTypeBadgeClass[detail.eventType]}`}>

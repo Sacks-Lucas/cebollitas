@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { es } from '../i18n/es'
 import { useAuth } from '../contexts/AuthContext'
 import { ThemeToggle } from './ThemeToggle'
+import { TopProgressBar } from './TopProgressBar'
 
 const navItems = [
   { to: '/rankings', label: es.rankings },
@@ -22,6 +23,7 @@ export function Layout() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-argentina-navyDeep">
+      <TopProgressBar />
       <header className="border-b border-argentina-celeste/30 bg-argentina-celeste/10 px-4 py-3 dark:bg-argentina-navy">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
           <Link

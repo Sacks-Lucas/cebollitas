@@ -12,6 +12,7 @@ import { useUsers } from '../hooks/useUsers'
 import { useCastVote, useHasVotedMany } from '../hooks/useVotes'
 import { MonthlyEventModal } from '../components/MonthlyEventModal'
 import { MonthlyEventDetailModal } from '../components/MonthlyEventDetailModal'
+import { Spinner, PageSpinner } from '../components/Spinner'
 
 const currencyFormatter = new Intl.NumberFormat('es-AR', {
   style: 'currency',
@@ -32,8 +33,9 @@ function isVotingClosed(event: Event): boolean {
 export function MonthlyEventPage() {
   const { user, isAdmin } = useAuth()
   const { showToast } = useToast()
-  const { data: cards = [] } = useMonthlyEvents()
-  const { data: users = [] } = useUsers()
+  const { data: cards = [], isLoading: cardsLoading } = useMonthlyEvents()
+  const { data: users = [], isLoading: usersLoading } = useUsers()
+  const isInitialLoading = cardsLoading || usersLoading
   const createMonthlyEvent = useCreateMonthlyEvent()
   const updateMonthlyEvent = useUpdateMonthlyEvent()
   const castVote = useCastVote()
@@ -60,6 +62,10 @@ export function MonthlyEventPage() {
     cost: es.voteFieldCost,
     originality: es.voteFieldOriginality,
   } as const
+
+  if (isInitialLoading) {
+    return <PageSpinner />
+  }
 
   return (
     <section className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -290,8 +296,9 @@ export function MonthlyEventPage() {
                   <button
                     type="submit"
                     disabled={castVote.isPending}
-                    className="rounded bg-argentina-celeste px-3 py-1 text-white transition hover:bg-argentina-celesteDark disabled:cursor-not-allowed disabled:opacity-70"
+                    className="flex min-w-[6rem] items-center justify-center gap-2 rounded bg-argentina-celeste px-3 py-1 text-white transition hover:bg-argentina-celesteDark disabled:cursor-not-allowed disabled:opacity-70"
                   >
+                    {castVote.isPending ? <Spinner size={14} label={es.savingVote} /> : null}
                     {es.save}
                   </button>
                 </div>

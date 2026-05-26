@@ -5,6 +5,7 @@ import { es } from '../i18n/es'
 import { resolveApiUrl } from '../services/api'
 import { useEventDetail } from '../hooks/useEvents'
 import { useMyVote } from '../hooks/useVotes'
+import { Spinner, PageSpinner } from './Spinner'
 
 const currencyFormatter = new Intl.NumberFormat('es-AR', {
   style: 'currency',
@@ -18,8 +19,8 @@ type Props = {
 }
 
 export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
-  const { data: detail } = useEventDetail(eventId)
-  const { data: myVote } = useMyVote(eventId)
+  const { data: detail, isLoading: detailLoading } = useEventDetail(eventId)
+  const { data: myVote, isLoading: voteLoading } = useMyVote(eventId)
 
   return createPortal(
     <div
@@ -30,7 +31,9 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
         className="flex max-h-[calc(100vh-2rem)] w-full max-w-md flex-col overflow-hidden rounded-lg bg-white shadow-2xl dark:bg-argentina-navy"
         onClick={(e) => e.stopPropagation()}
       >
-        {detail ? (
+        {detailLoading ? (
+          <PageSpinner />
+        ) : detail ? (
           <>
             {detail.imageUrl ? (
               <img
@@ -80,7 +83,11 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
               </dl>
               <section className="rounded-md border border-argentina-celeste/30 bg-argentina-celeste/10 p-3 dark:border-argentina-celeste/40 dark:bg-argentina-celeste/10">
                 <h4 className="mb-2 text-sm font-semibold">{es.myVote}</h4>
-                {myVote ? (
+                {voteLoading ? (
+                  <div className="flex justify-center py-2">
+                    <Spinner />
+                  </div>
+                ) : myVote ? (
                   <>
                     <div className="grid grid-cols-3 gap-2 text-center text-xs">
                       <ScoreCell label={es.voteFieldFun} value={myVote.fun} />

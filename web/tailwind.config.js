@@ -20,9 +20,19 @@ export default {
           from: { opacity: '0', transform: 'translateX(1rem)' },
           to: { opacity: '1', transform: 'translateX(0)' },
         },
+        'progress-slide': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
       },
       animation: {
         'toast-in': 'toast-in 0.2s ease-out',
+        'progress-slide': 'progress-slide 1.1s ease-in-out infinite',
+        'progress-fade-in': 'fade-in 100ms linear 150ms both',
       },
     },
   },

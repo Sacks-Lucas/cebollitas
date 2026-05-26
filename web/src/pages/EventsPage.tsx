@@ -10,6 +10,7 @@ import { useUsers } from '../hooks/useUsers'
 import type { Event, EventType, Trip } from '../types'
 import { EventDetailModal } from '../components/EventDetailModal'
 import { EventModal } from '../components/EventModal'
+import { PageSpinner } from '../components/Spinner'
 
 const eventTypeLabel: Record<EventType, string> = {
   regular: es.eventTypeRegular,
@@ -41,9 +42,10 @@ export function EventsPage() {
   const [eventType, setEventType] = useState('')
   const [attendeeId, setAttendeeId] = useState('')
 
-  const { data: events = [] } = useEvents({ month, type: eventType, attendeeId })
-  const { data: trips = [] } = useTrips({ month, attendeeId })
-  const { data: users = [] } = useUsers()
+  const { data: events = [], isLoading: eventsLoading } = useEvents({ month, type: eventType, attendeeId })
+  const { data: trips = [], isLoading: tripsLoading } = useTrips({ month, attendeeId })
+  const { data: users = [], isLoading: usersLoading } = useUsers()
+  const isInitialLoading = eventsLoading || tripsLoading || usersLoading
   const createEvent = useCreateEvent()
   const updateEvent = useUpdateEvent()
 
@@ -114,7 +116,9 @@ export function EventsPage() {
         </button>
       </div>
 
-      {items.length === 0 ? (
+      {isInitialLoading ? (
+        <PageSpinner />
+      ) : items.length === 0 ? (
         <p>{es.noData}</p>
       ) : (
         <ul className="space-y-3">

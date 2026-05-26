@@ -1,18 +1,11 @@
-import re
-from pathlib import Path
-from uuid import uuid4
+import io
 
+import cloudinary.uploader
 from fastapi import HTTPException, UploadFile, status
-
-from repositories.data_store import DATA_DIR
-
-IMAGES_DIR = DATA_DIR / "images"
-IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp"}
 MAX_SIZE_BYTES = 5 * 1024 * 1024
-
-SAFE_FILENAME = re.compile(r"^[a-f0-9]{32}\.(jpg|jpeg|png|webp)$")
+CLOUDINARY_FOLDER = "cebollitas/monthly-events"
 
 
 def save_uploaded_image(upload: UploadFile) -> str:
@@ -35,17 +28,22 @@ def save_uploaded_image(upload: UploadFile) -> str:
             detail="La imagen excede el tamaño máximo (5 MB).",
         )
 
-    filename = f"{uuid4().hex}.{ext}"
-    target_path = IMAGES_DIR / filename
-    target_path.write_bytes(content)
+    try:
+        result = cloudinary.uploader.upload(
+            io.BytesIO(content),
+            folder=CLOUDINARY_FOLDER,
+            resource_type="image",
+        )
+    except Exception as exc:  # noqa: BLE001 - surface a clean error to the client
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="No se pudo subir la imagen al almacenamiento remoto.",
+        ) from exc
 
-    return f"/api/monthly-events/images/{filename}"
-
-
-def get_image_path(filename: str) -> Path:
-    if not SAFE_FILENAME.match(filename):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Nombre de archivo inválido.")
-    path = IMAGES_DIR / filename
-    if not path.is_file():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Imagen no encontrada.")
-    return path
+    secure_url = result.get("secure_url")
+    if not secure_url:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="Respuesta inesperada del almacenamiento remoto.",
+        )
+    return secure_url

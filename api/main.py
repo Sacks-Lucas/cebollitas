@@ -1,5 +1,6 @@
 import os
 
+import cloudinary
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,6 +8,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import admin, auth, events, monthly_events, rankings, trips, users, votes
 
 load_dotenv()
+
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True,
+)
 
 app = FastAPI(title="Cebollitas Oficial API")
 

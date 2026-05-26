@@ -80,7 +80,7 @@
     "eventType": "monthly_event",
     "location": "Comando Urbano Paintball",
     "amount": 15000.0,
-    "imageUrl": "/api/monthly-events/images/8c6665036dc0443bb74aab0e897895ef.jpg",
+    "imageUrl": "https://res.cloudinary.com/dy41j9fym/image/upload/v1779757913/cebollitas/monthly-events/kn1g8lwuxdtvmd1tiw6h.jpg",
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
       "0b1605ce-7cae-5c31-b609-b5858fc62292",
@@ -107,7 +107,7 @@
     "eventType": "monthly_event",
     "location": "El Canton - Escobar",
     "amount": 0.0,
-    "imageUrl": "/api/monthly-events/images/d445534d1e584955ac56565ba9c2411a.jpg",
+    "imageUrl": "https://res.cloudinary.com/dy41j9fym/image/upload/v1779757914/cebollitas/monthly-events/njjptjjfjr9dczsbgs9n.jpg",
     "imagePosition": "44% 58%",
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
@@ -186,7 +186,7 @@
     "eventType": "monthly_event",
     "location": "Margal - Caballito",
     "amount": 15000.0,
-    "imageUrl": "/api/monthly-events/images/31134590b3ec48b3ac1853efed3e446d.jpg",
+    "imageUrl": "https://res.cloudinary.com/dy41j9fym/image/upload/v1779757912/cebollitas/monthly-events/zmnwen4bcjdcij193vsy.jpg",
     "attendeeIds": [
       "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
       "47de9e03-2a5d-5952-a137-4898a07bb7ed",
@@ -304,7 +304,7 @@
     "eventType": "monthly_event",
     "location": "Simuladores en palermo",
     "amount": 15000.0,
-    "imageUrl": "/api/monthly-events/images/08b2bc40c8db4f9696fdbd2db8c76ee0.jpg",
+    "imageUrl": "https://res.cloudinary.com/dy41j9fym/image/upload/v1779757912/cebollitas/monthly-events/gyrmrsvkaqcu8ggtz0gm.jpg",
     "attendeeIds": [
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
       "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",

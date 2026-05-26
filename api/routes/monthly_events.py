@@ -2,13 +2,12 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, status
-from fastapi.responses import FileResponse
 
 from dependencies import get_current_user
 from models.schemas import Event, EventCreate, EventUpdate, MonthlyEventCard
 from repositories.data_store import events_repo, get_allowed_users, monthly_assignments_repo
 from services.admin_service import is_admin
-from services.image_service import get_image_path, save_uploaded_image
+from services.image_service import save_uploaded_image
 
 router = APIRouter(prefix="/api", tags=["monthly-events"])
 
@@ -66,11 +65,6 @@ def list_monthly_events(_: dict = Depends(get_current_user)) -> list[MonthlyEven
 @router.post("/monthly-events/images")
 def upload_monthly_event_image(file: UploadFile, _: dict = Depends(get_current_user)) -> dict:
     return {"url": save_uploaded_image(file)}
-
-
-@router.get("/monthly-events/images/{filename}")
-def serve_monthly_event_image(filename: str) -> FileResponse:
-    return FileResponse(get_image_path(filename))
 
 
 @router.post("/monthly-events/{month}/event", response_model=Event, status_code=status.HTTP_201_CREATED)

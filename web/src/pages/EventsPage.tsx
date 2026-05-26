@@ -1,15 +1,16 @@
-import { Pencil } from 'lucide-react'
+import { Pencil, Trash2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import { es } from '../i18n/es'
-import { useCreateEvent, useEvents, useUpdateEvent } from '../hooks/useEvents'
+import { useCreateEvent, useDeleteEvent, useEvents, useUpdateEvent } from '../hooks/useEvents'
 import { useTrips } from '../hooks/useTrips'
 import { useUsers } from '../hooks/useUsers'
 import type { Event, EventType, Trip } from '../types'
 import { EventDetailModal } from '../components/EventDetailModal'
 import { EventModal } from '../components/EventModal'
+import { ConfirmDialog } from '../components/ConfirmDialog'
 import { PageSpinner } from '../components/Spinner'
 
 const eventTypeLabel: Record<EventType, string> = {
@@ -33,11 +34,12 @@ type ListItem =
   | { kind: 'trip'; data: Trip; sortKey: string }
 
 export function EventsPage() {
-  const { user } = useAuth()
+  const { user, isAdmin } = useAuth()
   const { showToast } = useToast()
   const [showModal, setShowModal] = useState(false)
   const [editing, setEditing] = useState<Event | undefined>()
   const [detailsEvent, setDetailsEvent] = useState<Event | null>(null)
+  const [deletingEvent, setDeletingEvent] = useState<Event | null>(null)
   const [month, setMonth] = useState('')
   const [eventType, setEventType] = useState('')
   const [attendeeId, setAttendeeId] = useState('')
@@ -48,6 +50,7 @@ export function EventsPage() {
   const isInitialLoading = eventsLoading || tripsLoading || usersLoading
   const createEvent = useCreateEvent()
   const updateEvent = useUpdateEvent()
+  const deleteEvent = useDeleteEvent()
 
   const userMap = useMemo(() => new Map(users.map((member) => [member.id, member.name])), [users])
 
@@ -184,20 +187,36 @@ export function EventsPage() {
                     {event.date.slice(0, 10)} · {es.organizer}: {userMap.get(event.organizerId ?? '') ?? es.noOrganizer} · {event.attendeeIds.length} {es.eventAttendeesCount}
                   </p>
                 </div>
-                {isOwner ? (
-                  <button
-                    type="button"
-                    aria-label={es.actions}
-                    className="self-end rounded p-1 hover:bg-argentina-celeste/20 sm:self-auto"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setEditing(event)
-                      setShowModal(true)
-                    }}
-                  >
-                    <Pencil size={16} />
-                  </button>
-                ) : null}
+                <div className="flex items-center gap-1 self-end sm:self-auto">
+                  {isOwner ? (
+                    <button
+                      type="button"
+                      aria-label={es.actions}
+                      className="rounded p-1 hover:bg-argentina-celeste/20"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setEditing(event)
+                        setShowModal(true)
+                      }}
+                    >
+                      <Pencil size={16} />
+                    </button>
+                  ) : null}
+                  {isAdmin ? (
+                    <button
+                      type="button"
+                      aria-label={es.deleteAction}
+                      title={es.deleteAction}
+                      className="rounded p-1 text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setDeletingEvent(event)
+                      }}
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  ) : null}
+                </div>
               </li>
             )
           })}
@@ -228,6 +247,27 @@ export function EventsPage() {
 
       {detailsEvent ? (
         <EventDetailModal eventId={detailsEvent.id} onClose={() => setDetailsEvent(null)} />
+      ) : null}
+
+      {deletingEvent ? (
+        <ConfirmDialog
+          title={es.deleteEventTitle}
+          message={`${es.deleteEventConfirm}\n\n"${deletingEvent.title}"`}
+          confirmLabel={es.deleteAction}
+          pendingLabel={es.deletingEvent}
+          danger
+          isPending={deleteEvent.isPending}
+          onCancel={() => setDeletingEvent(null)}
+          onConfirm={async () => {
+            try {
+              await deleteEvent.mutateAsync(deletingEvent.id)
+              showToast(es.eventDeletedSuccess, 'success')
+              setDeletingEvent(null)
+            } catch {
+              showToast(es.eventDeleteError, 'error')
+            }
+          }}
+        />
       ) : null}
     </section>
   )

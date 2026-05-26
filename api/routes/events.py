@@ -3,9 +3,9 @@ from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
-from dependencies import get_current_user
+from dependencies import get_admin_user, get_current_user
 from models.schemas import Event, EventCreate, EventDetail, EventUpdate, UserRef
-from repositories.data_store import events_repo, get_allowed_users
+from repositories.data_store import events_repo, get_allowed_users, votes_repo
 from services.vote_service import get_event_general_average
 
 router = APIRouter(prefix="/api/events", tags=["events"])
@@ -130,15 +130,20 @@ def update_event(event_id: str, payload: EventUpdate, current_user: dict = Depen
 
 
 @router.delete("/{event_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_event(event_id: str, current_user: dict = Depends(get_current_user)) -> None:
+def delete_event(event_id: str, _: dict = Depends(get_admin_user)) -> None:
     events = events_repo.read()
     for idx, event in enumerate(events):
         if event["id"] != event_id:
             continue
-        if event["creatorId"] != current_user["id"]:
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Solo podés borrar tus eventos.")
         del events[idx]
         events_repo.write(events)
+
+        # Drop any votes that referenced the deleted event so votes.json
+        # doesn't accumulate orphans.
+        votes = votes_repo.read()
+        remaining = [vote for vote in votes if vote.get("eventId") != event_id]
+        if len(remaining) != len(votes):
+            votes_repo.write(remaining)
         return
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado.")

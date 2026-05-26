@@ -52,3 +52,15 @@ export function useUpdateEvent() {
     },
   })
 }
+
+export function useDeleteEvent() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (id: string) => api.delete(`/api/events/${id}`).then((res) => res.data),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: qk.events.all })
+      void queryClient.invalidateQueries({ queryKey: qk.monthlyEvents.all })
+      void queryClient.invalidateQueries({ queryKey: qk.rankings })
+    },
+  })
+}

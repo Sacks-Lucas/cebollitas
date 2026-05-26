@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { ImageIcon, Pencil } from 'lucide-react'
+import { ImageIcon, Pencil, Trash2 } from 'lucide-react'
 
 import { es } from '../i18n/es'
 import { resolveApiUrl } from '../services/api'
@@ -8,10 +8,12 @@ import type { Event, MonthlyEventCard } from '../types'
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import { useMonthlyEvents, useCreateMonthlyEvent, useUpdateMonthlyEvent } from '../hooks/useMonthlyEvents'
+import { useDeleteEvent } from '../hooks/useEvents'
 import { useUsers } from '../hooks/useUsers'
 import { useCastVote, useHasVotedMany } from '../hooks/useVotes'
 import { MonthlyEventModal } from '../components/MonthlyEventModal'
 import { MonthlyEventDetailModal } from '../components/MonthlyEventDetailModal'
+import { ConfirmDialog } from '../components/ConfirmDialog'
 import { Spinner, PageSpinner } from '../components/Spinner'
 
 const currencyFormatter = new Intl.NumberFormat('es-AR', {
@@ -38,12 +40,14 @@ export function MonthlyEventPage() {
   const isInitialLoading = cardsLoading || usersLoading
   const createMonthlyEvent = useCreateMonthlyEvent()
   const updateMonthlyEvent = useUpdateMonthlyEvent()
+  const deleteEvent = useDeleteEvent()
   const castVote = useCastVote()
 
   const [editingCard, setEditingCard] = useState<{ card: MonthlyEventCard; event?: Event } | null>(null)
   const [votingEvent, setVotingEvent] = useState<Event | null>(null)
   const [scores, setScores] = useState({ fun: 5, cost: 5, originality: 5 })
   const [detailsEvent, setDetailsEvent] = useState<Event | null>(null)
+  const [deletingEvent, setDeletingEvent] = useState<Event | null>(null)
 
   const eventIds = useMemo(
     () => cards.map((card) => card.event?.id).filter((id): id is string => Boolean(id)),
@@ -116,19 +120,35 @@ export function MonthlyEventPage() {
             <div className="flex flex-1 flex-col p-4">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="font-semibold capitalize">{monthName(card.month)}</h3>
-                {canEditEvent ? (
-                  <button
-                    type="button"
-                    aria-label={es.actions}
-                    className="rounded p-1 text-argentina-celesteDark hover:bg-argentina-celeste/20 dark:text-argentina-celeste"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setEditingCard({ card, event: card.event ?? undefined })
-                    }}
-                  >
-                    <Pencil size={16} />
-                  </button>
-                ) : null}
+                <div className="flex items-center gap-1">
+                  {canEditEvent ? (
+                    <button
+                      type="button"
+                      aria-label={es.actions}
+                      className="rounded p-1 text-argentina-celesteDark hover:bg-argentina-celeste/20 dark:text-argentina-celeste"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setEditingCard({ card, event: card.event ?? undefined })
+                      }}
+                    >
+                      <Pencil size={16} />
+                    </button>
+                  ) : null}
+                  {isAdmin && card.event ? (
+                    <button
+                      type="button"
+                      aria-label={es.deleteAction}
+                      title={es.deleteAction}
+                      className="rounded p-1 text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setDeletingEvent(card.event!)
+                      }}
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  ) : null}
+                </div>
               </div>
               <p className="text-sm">Organizador: {card.organizerName}</p>
               {card.event ? (
@@ -220,6 +240,27 @@ export function MonthlyEventPage() {
 
       {detailsEvent ? (
         <MonthlyEventDetailModal eventId={detailsEvent.id} onClose={() => setDetailsEvent(null)} />
+      ) : null}
+
+      {deletingEvent ? (
+        <ConfirmDialog
+          title={es.deleteEventTitle}
+          message={`${es.deleteEventConfirm}\n\n"${deletingEvent.title}"`}
+          confirmLabel={es.deleteAction}
+          pendingLabel={es.deletingEvent}
+          danger
+          isPending={deleteEvent.isPending}
+          onCancel={() => setDeletingEvent(null)}
+          onConfirm={async () => {
+            try {
+              await deleteEvent.mutateAsync(deletingEvent.id)
+              showToast(es.eventDeletedSuccess, 'success')
+              setDeletingEvent(null)
+            } catch {
+              showToast(es.eventDeleteError, 'error')
+            }
+          }}
+        />
       ) : null}
 
       {votingEvent

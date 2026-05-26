@@ -7,16 +7,19 @@ import { useAuth } from '../contexts/AuthContext'
 import { ThemeToggle } from './ThemeToggle'
 import { TopProgressBar } from './TopProgressBar'
 
-const navItems = [
+type NavItem = { to: string; label: string; adminOnly?: boolean }
+
+const navItems: NavItem[] = [
   { to: '/rankings', label: es.rankings },
   { to: '/eventos', label: es.events },
   { to: '/evento-del-mes', label: es.monthlyEvent },
-  { to: '/admin', label: es.admin },
+  { to: '/admin', label: es.admin, adminOnly: true },
 ]
 
 export function Layout() {
-  const { logout } = useAuth()
+  const { logout, isAdmin } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
+  const visibleNavItems = navItems.filter((item) => !item.adminOnly || isAdmin)
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'font-semibold text-argentina-celesteDark dark:text-argentina-celeste' : ''
@@ -35,7 +38,7 @@ export function Layout() {
           </Link>
 
           <nav className="hidden items-center gap-3 text-sm sm:flex">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={navLinkClass}>
                 {item.label}
               </NavLink>
@@ -65,7 +68,7 @@ export function Layout() {
 
         {menuOpen ? (
           <nav className="mx-auto mt-3 flex max-w-6xl flex-col gap-1 border-t border-argentina-celeste/20 pt-3 text-sm sm:hidden">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}

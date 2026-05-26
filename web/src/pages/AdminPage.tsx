@@ -1,10 +1,23 @@
+import { Navigate } from 'react-router-dom'
+
 import { es } from '../i18n/es'
+import { useAuth } from '../contexts/AuthContext'
 import { useDownloadBackup } from '../hooks/useAdmin'
-import { Spinner } from '../components/Spinner'
+import { PageSpinner, Spinner } from '../components/Spinner'
 
 export function AdminPage() {
+  const { isAdmin, isAdminLoading } = useAuth()
   const downloadBackup = useDownloadBackup()
   const isDownloading = downloadBackup.isPending
+
+  // Wait for the admin verdict before deciding — otherwise a real admin loading
+  // /admin directly via URL would get bounced before /api/admin/me resolves.
+  if (isAdminLoading) {
+    return <PageSpinner />
+  }
+  if (!isAdmin) {
+    return <Navigate to="/rankings" replace />
+  }
 
   return (
     <section className="rounded-lg bg-argentina-celeste/10 p-4 dark:bg-argentina-navy">

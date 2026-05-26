@@ -10,6 +10,7 @@ type AuthContextValue = {
   token: string | null
   isAuthenticated: boolean
   isAdmin: boolean
+  isAdminLoading: boolean
   loginWithGoogleToken: (googleToken: string) => Promise<void>
   logout: () => void
 }
@@ -29,6 +30,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const adminQuery = useAdminMe(Boolean(token))
   const isAdmin = Boolean(adminQuery.data?.isAdmin)
+  // Loading only while we have a token but haven't received the admin verdict yet.
+  // Without a token there's nothing to wait for — isAdmin is just false.
+  const isAdminLoading = Boolean(token) && adminQuery.isLoading
 
   const loginMutation = useLoginWithGoogle()
 
@@ -49,9 +53,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const value = useMemo(
-    () => ({ user, token, isAuthenticated: Boolean(user && token), isAdmin, loginWithGoogleToken, logout }),
+    () => ({
+      user,
+      token,
+      isAuthenticated: Boolean(user && token),
+      isAdmin,
+      isAdminLoading,
+      loginWithGoogleToken,
+      logout,
+    }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [token, user, isAdmin],
+    [token, user, isAdmin, isAdminLoading],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

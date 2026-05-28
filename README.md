@@ -48,6 +48,7 @@ Edit `api/data/allowed_users.json` and append:
 
 ## Deployment notes
 
-- Deploy `web/` to Vercel.
+- Deploy `web/` to Netlify.
 - Deploy `api/` to Render.
+- Deploy `images` to Cloudinary
 - Mount a Persistent Disk in Render at `/api/data` so JSON files survive redeploys.

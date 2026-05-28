@@ -83,6 +83,10 @@ export const es = {
   myAverage: 'Tu promedio',
   destination: 'Destino',
   tripDateRange: 'Del {start} al {end}',
+  footerRights: 'Todos los derechos reservados',
+  footerContact: 'Contacto',
+  footerRepo: 'Repositorio',
+  footerContract: 'Contrato',
   months: [
     'Enero',
     'Febrero',

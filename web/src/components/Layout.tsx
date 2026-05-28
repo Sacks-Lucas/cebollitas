@@ -3,7 +3,9 @@ import { Link, NavLink, Outlet } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 import { es } from '../i18n/es'
+import { APP_VERSION } from '../lib/version'
 import { useAuth } from '../contexts/AuthContext'
+import { Footer } from './Footer'
 import { ThemeToggle } from './ThemeToggle'
 import { TopProgressBar } from './TopProgressBar'
 
@@ -25,7 +27,7 @@ export function Layout() {
     isActive ? 'font-semibold text-argentina-celesteDark dark:text-argentina-celeste' : ''
 
   return (
-    <div className="min-h-screen bg-white dark:bg-argentina-navyDeep">
+    <div className="flex min-h-screen flex-col bg-white dark:bg-argentina-navyDeep">
       <TopProgressBar />
       <header className="border-b border-argentina-celeste/30 bg-argentina-celeste/10 px-4 py-3 dark:bg-argentina-navy">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
@@ -95,9 +97,20 @@ export function Layout() {
           </nav>
         ) : null}
       </header>
-      <main className="mx-auto max-w-6xl p-4">
+      <main className="mx-auto w-full max-w-6xl flex-1 p-4">
         <Outlet />
       </main>
+      <Footer
+        companyName="Sacks Corporation"
+        rightsText={es.footerRights}
+        version={APP_VERSION}
+        contactEmail="sacks.corp.1@gmail.com"
+        contactLabel={es.footerContact}
+        githubUrl="https://github.com/Sacks-Lucas/cebollitas"
+        githubLabel={es.footerRepo}
+        contractUrl="/contrato-cebollitas.pdf"
+        contractLabel={es.footerContract}
+      />
     </div>
   )
 }

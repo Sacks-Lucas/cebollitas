@@ -21,7 +21,7 @@ type Props = {
 export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
   const { data: detail, isLoading: detailLoading } = useEventDetail(eventId)
   const { data: myVote, isLoading: voteLoading } = useMyVote(eventId)
-  const averageValue = detail?.generalAverage ?? detail?.voteAverage ?? null
+  const displayAverage = detail?.generalAverage ?? detail?.voteAverage ?? null
 
   return createPortal(
     <div
@@ -73,10 +73,10 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
                     <dd>{currencyFormatter.format(detail.amount)}</dd>
                   </>
                 ) : null}
-                {averageValue !== null && averageValue !== undefined ? (
+                {displayAverage !== null && displayAverage !== undefined ? (
                   <>
                     <dt className="font-semibold">{es.generalAverage}:</dt>
-                    <dd>{averageValue}</dd>
+                    <dd>{displayAverage}</dd>
                   </>
                 ) : null}
                 <dt className="font-semibold">{es.attendees}:</dt>

@@ -82,29 +82,31 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
                 <dt className="font-semibold">{es.attendees}:</dt>
                 <dd>{detail.attendees.length > 0 ? detail.attendees.map((a) => a.name).join(', ') : '-'}</dd>
               </dl>
-              <section className="rounded-md border border-argentina-celeste/30 bg-argentina-celeste/10 p-3 dark:border-argentina-celeste/40 dark:bg-argentina-celeste/10">
-                <h4 className="mb-2 text-sm font-semibold">{es.myVote}</h4>
-                {voteLoading ? (
-                  <div className="flex justify-center py-2">
-                    <Spinner />
-                  </div>
-                ) : myVote ? (
-                  <>
-                    <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                      <ScoreCell label={es.voteFieldFun} value={myVote.fun} />
-                      <ScoreCell label={es.voteFieldCost} value={myVote.cost} />
-                      <ScoreCell label={es.voteFieldOriginality} value={myVote.originality} />
+              <div className="hidden">
+                <section className="rounded-md border border-argentina-celeste/30 bg-argentina-celeste/10 p-3 dark:border-argentina-celeste/40 dark:bg-argentina-celeste/10">
+                  <h4 className="mb-2 text-sm font-semibold">{es.myVote}</h4>
+                  {voteLoading ? (
+                    <div className="flex justify-center py-2">
+                      <Spinner />
                     </div>
-                    <p className="mt-2 text-xs font-medium text-argentina-celesteDark dark:text-argentina-celeste">
-                      {es.myAverage}: {((myVote.fun + myVote.cost + myVote.originality) / 3).toFixed(2)}
+                  ) : myVote ? (
+                    <>
+                      <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                        <ScoreCell label={es.voteFieldFun} value={myVote.fun} />
+                        <ScoreCell label={es.voteFieldCost} value={myVote.cost} />
+                        <ScoreCell label={es.voteFieldOriginality} value={myVote.originality} />
+                      </div>
+                      <p className="mt-2 text-xs font-medium text-argentina-celesteDark dark:text-argentina-celeste">
+                        {es.myAverage}: {((myVote.fun + myVote.cost + myVote.originality) / 3).toFixed(2)}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-xs text-argentina-celesteDark/80 dark:text-argentina-celeste/70">
+                      {es.voteNotCast}
                     </p>
-                  </>
-                ) : (
-                  <p className="text-xs text-argentina-celesteDark/80 dark:text-argentina-celeste/70">
-                    {es.voteNotCast}
-                  </p>
-                )}
-              </section>
+                  )}
+                </section>
+              </div>
             </div>
             <div className="shrink-0 border-t border-argentina-celeste/20 p-3 dark:border-argentina-celeste/20">
               <button

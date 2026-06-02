@@ -1,7 +1,7 @@
 # Cebollitas Oficial
 
 ## Project summary
-Cebollitas Oficial is a private group scoring app that tracks attendance and organizer points for yearly events. It is a JSON-persistence monorepo with a FastAPI backend and a React frontend.
+Cebollitas Oficial is a private group scoring app that tracks attendance and organizer points for yearly events. It is a monorepo with a FastAPI backend and a React frontend. Persistence is pluggable: local JSON files by default, MongoDB when `MONGODB_URI` is set.
 
 ## Language convention
 All code, comments, docs, and commits are in English. All user-facing UI copy is in rioplatense Spanish.
@@ -26,7 +26,7 @@ All code, comments, docs, and commits are in English. All user-facing UI copy is
 - Backend: `cd api && make dev`, `make test`, `make lint`
 
 ## Common pitfalls
-- Do not add a database; persistence must stay JSON-only.
+- Persistence is abstracted behind `repositories/data_store.py` (read-all/write-all interface). Route/service code must use the repos, never touch JSON files or Mongo directly.
 - Do not break vote anonymity.
 - Do not hardcode UI strings in components; use `/web/src/i18n/es.ts`.
 - Do not trust `creatorId` from request payloads; derive it from JWT.

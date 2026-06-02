@@ -37,6 +37,12 @@ def cast_vote(payload: VoteCreate, current_user: dict = Depends(get_current_user
             detail="Solo podés votar eventos en los que participaste.",
         )
 
+    if current_user["id"] == event.get("organizerId"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="El organizador no puede votar su propio evento.",
+        )
+
     if has_voted(payload.eventId, current_user["id"]):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Ya votaste este evento.")
 

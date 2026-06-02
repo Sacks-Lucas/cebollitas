@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createPortal } from 'react-dom'
@@ -40,7 +40,7 @@ type Props = {
 }
 
 export function EventModal({ users, initial, onClose, onSubmit }: Props) {
-  const { register, handleSubmit, formState } = useForm<FormValues>({
+  const { register, handleSubmit, control, formState } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: initial
       ? {
@@ -55,6 +55,7 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
   })
 
   const isSubmitting = formState.isSubmitting
+  const eventType = useWatch({ control, name: 'eventType' })
 
   return createPortal(
     <div
@@ -64,7 +65,9 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
       <form
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit(async (values) => {
-          await onSubmit({ ...values, organizerId: values.organizerId === '' ? null : values.organizerId })
+          const organizerId =
+            values.eventType === 'extended' || values.organizerId === '' ? null : values.organizerId
+          await onSubmit({ ...values, organizerId })
           onClose()
         })}
         className="flex max-h-[calc(100vh-2rem)] w-full max-w-xl flex-col overflow-hidden rounded-lg bg-white shadow-2xl dark:bg-argentina-navy"
@@ -105,14 +108,16 @@ export function EventModal({ users, initial, onClose, onSubmit }: Props) {
             <option value="regular">{es.eventTypeRegular}</option>
             <option value="extended">{es.eventTypeExtended}</option>
           </select>
-          <select {...register('organizerId')} className={fieldClass}>
-            <option value="">{es.noOrganizer}</option>
-            {users.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </select>
+          {eventType !== 'extended' ? (
+            <select {...register('organizerId')} className={fieldClass}>
+              <option value="">{es.noOrganizer}</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+          ) : null}
           <div className="grid grid-cols-2 gap-1 rounded border border-argentina-celeste/40 p-2 dark:border-argentina-celeste/40">
             {users.map((user) => (
               <label

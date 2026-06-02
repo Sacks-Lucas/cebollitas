@@ -82,6 +82,7 @@ export function MonthlyEventPage() {
         const canVote =
           card.event &&
           card.event.attendeeIds.includes(user?.id ?? '') &&
+          card.event.organizerId !== user?.id &&
           !votedStatus[card.event.id] &&
           !isVotingClosed(card.event)
 

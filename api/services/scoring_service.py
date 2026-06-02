@@ -9,8 +9,14 @@ MONTHLY_ATTENDEE_POINTS = 40
 TRIP_POINTS = 70
 
 
-def compute_rankings(users: list[dict], events: list[dict], trips: list[dict] | None = None) -> list[dict]:
+def compute_rankings(
+    users: list[dict],
+    events: list[dict],
+    trips: list[dict] | None = None,
+    vote_averages: dict[str, float] | None = None,
+) -> list[dict]:
     trips = trips or []
+    vote_averages = vote_averages or {}
     totals: dict[str, int] = defaultdict(int)
     attendance: dict[str, int] = defaultdict(int)
 
@@ -24,7 +30,12 @@ def compute_rankings(users: list[dict], events: list[dict], trips: list[dict] | 
                 totals[attendee_id] += EXTENDED_POINTS
             elif event_type == "monthly_event":
                 if attendee_id == organizer_id:
-                    totals[attendee_id] += math.ceil((event.get("voteAverage") or 0) * 10)
+                    # Prefer the live average computed from actual votes; fall
+                    # back to a stored voteAverage when no votes are provided.
+                    average = vote_averages.get(event.get("id"))
+                    if average is None:
+                        average = event.get("voteAverage") or 0
+                    totals[attendee_id] += math.ceil(average * 10)
                 else:
                     totals[attendee_id] += MONTHLY_ATTENDEE_POINTS
             elif attendee_id == organizer_id:

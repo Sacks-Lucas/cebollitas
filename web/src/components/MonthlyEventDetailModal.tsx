@@ -22,6 +22,9 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
   const { data: detail, isLoading: detailLoading } = useEventDetail(eventId)
   const { data: myVote, isLoading: voteLoading } = useMyVote(eventId)
   const displayAverage = detail?.generalAverage ?? detail?.voteAverage ?? null
+  const eligibleVoters = detail
+    ? detail.attendees.filter((a) => a.id !== detail.organizer?.id).length
+    : 0
 
   return createPortal(
     <div
@@ -83,7 +86,7 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
                 <dd>
                   {es.votersCount
                     .replace('{count}', String(detail.voteCount))
-                    .replace('{total}', String(detail.attendees.length))}
+                    .replace('{total}', String(eligibleVoters))}
                 </dd>
                 <dt className="font-semibold">{es.attendees}:</dt>
                 <dd>{detail.attendees.length > 0 ? detail.attendees.map((a) => a.name).join(', ') : '-'}</dd>

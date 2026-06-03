@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from dependencies import get_admin_user, get_current_user
 from models.schemas import Event, EventCreate, EventDetail, EventUpdate, UserRef
 from repositories.data_store import events_repo, get_allowed_users, votes_repo
-from services.vote_service import get_event_general_average
+from services.vote_service import count_event_votes, get_event_general_average
 
 router = APIRouter(prefix="/api/events", tags=["events"])
 
@@ -96,6 +96,7 @@ def get_event_detail(event_id: str, _: dict = Depends(get_current_user)) -> Even
         imagePosition=event.get("imagePosition"),
         voteAverage=event.get("voteAverage"),
         generalAverage=get_event_general_average(event_id),
+        voteCount=count_event_votes(event_id),
         organizer=organizer,
         attendees=attendees,
     )

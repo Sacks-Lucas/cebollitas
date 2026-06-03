@@ -79,6 +79,12 @@ export function MonthlyEventDetailModal({ eventId, onClose }: Props) {
                     <dd>{displayAverage}</dd>
                   </>
                 ) : null}
+                <dt className="font-semibold">{es.voters}:</dt>
+                <dd>
+                  {es.votersCount
+                    .replace('{count}', String(detail.voteCount))
+                    .replace('{total}', String(detail.attendees.length))}
+                </dd>
                 <dt className="font-semibold">{es.attendees}:</dt>
                 <dd>{detail.attendees.length > 0 ? detail.attendees.map((a) => a.name).join(', ') : '-'}</dd>
               </dl>

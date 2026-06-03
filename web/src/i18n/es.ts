@@ -81,6 +81,8 @@ export const es = {
   voteNotCast: 'Todavía no votaste este evento',
   generalAverage: 'Promedio general',
   myAverage: 'Tu promedio',
+  voters: 'Votaron',
+  votersCount: '{count} de {total}',
   destination: 'Destino',
   tripDateRange: 'Del {start} al {end}',
   footerRights: 'Todos los derechos reservados',

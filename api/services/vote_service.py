@@ -59,6 +59,11 @@ def get_user_vote(event_id: str, voter_id: str) -> dict | None:
     return None
 
 
+def count_event_votes(event_id: str) -> int:
+    votes = votes_repo.read()
+    return sum(1 for vote in votes if vote["eventId"] == event_id)
+
+
 def get_event_general_average(event_id: str) -> int | None:
     scores = decrypt_event_scores(event_id)
     if not scores:

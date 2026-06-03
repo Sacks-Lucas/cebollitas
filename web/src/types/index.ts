@@ -72,6 +72,7 @@ export type EventDetail = {
   imagePosition: string | null
   voteAverage: number | null
   generalAverage: number | null
+  voteCount: number
   organizer: UserRef | null
   attendees: UserRef[]
 }

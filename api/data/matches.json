@@ -228,7 +228,7 @@
     "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
     "date": "2026-01-24",
     "result": "loss",
-    "goals": null,
+    "goals": 0,
     "stadium": "Cantón"
   },
   {
@@ -380,7 +380,7 @@
     "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
     "date": "2026-03-06",
     "result": "loss",
-    "goals": null,
+    "goals": 0,
     "stadium": "Moulin"
   },
   {
@@ -412,7 +412,7 @@
     "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
     "date": "2026-03-06",
     "result": "win",
-    "goals": null,
+    "goals": 0,
     "stadium": "Moulin"
   },
   {
@@ -492,7 +492,7 @@
     "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
     "date": "2026-03-13",
     "result": "loss",
-    "goals": null,
+    "goals": 0,
     "stadium": "Moulin"
   },
   {

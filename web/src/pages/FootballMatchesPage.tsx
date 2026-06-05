@@ -14,7 +14,7 @@ const resultStyles: Record<MatchResult, { label: string; className: string }> = 
   },
   draw: {
     label: es.matchResultDraw,
-    className: 'bg-gray-200 text-gray-700 dark:bg-gray-700/50 dark:text-gray-200',
+    className: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300',
   },
 }
 
@@ -63,7 +63,7 @@ export function FootballMatchesPage() {
                           {result.label}
                         </span>
                       </td>
-                      <td className={`${bodyCell} text-right tabular-nums`}>{match.goals ?? '—'}</td>
+                      <td className={`${bodyCell} text-right tabular-nums`}>{match.goals ?? 0}</td>
                       <td className={bodyCell}>{match.stadium ?? '—'}</td>
                     </tr>
                   )

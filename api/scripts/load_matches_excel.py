@@ -103,7 +103,8 @@ def main() -> None:
             continue
 
         date_str = fecha.date().isoformat()
-        goals = int(goals_raw) if isinstance(goals_raw, (int, float)) else None
+        # Missing goals count as 0 (so stats aggregate cleanly).
+        goals = int(goals_raw) if isinstance(goals_raw, (int, float)) else 0
 
         user_id = user_id_by_nick.get(name.lower())
         if user_id is None:

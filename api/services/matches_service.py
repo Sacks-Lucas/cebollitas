@@ -9,6 +9,12 @@ ordering so routes stay thin.
 from repositories.data_store import get_allowed_users, get_matches
 
 
+def with_player_name(match: dict) -> dict:
+    """Attach the player's current display name (resolved from allowed_users)."""
+    name_by_id = {user["id"]: user["name"] for user in get_allowed_users()}
+    return {**match, "playerName": name_by_id.get(match.get("userId"), "")}
+
+
 def list_matches() -> list[dict]:
     """Return all matches, most recent first, with the player's resolved name.
 

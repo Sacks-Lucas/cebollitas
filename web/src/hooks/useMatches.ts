@@ -1,12 +1,43 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '../services/api'
-import type { Match } from '../types'
+import type { Match, MatchCreatePayload, MatchUpdatePayload } from '../types'
 import { qk } from './queryKeys'
 
 export function useMatches() {
   return useQuery({
     queryKey: qk.matches,
     queryFn: () => api.get<Match[]>('/api/matches').then((res) => res.data),
+  })
+}
+
+export function useCreateMatch() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (payload: MatchCreatePayload) => api.post<Match>('/api/matches', payload).then((res) => res.data),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: qk.matches })
+    },
+  })
+}
+
+export function useUpdateMatch() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ id, payload }: { id: string; payload: MatchUpdatePayload }) =>
+      api.put<Match>(`/api/matches/${id}`, payload).then((res) => res.data),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: qk.matches })
+    },
+  })
+}
+
+export function useDeleteMatch() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (id: string) => api.delete(`/api/matches/${id}`).then((res) => res.data),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: qk.matches })
+    },
   })
 }

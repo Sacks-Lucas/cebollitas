@@ -1,7 +1,17 @@
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+
+
+def _validate_match_date(value: date) -> date:
+    """Match date must belong to the current year and not be in the future."""
+    today = datetime.now(timezone.utc).date()
+    if value.year != today.year:
+        raise ValueError("La fecha debe pertenecer al año en curso.")
+    if value > today:
+        raise ValueError("La fecha no puede ser posterior a hoy.")
+    return value
 
 
 EventType = Literal["regular", "extended", "monthly_event", "trip", "sports_bonus"]
@@ -30,6 +40,27 @@ class Match(BaseModel):
     result: MatchResult
     goals: int | None = None
     stadium: str | None = None
+
+
+class MatchCreate(BaseModel):
+    result: MatchResult
+    goals: int = Field(ge=0)
+    stadium: str = Field(min_length=1, max_length=200)
+    date: date
+    # Admin-only target player; ignored for non-admins (they create for
+    # themselves, derived from the JWT). None means "for myself".
+    userId: str | None = None
+
+    _check_date = field_validator("date")(_validate_match_date)
+
+
+class MatchUpdate(BaseModel):
+    # `result` is intentionally absent — it cannot be edited.
+    goals: int = Field(ge=0)
+    stadium: str = Field(min_length=1, max_length=200)
+    date: date
+
+    _check_date = field_validator("date")(_validate_match_date)
 
 
 class AuthGoogleRequest(BaseModel):

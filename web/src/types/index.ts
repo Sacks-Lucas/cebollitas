@@ -27,6 +27,20 @@ export type Match = {
   stadium: string | null
 }
 
+export type MatchCreatePayload = {
+  result: MatchResult
+  goals: number
+  stadium: string | null
+  date: string
+  userId?: string | null
+}
+
+export type MatchUpdatePayload = {
+  goals: number
+  stadium: string | null
+  date: string
+}
+
 export type Event = {
   id: string
   title: string

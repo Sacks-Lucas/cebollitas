@@ -6,6 +6,8 @@ from pydantic import BaseModel, ConfigDict, Field
 
 EventType = Literal["regular", "extended", "monthly_event", "trip", "sports_bonus"]
 
+MatchResult = Literal["win", "loss", "draw"]
+
 
 class User(BaseModel):
     id: str
@@ -18,6 +20,16 @@ class Role(BaseModel):
     id: str
     name: str
     description: str | None = None
+
+
+class Match(BaseModel):
+    id: str
+    userId: str
+    playerName: str
+    date: date
+    result: MatchResult
+    goals: int | None = None
+    stadium: str | None = None
 
 
 class AuthGoogleRequest(BaseModel):

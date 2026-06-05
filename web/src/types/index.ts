@@ -15,6 +15,18 @@ export type User = {
 
 export type EventType = 'regular' | 'extended' | 'monthly_event' | 'trip' | 'sports_bonus'
 
+export type MatchResult = 'win' | 'loss' | 'draw'
+
+export type Match = {
+  id: string
+  userId: string
+  playerName: string
+  date: string
+  result: MatchResult
+  goals: number | null
+  stadium: string | null
+}
+
 export type Event = {
   id: string
   title: string

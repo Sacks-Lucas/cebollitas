@@ -1,0 +1,906 @@
+[
+  {
+    "id": "05b08e01-16b1-5bb2-80bb-a62dfeb4ae98",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-03",
+    "result": "win",
+    "goals": 7,
+    "stadium": "F5"
+  },
+  {
+    "id": "2a506b54-0e9c-5a77-aab4-cfe2ef00b869",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-04",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Cross"
+  },
+  {
+    "id": "e114cec5-68ce-51d5-b43b-6b5d95362af3",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-06",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Marangoni"
+  },
+  {
+    "id": "b8025ffc-b360-5685-8bd0-b7afbaeec566",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-06",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Marangoni"
+  },
+  {
+    "id": "568e2e9b-75c4-587e-adb1-df213b73c942",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-01-07",
+    "result": "loss",
+    "goals": 2,
+    "stadium": "moulin"
+  },
+  {
+    "id": "4a41012e-49ad-5196-ba9a-b6ccfcfa1f71",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-07",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "3dd5a1c5-2d41-56fa-8925-c5d1ad2027c2",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-01-07",
+    "result": "loss",
+    "goals": 2,
+    "stadium": "moulin"
+  },
+  {
+    "id": "b3c65d5d-976c-51c7-824c-26574e808c30",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-01-08",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "moulin"
+  },
+  {
+    "id": "645ea04a-594e-50b1-94a5-f1d647fa02f6",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-01-08",
+    "result": "win",
+    "goals": 5,
+    "stadium": "megaestadium"
+  },
+  {
+    "id": "0fb8ff40-22b6-55ca-81b6-953214667f8e",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-01-08",
+    "result": "loss",
+    "goals": 3,
+    "stadium": "moulin"
+  },
+  {
+    "id": "e18d11fc-efc9-583e-9863-1413eac2f15d",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-11",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Cross"
+  },
+  {
+    "id": "860be2d2-38f3-55ab-8c1e-654daabcb3d8",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-01-11",
+    "result": "loss",
+    "goals": 4,
+    "stadium": "F5"
+  },
+  {
+    "id": "fa5b12c9-032d-5e4e-96ef-ce1419880789",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-01-11",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Cross (Golazo)"
+  },
+  {
+    "id": "e1f64bb1-7957-58fb-b607-c9ff4ec9522b",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-11",
+    "result": "win",
+    "goals": 0,
+    "stadium": "Cross"
+  },
+  {
+    "id": "6a778ecb-eb0f-5c28-8147-1cd2af6000d0",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-13",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Marangoni"
+  },
+  {
+    "id": "c0893593-14ed-5563-bdee-705c16d793ea",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-13",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Marangoni"
+  },
+  {
+    "id": "2fb82678-a97c-529c-83f7-f8b18b429898",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-01-16",
+    "result": "win",
+    "goals": 10,
+    "stadium": "Futbol Mitre"
+  },
+  {
+    "id": "e394e387-fee8-58b0-9c5c-cd711ba446f5",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-01-16",
+    "result": "win",
+    "goals": 5,
+    "stadium": "Futbol Mitre"
+  },
+  {
+    "id": "e87dad1c-66f0-570c-a960-9f72bb12b0d3",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-01-16",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Futbol Mitre"
+  },
+  {
+    "id": "079c8dac-d90c-5744-8afe-b92bee9d49a2",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-20",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Marangoni"
+  },
+  {
+    "id": "7e1c3526-d282-53be-ad86-6f8b95b2632b",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-01-21",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Ciudadela"
+  },
+  {
+    "id": "08801252-4d55-52d0-8c21-2efd2cb8e61c",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-21",
+    "result": "loss",
+    "goals": 1,
+    "stadium": "Ciudadela"
+  },
+  {
+    "id": "019cba50-c7f4-5778-854d-d8257dfa881f",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-01-23",
+    "result": "draw",
+    "goals": 4,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "416744c4-6e7f-50c4-bd33-750287e7ed13",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-01-23",
+    "result": "draw",
+    "goals": 7,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "f5f07486-43b9-528f-bfb5-9607ed483f40",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-01-23",
+    "result": "draw",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "289a4aba-3dc7-5883-abde-a4bcdca36e76",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-01-23",
+    "result": "draw",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "524c31b8-dbcf-5216-866b-dfecc0741de0",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-23",
+    "result": "draw",
+    "goals": 3,
+    "stadium": "moulin"
+  },
+  {
+    "id": "e59e605c-da82-52b7-bfe6-6584f8f43a6e",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-01-23",
+    "result": "draw",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "9a088f47-a744-5272-a43a-962b6fed6fc5",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-01-24",
+    "result": "loss",
+    "goals": null,
+    "stadium": "Cantón"
+  },
+  {
+    "id": "c4dadb8d-7476-5bde-ad0a-99118e848334",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-01-24",
+    "result": "win",
+    "goals": 5,
+    "stadium": "Cantón"
+  },
+  {
+    "id": "59a17379-7a14-52b0-9471-f081daba7bc0",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-01-24",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Canton"
+  },
+  {
+    "id": "5fce7e75-45a3-540e-9787-df1e7542092b",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-01-24",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Canton"
+  },
+  {
+    "id": "933a8c14-5f08-5706-82cd-8c41614790d9",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-01-24",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Canton"
+  },
+  {
+    "id": "ae6b6ff2-529d-52cc-a871-385936035583",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-01-29",
+    "result": "loss",
+    "goals": 2,
+    "stadium": "Estadio de leyendas"
+  },
+  {
+    "id": "a366ff35-1034-5542-93fa-d76479cdc85f",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-02-02",
+    "result": "win",
+    "goals": 7,
+    "stadium": "Open Atlanta"
+  },
+  {
+    "id": "52e53c72-62e5-5794-a327-0924c7f85816",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-02-04",
+    "result": "loss",
+    "goals": 2,
+    "stadium": "Villa rosales"
+  },
+  {
+    "id": "db76e6cf-2088-5980-99c6-dc495d82d33b",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-02-19",
+    "result": "win",
+    "goals": 7,
+    "stadium": "megaestadium"
+  },
+  {
+    "id": "0b0ed014-13d7-5562-ab63-a83dac50ff53",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-02-25",
+    "result": "draw",
+    "goals": 4,
+    "stadium": "Villa del parque"
+  },
+  {
+    "id": "f78f7eb1-4172-560b-a05d-2d5863abdb34",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-02-26",
+    "result": "loss",
+    "goals": 6,
+    "stadium": "megaestadium"
+  },
+  {
+    "id": "745edece-6ae9-52ef-b4c2-fe5449cd06de",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-02-27",
+    "result": "loss",
+    "goals": 1,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "4e3c6905-727c-5d46-a881-d9186b91d8e1",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-02-27",
+    "result": "win",
+    "goals": 5,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "42895af3-48c4-5750-8d5e-bb04f362458b",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-02-27",
+    "result": "loss",
+    "goals": 6,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "42223857-4992-524f-b347-5fa80a10ad1f",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-02-27",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "0e55fc57-5406-5154-b0cb-f622a2b6ef5d",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-02-27",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "f219b469-34fb-563c-a98a-4317f3255827",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-02-27",
+    "result": "loss",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "21bc43ea-f8b6-5d63-b286-fee2abeb2cd3",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-02-28",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Comunicaciones T"
+  },
+  {
+    "id": "48226051-aedc-5013-a8c6-0e6a400af3d4",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-03-01",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Rosaleda"
+  },
+  {
+    "id": "ee685f7e-1122-53f5-89f0-581c16c3688d",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-03-06",
+    "result": "loss",
+    "goals": null,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "811ee16c-7400-5c10-8673-1a2f7ebb5cf8",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-06",
+    "result": "loss",
+    "goals": 1,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "6e42d392-f327-5a97-b966-6ddf8ad62240",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-03-06",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "91735414-82f2-5bf2-b390-dd6b8d145e89",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-03-06",
+    "result": "win",
+    "goals": 2,
+    "stadium": "que golazo"
+  },
+  {
+    "id": "94e45727-8516-56c8-88b9-a964f4bf6a63",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-03-06",
+    "result": "win",
+    "goals": null,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "431bc4ac-40e4-53c4-bca9-3cb43112c793",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-03-06",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "a5419780-80a3-5374-9ec9-d6548e88f46b",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-07",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Torneo comunicacio"
+  },
+  {
+    "id": "c8d59a1e-0144-5d88-8558-d85652348386",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-03-07",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Megafutbol SJ"
+  },
+  {
+    "id": "a170c111-4991-599c-87ac-0481ae0fbd7e",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-03-08",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Cross"
+  },
+  {
+    "id": "c66d8b02-a3ed-5b53-a511-30c4c329cd29",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-08",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Cross"
+  },
+  {
+    "id": "e879cf8b-3ccf-5d2f-a6c5-adc841199fe8",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-03-10",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Cross"
+  },
+  {
+    "id": "4782d693-3771-588f-b721-5c8b1e43f8d4",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-12",
+    "result": "win",
+    "goals": 7,
+    "stadium": "megaestadium"
+  },
+  {
+    "id": "e6310faa-59a5-56d4-8ceb-67fd2458699b",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-03-13",
+    "result": "win",
+    "goals": 6,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "c3504b2a-5431-5aa8-b034-4f2f573eda19",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-13",
+    "result": "loss",
+    "goals": 5,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "dcc89e05-d197-53d2-9154-024997a6e6b2",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-03-13",
+    "result": "loss",
+    "goals": null,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "7cb47a8c-67c7-529b-810b-b4fe4e75d04b",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-03-13",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "1a8cca9a-0ddb-52b3-80ca-c6bcbadd7832",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-14",
+    "result": "win",
+    "goals": 6,
+    "stadium": "F5"
+  },
+  {
+    "id": "d49cd9ac-d3c6-5fc1-a7ce-f818ccacdde2",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-20",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "bae54096-c91f-53f2-b4ad-c9d9bb025da7",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-20",
+    "result": "win",
+    "goals": 5,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "dc388ac0-fa22-5802-9323-256cd2028e10",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-20",
+    "result": "win",
+    "goals": 6,
+    "stadium": "Club Parque"
+  },
+  {
+    "id": "c668a93e-5c8d-5237-a9d1-1f265f552a67",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-03-20",
+    "result": "loss",
+    "goals": 2,
+    "stadium": "Rosaleda"
+  },
+  {
+    "id": "2503c2a4-3c9b-5b28-8ce6-719a6dd90e9c",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-03-20",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "7a2d0e91-0e3e-50c4-844e-b04ee0a99f4c",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-03-20",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "1a657f8e-25d5-5ff0-8e20-935c441f5258",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-21",
+    "result": "loss",
+    "goals": 5,
+    "stadium": "Moron"
+  },
+  {
+    "id": "f955fe92-6ea4-555f-9b06-99555681a7a7",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-21",
+    "result": "loss",
+    "goals": 5,
+    "stadium": "F5"
+  },
+  {
+    "id": "76780fec-8527-5a56-a88e-c0a7bc298ed5",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-22",
+    "result": "loss",
+    "goals": 1,
+    "stadium": "Cross"
+  },
+  {
+    "id": "71e51815-9ccf-56db-8b66-292fc930cc4a",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-27",
+    "result": "loss",
+    "goals": 4,
+    "stadium": "Rosaleda"
+  },
+  {
+    "id": "42c81ebd-f8ff-5eeb-b6c6-ed7cee8a43ba",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-03-27",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "d587c7c3-d55a-5a98-948a-9a6b98f38ce5",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-03-27",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Rosaleda"
+  },
+  {
+    "id": "6e27b7ea-2ab2-5a35-baaf-6da2a75a8dd9",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-03-28",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Torneo comunicacio"
+  },
+  {
+    "id": "6e6f41bb-42a5-5c6f-bb1e-ea493c0b2f3a",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-28",
+    "result": "win",
+    "goals": 7,
+    "stadium": "Rosaleda"
+  },
+  {
+    "id": "93c75fea-5fc3-58d8-b6b3-4f0f12e50baf",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-03-29",
+    "result": "win",
+    "goals": 6,
+    "stadium": "Megastadium"
+  },
+  {
+    "id": "5ed8c05f-1379-5913-b4a1-b28a16d01d77",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-04-03",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "4aee1aa7-74a6-5d85-90b3-7eb24291bfa2",
+    "userId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "date": "2026-04-03",
+    "result": "loss",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "0875fe0c-35c2-59f5-86ab-83f3816a4a98",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-04-03",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "821c0167-6a61-5495-b357-a8dae526e712",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-04-09",
+    "result": "loss",
+    "goals": 3,
+    "stadium": "que golazo"
+  },
+  {
+    "id": "63bf561a-2cfa-5e9f-86f7-5dff52044e0c",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-04-10",
+    "result": "loss",
+    "goals": 4,
+    "stadium": "Cross"
+  },
+  {
+    "id": "d8cde8f1-fadd-522a-b88b-cda29cf30f3a",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-04-11",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Fútbol comu"
+  },
+  {
+    "id": "a8bb7f12-e364-53db-a3c0-7af8705cf845",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-04-23",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Que golazo"
+  },
+  {
+    "id": "3d1c54a3-5b9e-5d92-9799-dcd1f2bca1db",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-04-26",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Cross"
+  },
+  {
+    "id": "9f13dec0-fc74-5fa9-97fb-c5da1c286c02",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-04-26",
+    "result": "win",
+    "goals": 0,
+    "stadium": "Platense"
+  },
+  {
+    "id": "4fdd2bfd-0708-5566-9917-9511b79fe708",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-04-26",
+    "result": "loss",
+    "goals": 5,
+    "stadium": "cross 5"
+  },
+  {
+    "id": "9c127749-de0f-518a-bb86-6a0199fbc555",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-04-26",
+    "result": "win",
+    "goals": 6,
+    "stadium": "Cross 7"
+  },
+  {
+    "id": "cd01b653-6d10-5c4e-a70e-5c618df3cf8d",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-05-02",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Comunicaciones T"
+  },
+  {
+    "id": "3dfa4dd3-32a8-5ad3-9b31-ed56e3224dd4",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-05-07",
+    "result": "win",
+    "goals": 7,
+    "stadium": "Megastadium"
+  },
+  {
+    "id": "5429b354-5a51-5ccc-870a-df2e6e51af39",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-05-08",
+    "result": "loss",
+    "goals": 3,
+    "stadium": "Cross"
+  },
+  {
+    "id": "a2b6715d-893a-5f85-9302-09722a97d5aa",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-05-08",
+    "result": "loss",
+    "goals": 5,
+    "stadium": "Cross"
+  },
+  {
+    "id": "bf42a9a4-02cb-53eb-bdb3-621890b66b9f",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-05-08",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Cross"
+  },
+  {
+    "id": "7367e793-5095-5bda-b924-fe1f9ea87b75",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-05-08",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Cross 5"
+  },
+  {
+    "id": "286f424d-7b17-5461-81f8-62c5462ded14",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-05-14",
+    "result": "win",
+    "goals": 6,
+    "stadium": "Megastadium"
+  },
+  {
+    "id": "0a32c957-b1ba-5589-987e-309b35ff7e38",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-05-15",
+    "result": "loss",
+    "goals": 4,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "a9c19923-045f-522e-a50e-2e0d2d943142",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-05-15",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "d0201a01-f1b7-577f-9c0a-a991a4e49917",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-05-15",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "0164e798-980b-5783-98df-b9b0ce336fd6",
+    "userId": "d4f6bfb5-de36-5fe8-8cf6-8046050ca412",
+    "date": "2026-05-15",
+    "result": "loss",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "1d0fe29b-aaf1-5da4-8b85-13c25354976e",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-05-15",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "69b9016d-e708-5733-a3bf-6083cd28390d",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-05-15",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Moulin"
+  },
+  {
+    "id": "733b31f2-f0fd-597b-8802-e8472eda6696",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-05-16",
+    "result": "loss",
+    "goals": 0,
+    "stadium": "Comunicaciones T"
+  },
+  {
+    "id": "4eb51804-b97c-5f42-b544-4a151ce23b34",
+    "userId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "date": "2026-05-17",
+    "result": "win",
+    "goals": 0,
+    "stadium": "Rosaleda (Torneo)"
+  },
+  {
+    "id": "43c7514b-010c-5e8a-9b51-d9aad31353c3",
+    "userId": "47de9e03-2a5d-5952-a137-4898a07bb7ed",
+    "date": "2026-05-20",
+    "result": "win",
+    "goals": 5,
+    "stadium": "Megastadium"
+  },
+  {
+    "id": "45590376-aa02-5fb2-9978-65f0fe25fe4d",
+    "userId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "date": "2026-05-22",
+    "result": "win",
+    "goals": 4,
+    "stadium": "Fútbol comu"
+  },
+  {
+    "id": "2b00bade-e3dc-596f-a3fc-6ff2a2ce4f22",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-05-24",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Cross"
+  },
+  {
+    "id": "122adda0-6e64-5239-9bdc-a9805cbe81b7",
+    "userId": "13e75b34-e46a-57c2-aaad-0ccd39b8e488",
+    "date": "2026-05-26",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Cross 7"
+  },
+  {
+    "id": "9626bc03-53ac-5061-8812-c4ab6722d722",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-05-28",
+    "result": "win",
+    "goals": 3,
+    "stadium": "Cross 5"
+  },
+  {
+    "id": "e7ac5b49-078b-5ecf-8b52-42fd608a48c1",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-05-29",
+    "result": "win",
+    "goals": 2,
+    "stadium": "Cross 6"
+  },
+  {
+    "id": "94de6570-6500-564c-a642-10f9bb0afa58",
+    "userId": "95466925-bea9-59a3-b675-45005906a39a",
+    "date": "2026-05-31",
+    "result": "win",
+    "goals": 1,
+    "stadium": "Cross 7"
+  },
+  {
+    "id": "57a8e390-04bf-544f-8c4e-1136845710d7",
+    "userId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "date": "2026-05-24",
+    "result": "loss",
+    "goals": 1,
+    "stadium": "Cross 7"
+  }
+]

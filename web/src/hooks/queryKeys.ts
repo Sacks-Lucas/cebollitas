@@ -12,6 +12,7 @@ export type TripsFilters = {
 export const qk = {
   users: ['users'] as const,
   me: ['me'] as const,
+  matches: ['matches'] as const,
   rankings: ['rankings'] as const,
   events: {
     all: ['events'] as const,

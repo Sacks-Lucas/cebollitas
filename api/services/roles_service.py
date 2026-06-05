@@ -41,7 +41,11 @@ def has_role(user: dict, role: str) -> bool:
 
 
 def require_roles(*roles: str):
-    """Dependency factory that allows access if the user has any of `roles`."""
+    """Dependency factory that allows access if the user has any of `roles`.
+
+    ADMIN always passes (it sees every screen), mirroring the frontend's
+    `canAccess`.
+    """
 
     # Imported lazily to avoid a circular import: dependencies -> admin_service
     # -> roles_service would otherwise loop back here at module load.
@@ -49,7 +53,7 @@ def require_roles(*roles: str):
 
     def dependency(current_user: dict = Depends(get_current_user)) -> dict:
         user_roles = get_user_roles(current_user)
-        if not any(role in user_roles for role in roles):
+        if ROLE_ADMIN not in user_roles and not any(role in user_roles for role in roles):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="No tenés permiso para realizar esta acción.",

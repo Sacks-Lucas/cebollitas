@@ -7,7 +7,18 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
-from routes import admin, auth, events, monthly_events, rankings, roles, trips, users, votes  # noqa: E402
+from routes import (  # noqa: E402
+    admin,
+    auth,
+    events,
+    matches,
+    monthly_events,
+    rankings,
+    roles,
+    trips,
+    users,
+    votes,
+)
 
 cloudinary.config(
     cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
@@ -30,6 +41,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(roles.router)
+app.include_router(matches.router)
 app.include_router(events.router)
 app.include_router(rankings.router)
 app.include_router(monthly_events.router)

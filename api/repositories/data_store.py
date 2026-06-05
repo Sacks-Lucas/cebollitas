@@ -48,6 +48,7 @@ if not USE_MONGO:
 
 allowed_users_repo = _make_repo("allowed_users")
 roles_repo = _make_repo("roles")
+matches_repo = _make_repo("matches")
 monthly_assignments_repo = _make_repo("monthly_assignments")
 events_repo = _make_repo("events")
 trips_repo = _make_repo("trips")
@@ -56,6 +57,7 @@ votes_repo = _make_repo("votes")
 _REPOS_BY_NAME = {
     "allowed_users": allowed_users_repo,
     "roles": roles_repo,
+    "matches": matches_repo,
     "monthly_assignments": monthly_assignments_repo,
     "events": events_repo,
     "trips": trips_repo,
@@ -99,3 +101,7 @@ def get_allowed_users() -> list[dict]:
 
 def get_roles() -> list[dict]:
     return roles_repo.read()
+
+
+def get_matches() -> list[dict]:
+    return matches_repo.read()

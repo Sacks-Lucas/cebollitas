@@ -1,22 +1,18 @@
 import { useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 import { es } from '../i18n/es'
 import { APP_VERSION } from '../lib/version'
 import { useAuth } from '../contexts/AuthContext'
-import { APP_ROUTES, canAccess } from '../lib/access'
+import { DesktopNav, MobileNav } from './NavMenu'
 import { Footer } from './Footer'
 import { ThemeToggle } from './ThemeToggle'
 import { TopProgressBar } from './TopProgressBar'
 
 export function Layout() {
-  const { logout, isAdmin, roles } = useAuth()
+  const { logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
-  const visibleNavItems = APP_ROUTES.filter((item) => canAccess(item.roles, roles, isAdmin))
-
-  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    isActive ? 'font-semibold text-argentina-celesteDark dark:text-argentina-celeste' : ''
 
   return (
     <div className="flex min-h-screen flex-col bg-white dark:bg-argentina-navyDeep">
@@ -31,13 +27,7 @@ export function Layout() {
             {es.appName}
           </Link>
 
-          <nav className="hidden items-center gap-3 text-sm sm:flex">
-            {visibleNavItems.map((item) => (
-              <NavLink key={item.to} to={item.to} className={navLinkClass}>
-                {es[item.labelKey]}
-              </NavLink>
-            ))}
-          </nav>
+          <DesktopNav />
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -62,20 +52,7 @@ export function Layout() {
 
         {menuOpen ? (
           <nav className="mx-auto mt-3 flex max-w-6xl flex-col gap-1 border-t border-argentina-celeste/20 pt-3 text-sm sm:hidden">
-            {visibleNavItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={() => setMenuOpen(false)}
-                className={({ isActive }) =>
-                  `rounded px-2 py-2 transition hover:bg-argentina-celeste/10 dark:hover:bg-argentina-celeste/20 ${
-                    isActive ? 'font-semibold text-argentina-celesteDark dark:text-argentina-celeste' : ''
-                  }`
-                }
-              >
-                {es[item.labelKey]}
-              </NavLink>
-            ))}
+            <MobileNav onNavigate={() => setMenuOpen(false)} />
             <button
               type="button"
               onClick={() => {

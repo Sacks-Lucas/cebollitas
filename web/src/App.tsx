@@ -12,6 +12,10 @@ import { ToastProvider } from './contexts/ToastContext'
 import { queryClient } from './lib/queryClient'
 import { AdminPage } from './pages/AdminPage'
 import { EventsPage } from './pages/EventsPage'
+import { FootballCebollitasMatchesPage } from './pages/FootballCebollitasMatchesPage'
+import { FootballMatchesPage } from './pages/FootballMatchesPage'
+import { FootballStatsPage } from './pages/FootballStatsPage'
+import { FootballWorldCupsPage } from './pages/FootballWorldCupsPage'
 import { LoginPage } from './pages/LoginPage'
 import { MonthlyEventPage } from './pages/MonthlyEventPage'
 import { RankingsPage } from './pages/RankingsPage'
@@ -34,6 +38,14 @@ function App() {
                         <Route path="/rankings" element={<RankingsPage />} />
                         <Route path="/eventos" element={<EventsPage />} />
                         <Route path="/evento-del-mes" element={<MonthlyEventPage />} />
+                      </Route>
+                      <Route element={<RoleRoute roles={['FUTBOL']} />}>
+                        <Route path="/football/estadisticas" element={<FootballStatsPage />} />
+                        <Route path="/football/partidos" element={<FootballMatchesPage />} />
+                        <Route path="/football/mundiales" element={<FootballWorldCupsPage />} />
+                      </Route>
+                      <Route element={<RoleRoute roles={['FUTBOL', 'CEBOLLITAS']} />}>
+                        <Route path="/football/partidos-cebollitas" element={<FootballCebollitasMatchesPage />} />
                       </Route>
                       <Route element={<RoleRoute roles={['ADMIN']} />}>
                         <Route path="/admin" element={<AdminPage />} />

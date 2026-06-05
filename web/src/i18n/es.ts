@@ -3,6 +3,7 @@ export const es = {
   loginTitle: 'Cebollitas Oficial',
   loginWithGoogle: 'Iniciar sesión con Google',
   unauthorizedScreen: 'No tenés acceso al sistema. Pedile a un miembro que te agregue.',
+  noAccess: 'No tenés permiso para ver esta sección.',
   rankings: 'Rankings',
   rankingPoints: 'Puntos',
   rankingAttendance: 'Asistencia',

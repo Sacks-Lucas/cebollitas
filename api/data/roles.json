@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ADMIN",
+    "name": "Administrador",
+    "description": "Acceso total y funciones de administración."
+  },
+  {
+    "id": "CEBOLLITAS",
+    "name": "Cebollitas",
+    "description": "Usuario base que opera la app."
+  },
+  {
+    "id": "FUTBOL",
+    "name": "Fútbol",
+    "description": "Funciones específicas de fútbol."
+  }
+]

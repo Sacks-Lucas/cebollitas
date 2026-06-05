@@ -1,7 +1,5 @@
-ADMIN_EMAILS = {
-    "sackslm0@gmail.com",
-}
+from services.roles_service import ROLE_ADMIN, has_role
 
 
 def is_admin(user: dict) -> bool:
-    return user.get("email") in ADMIN_EMAILS
+    return has_role(user, ROLE_ADMIN)

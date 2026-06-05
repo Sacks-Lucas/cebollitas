@@ -24,6 +24,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 COLLECTIONS = [
     "allowed_users",
+    "roles",
     "monthly_assignments",
     "events",
     "trips",

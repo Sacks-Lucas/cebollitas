@@ -47,10 +47,15 @@ def main() -> None:
             added += 1
             print(f"add    {user['name']} <{user['email']}>")
             continue
-        if existing.get("name") != user["name"] or existing.get("email") != user["email"]:
+        if (
+            existing.get("name") != user["name"]
+            or existing.get("email") != user["email"]
+            or existing.get("roles") != user.get("roles")
+        ):
             print(f"update {existing.get('email')} -> {user['email']} ({user['name']})")
             existing["name"] = user["name"]
             existing["email"] = user["email"]
+            existing["roles"] = user.get("roles", [])
             updated += 1
 
     repo.write(list(by_id.values()))

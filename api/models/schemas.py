@@ -11,6 +11,13 @@ class User(BaseModel):
     id: str
     name: str
     email: str
+    roles: list[str] = Field(default_factory=list)
+
+
+class Role(BaseModel):
+    id: str
+    name: str
+    description: str | None = None
 
 
 class AuthGoogleRequest(BaseModel):

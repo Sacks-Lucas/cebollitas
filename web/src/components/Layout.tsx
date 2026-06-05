@@ -5,23 +5,15 @@ import { Menu, X } from 'lucide-react'
 import { es } from '../i18n/es'
 import { APP_VERSION } from '../lib/version'
 import { useAuth } from '../contexts/AuthContext'
+import { APP_ROUTES, canAccess } from '../lib/access'
 import { Footer } from './Footer'
 import { ThemeToggle } from './ThemeToggle'
 import { TopProgressBar } from './TopProgressBar'
 
-type NavItem = { to: string; label: string; adminOnly?: boolean }
-
-const navItems: NavItem[] = [
-  { to: '/rankings', label: es.rankings },
-  { to: '/eventos', label: es.events },
-  { to: '/evento-del-mes', label: es.monthlyEvent },
-  { to: '/admin', label: es.admin, adminOnly: true },
-]
-
 export function Layout() {
-  const { logout, isAdmin } = useAuth()
+  const { logout, isAdmin, roles } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
-  const visibleNavItems = navItems.filter((item) => !item.adminOnly || isAdmin)
+  const visibleNavItems = APP_ROUTES.filter((item) => canAccess(item.roles, roles, isAdmin))
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'font-semibold text-argentina-celesteDark dark:text-argentina-celeste' : ''
@@ -42,7 +34,7 @@ export function Layout() {
           <nav className="hidden items-center gap-3 text-sm sm:flex">
             {visibleNavItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={navLinkClass}>
-                {item.label}
+                {es[item.labelKey]}
               </NavLink>
             ))}
           </nav>
@@ -81,7 +73,7 @@ export function Layout() {
                   }`
                 }
               >
-                {item.label}
+                {es[item.labelKey]}
               </NavLink>
             ))}
             <button

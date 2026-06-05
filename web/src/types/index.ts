@@ -1,7 +1,16 @@
+export type RoleCode = 'ADMIN' | 'CEBOLLITAS' | 'FUTBOL'
+
+export type Role = {
+  id: RoleCode
+  name: string
+  description: string | null
+}
+
 export type User = {
   id: string
   name: string
   email: string
+  roles: RoleCode[]
 }
 
 export type EventType = 'regular' | 'extended' | 'monthly_event' | 'trip' | 'sports_bonus'

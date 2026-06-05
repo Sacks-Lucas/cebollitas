@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { Layout } from './components/Layout'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import { RoleRoute } from './components/RoleRoute'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ToastProvider } from './contexts/ToastContext'
@@ -29,10 +30,14 @@ function App() {
                   <Route path="/login" element={<LoginPage />} />
                   <Route element={<ProtectedRoute />}>
                     <Route element={<Layout />}>
-                      <Route path="/rankings" element={<RankingsPage />} />
-                      <Route path="/eventos" element={<EventsPage />} />
-                      <Route path="/evento-del-mes" element={<MonthlyEventPage />} />
-                      <Route path="/admin" element={<AdminPage />} />
+                      <Route element={<RoleRoute roles={['CEBOLLITAS']} />}>
+                        <Route path="/rankings" element={<RankingsPage />} />
+                        <Route path="/eventos" element={<EventsPage />} />
+                        <Route path="/evento-del-mes" element={<MonthlyEventPage />} />
+                      </Route>
+                      <Route element={<RoleRoute roles={['ADMIN']} />}>
+                        <Route path="/admin" element={<AdminPage />} />
+                      </Route>
                     </Route>
                   </Route>
                   <Route path="*" element={<Navigate to="/rankings" replace />} />

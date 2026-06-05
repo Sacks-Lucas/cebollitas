@@ -12,6 +12,10 @@ DATA_DIR = Path(os.getenv("DATA_DIR", str(BUNDLED_DATA_DIR))).resolve()
 
 USE_MONGO = bool(os.getenv("MONGODB_URI"))
 
+# Role granted to every allowed user that has no explicit roles yet. Keeps the
+# app backwards-compatible with user documents created before roles existed.
+DEFAULT_ROLE = "CEBOLLITAS"
+
 
 def _seed_data_dir() -> None:
     """Copy bundled seed JSON files into DATA_DIR on first boot.
@@ -43,6 +47,7 @@ if not USE_MONGO:
     _seed_data_dir()
 
 allowed_users_repo = _make_repo("allowed_users")
+roles_repo = _make_repo("roles")
 monthly_assignments_repo = _make_repo("monthly_assignments")
 events_repo = _make_repo("events")
 trips_repo = _make_repo("trips")
@@ -50,6 +55,7 @@ votes_repo = _make_repo("votes")
 
 _REPOS_BY_NAME = {
     "allowed_users": allowed_users_repo,
+    "roles": roles_repo,
     "monthly_assignments": monthly_assignments_repo,
     "events": events_repo,
     "trips": trips_repo,
@@ -83,6 +89,13 @@ def get_allowed_users() -> list[dict]:
         if not user.get("id"):
             user["id"] = str(uuid.uuid4())
             changed = True
+        if not user.get("roles"):
+            user["roles"] = [DEFAULT_ROLE]
+            changed = True
     if changed:
         allowed_users_repo.write(users)
     return users
+
+
+def get_roles() -> list[dict]:
+    return roles_repo.read()

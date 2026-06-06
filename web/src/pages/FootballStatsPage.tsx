@@ -1,9 +1,25 @@
+import { useMemo, useState } from 'react'
+import { ArrowDown, ArrowUp } from 'lucide-react'
+
 import { es } from '../i18n/es'
 import { useMatchStats } from '../hooks/useMatches'
 import { PageSpinner } from '../components/Spinner'
+import type { PlayerStats } from '../types'
 
-const headerCell = 'px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-argentina-navy/70 dark:text-gray-300'
-const numHeaderCell = `${headerCell} text-right`
+type SortKey = 'playerName' | 'played' | 'won' | 'drawn' | 'lost' | 'goals' | 'winRate'
+type SortDir = 'asc' | 'desc'
+
+const columns: { key: SortKey; label: string; align: 'left' | 'right' }[] = [
+  { key: 'playerName', label: es.matchPlayer, align: 'left' },
+  { key: 'played', label: es.statsPlayed, align: 'right' },
+  { key: 'won', label: es.statsWon, align: 'right' },
+  { key: 'drawn', label: es.statsDrawn, align: 'right' },
+  { key: 'lost', label: es.statsLost, align: 'right' },
+  { key: 'goals', label: es.statsGoals, align: 'right' },
+  { key: 'winRate', label: es.statsWinRate, align: 'right' },
+]
+
+const thBase = 'px-4 py-3 text-xs font-semibold uppercase tracking-wide text-argentina-navy/70 dark:text-gray-300'
 const bodyCell = 'px-4 py-3 text-sm text-argentina-navy dark:text-gray-100'
 const numCell = `${bodyCell} text-right tabular-nums`
 
@@ -21,6 +37,29 @@ function winRateClass(value: number): string {
 
 export function FootballStatsPage() {
   const { data: stats = [], isLoading } = useMatchStats()
+  const [sortKey, setSortKey] = useState<SortKey>('playerName')
+  const [sortDir, setSortDir] = useState<SortDir>('asc')
+
+  const toggleSort = (key: SortKey) => {
+    if (key === sortKey) {
+      setSortDir((dir) => (dir === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setSortKey(key)
+      setSortDir('asc')
+    }
+  }
+
+  const sorted = useMemo(() => {
+    const rows = [...stats]
+    rows.sort((a, b) => {
+      const cmp =
+        sortKey === 'playerName'
+          ? a.playerName.localeCompare(b.playerName)
+          : (a[sortKey] as number) - (b[sortKey] as number)
+      return sortDir === 'asc' ? cmp : -cmp
+    })
+    return rows
+  }, [stats, sortKey, sortDir])
 
   return (
     <section className="space-y-4">
@@ -36,17 +75,27 @@ export function FootballStatsPage() {
             <table className="min-w-full border-collapse">
               <thead className="bg-argentina-celeste/15 dark:bg-argentina-navy">
                 <tr>
-                  <th className={headerCell}>{es.matchPlayer}</th>
-                  <th className={numHeaderCell}>{es.statsPlayed}</th>
-                  <th className={numHeaderCell}>{es.statsWon}</th>
-                  <th className={numHeaderCell}>{es.statsDrawn}</th>
-                  <th className={numHeaderCell}>{es.statsLost}</th>
-                  <th className={numHeaderCell}>{es.statsGoals}</th>
-                  <th className={numHeaderCell}>{es.statsWinRate}</th>
+                  {columns.map((col) => {
+                    const active = sortKey === col.key
+                    return (
+                      <th key={col.key} className={thBase} aria-sort={active ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                        <button
+                          type="button"
+                          onClick={() => toggleSort(col.key)}
+                          className={`flex w-full select-none items-center gap-1 uppercase tracking-wide transition hover:text-argentina-celesteDark dark:hover:text-argentina-celeste ${
+                            col.align === 'right' ? 'justify-end' : 'justify-start'
+                          } ${active ? 'text-argentina-celesteDark dark:text-argentina-celeste' : ''}`}
+                        >
+                          {col.label}
+                          {active ? (sortDir === 'asc' ? <ArrowUp size={13} /> : <ArrowDown size={13} />) : null}
+                        </button>
+                      </th>
+                    )
+                  })}
                 </tr>
               </thead>
               <tbody className="divide-y divide-argentina-celeste/20 bg-white dark:divide-argentina-celeste/20 dark:bg-argentina-navy">
-                {stats.map((row) => (
+                {sorted.map((row: PlayerStats) => (
                   <tr key={row.userId} className="transition hover:bg-argentina-celeste/10 dark:hover:bg-argentina-celeste/10">
                     <td className={`${bodyCell} font-medium`}>{row.playerName}</td>
                     <td className={numCell}>{row.played}</td>
@@ -55,9 +104,7 @@ export function FootballStatsPage() {
                     <td className={numCell}>{row.lost}</td>
                     <td className={numCell}>{row.goals}</td>
                     <td className={numCell}>
-                      <span
-                        className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold ${winRateClass(row.winRate)}`}
-                      >
+                      <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold ${winRateClass(row.winRate)}`}>
                         {formatWinRate(row.winRate)}
                       </span>
                     </td>

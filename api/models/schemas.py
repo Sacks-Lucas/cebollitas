@@ -63,6 +63,18 @@ class MatchUpdate(BaseModel):
     _check_date = field_validator("date")(_validate_match_date)
 
 
+class PlayerStats(BaseModel):
+    userId: str
+    playerName: str
+    played: int
+    won: int
+    drawn: int
+    lost: int
+    goals: int
+    # Points percentage: (won*3 + drawn) / (played*3) * 100. 0 when no matches.
+    winRate: float
+
+
 class AuthGoogleRequest(BaseModel):
     token: str
 

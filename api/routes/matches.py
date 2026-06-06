@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from models.schemas import Match, MatchCreate, MatchUpdate
+from models.schemas import Match, MatchCreate, MatchUpdate, PlayerStats
 from repositories.data_store import get_allowed_users, matches_repo
 from services import matches_service
 from services.admin_service import is_admin
@@ -42,6 +42,11 @@ def _assert_can_manage(current_user: dict, match: dict, action: str) -> None:
 @router.get("/matches", response_model=list[Match])
 def list_matches(_: dict = Depends(require_roles(ROLE_FUTBOL))) -> list[Match]:
     return [Match.model_validate(match) for match in matches_service.list_matches()]
+
+
+@router.get("/matches/stats", response_model=list[PlayerStats])
+def list_player_stats(_: dict = Depends(require_roles(ROLE_FUTBOL))) -> list[PlayerStats]:
+    return [PlayerStats.model_validate(stats) for stats in matches_service.list_player_stats()]
 
 
 @router.post("/matches", response_model=Match, status_code=status.HTTP_201_CREATED)

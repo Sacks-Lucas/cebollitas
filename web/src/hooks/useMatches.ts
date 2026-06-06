@@ -1,13 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '../services/api'
-import type { Match, MatchCreatePayload, MatchUpdatePayload } from '../types'
+import type { Match, MatchCreatePayload, MatchUpdatePayload, PlayerStats } from '../types'
 import { qk } from './queryKeys'
 
 export function useMatches() {
   return useQuery({
     queryKey: qk.matches,
     queryFn: () => api.get<Match[]>('/api/matches').then((res) => res.data),
+  })
+}
+
+export function useMatchStats() {
+  return useQuery({
+    queryKey: qk.matchStats,
+    queryFn: () => api.get<PlayerStats[]>('/api/matches/stats').then((res) => res.data),
   })
 }
 

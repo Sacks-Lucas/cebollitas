@@ -41,6 +41,17 @@ export type MatchUpdatePayload = {
   date: string
 }
 
+export type PlayerStats = {
+  userId: string
+  playerName: string
+  played: number
+  won: number
+  drawn: number
+  lost: number
+  goals: number
+  winRate: number
+}
+
 export type Event = {
   id: string
   title: string

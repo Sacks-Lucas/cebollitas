@@ -75,6 +75,12 @@ class PlayerStats(BaseModel):
     winRate: float
 
 
+class PlayerWorldCups(BaseModel):
+    userId: str
+    playerName: str
+    worldCups: int
+
+
 class AuthGoogleRequest(BaseModel):
     token: str
 

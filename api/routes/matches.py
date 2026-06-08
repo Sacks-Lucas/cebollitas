@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from models.schemas import Match, MatchCreate, MatchUpdate, PlayerStats
+from models.schemas import Match, MatchCreate, MatchUpdate, PlayerStats, PlayerWorldCups
 from repositories.data_store import get_allowed_users, matches_repo
 from services import matches_service
 from services.admin_service import is_admin
@@ -47,6 +47,11 @@ def list_matches(_: dict = Depends(require_roles(ROLE_FUTBOL))) -> list[Match]:
 @router.get("/matches/stats", response_model=list[PlayerStats])
 def list_player_stats(_: dict = Depends(require_roles(ROLE_FUTBOL))) -> list[PlayerStats]:
     return [PlayerStats.model_validate(stats) for stats in matches_service.list_player_stats()]
+
+
+@router.get("/matches/world-cups", response_model=list[PlayerWorldCups])
+def list_world_cups(_: dict = Depends(require_roles(ROLE_FUTBOL))) -> list[PlayerWorldCups]:
+    return [PlayerWorldCups.model_validate(item) for item in matches_service.list_world_cups()]
 
 
 @router.post("/matches", response_model=Match, status_code=status.HTTP_201_CREATED)

@@ -52,6 +52,12 @@ export type PlayerStats = {
   winRate: number
 }
 
+export type PlayerWorldCups = {
+  userId: string
+  playerName: string
+  worldCups: number
+}
+
 export type Event = {
   id: string
   title: string

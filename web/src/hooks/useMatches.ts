@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '../services/api'
-import type { Match, MatchCreatePayload, MatchUpdatePayload, PlayerStats } from '../types'
+import type { Match, MatchCreatePayload, MatchUpdatePayload, PlayerStats, PlayerWorldCups } from '../types'
 import { qk } from './queryKeys'
 
 export function useMatches() {
@@ -15,6 +15,13 @@ export function useMatchStats() {
   return useQuery({
     queryKey: qk.matchStats,
     queryFn: () => api.get<PlayerStats[]>('/api/matches/stats').then((res) => res.data),
+  })
+}
+
+export function useWorldCups() {
+  return useQuery({
+    queryKey: qk.matchWorldCups,
+    queryFn: () => api.get<PlayerWorldCups[]>('/api/matches/world-cups').then((res) => res.data),
   })
 }
 

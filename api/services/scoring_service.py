@@ -8,15 +8,29 @@ EXTENDED_POINTS = 15
 MONTHLY_ATTENDEE_POINTS = 40
 TRIP_POINTS = 70
 
+# Contract bonus: organizing sporting events (Cebollitas football matches) earns
+# SPORTS_EVENT_BONUS points every SPORTS_EVENTS_PER_BONUS matches organized, up
+# to SPORTS_BONUS_MAX_TIMES occasions (so at most 3 * 40 = 120 points).
+SPORTS_EVENT_BONUS = 40
+SPORTS_EVENTS_PER_BONUS = 10
+SPORTS_BONUS_MAX_TIMES = 3
+
+
+def sports_organizer_bonus(organized_count: int) -> int:
+    """Points earned for organizing `organized_count` sporting events."""
+    return min(organized_count // SPORTS_EVENTS_PER_BONUS, SPORTS_BONUS_MAX_TIMES) * SPORTS_EVENT_BONUS
+
 
 def compute_rankings(
     users: list[dict],
     events: list[dict],
     trips: list[dict] | None = None,
     vote_averages: dict[str, float] | None = None,
+    cebollitas_matches: list[dict] | None = None,
 ) -> list[dict]:
     trips = trips or []
     vote_averages = vote_averages or {}
+    cebollitas_matches = cebollitas_matches or []
     totals: dict[str, int] = defaultdict(int)
     attendance: dict[str, int] = defaultdict(int)
 
@@ -46,6 +60,14 @@ def compute_rankings(
     for trip in trips:
         for attendee_id in trip.get("attendeeIds", []):
             totals[attendee_id] += TRIP_POINTS
+
+    organized_counts: dict[str, int] = defaultdict(int)
+    for match in cebollitas_matches:
+        organizer_id = match.get("organizerId")
+        if organizer_id:
+            organized_counts[organizer_id] += 1
+    for organizer_id, count in organized_counts.items():
+        totals[organizer_id] += sports_organizer_bonus(count)
 
     total_events = len(events)
 

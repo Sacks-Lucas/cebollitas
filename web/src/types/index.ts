@@ -58,6 +58,39 @@ export type PlayerWorldCups = {
   worldCups: number
 }
 
+export type Cancha = 5 | 6 | 7 | 8 | 11
+export type CebollitasWinner = 'team1' | 'team2' | 'draw'
+
+export type CebollitasTeam = {
+  formation: string
+  players: string[]
+}
+
+export type CebollitasMatch = {
+  id: string
+  date: string
+  cancha: Cancha
+  team1: CebollitasTeam
+  team2: CebollitasTeam
+  winner: CebollitasWinner
+  figura: string | null
+  organizerId: string
+  organizerName: string
+  creatorId: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type CebollitasMatchPayload = {
+  date: string
+  cancha: Cancha
+  team1: CebollitasTeam
+  team2: CebollitasTeam
+  winner: CebollitasWinner
+  figura: string | null
+  organizerId: string
+}
+
 export type Event = {
   id: string
   title: string

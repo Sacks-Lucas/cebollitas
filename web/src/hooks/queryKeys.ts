@@ -15,6 +15,7 @@ export const qk = {
   matches: ['matches'] as const,
   matchStats: ['matches', 'stats'] as const,
   matchWorldCups: ['matches', 'world-cups'] as const,
+  cebollitasMatches: ['cebollitas-matches'] as const,
   rankings: ['rankings'] as const,
   events: {
     all: ['events'] as const,

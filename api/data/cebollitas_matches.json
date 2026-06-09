@@ -1,0 +1,312 @@
+[
+  {
+    "id": "fd64ff46-ee12-56e4-98bc-7c15b2d15713",
+    "date": "2026-01-07",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Jaime",
+        "Axel",
+        "Charly",
+        "Petro",
+        "Mateo"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Seba",
+        "Cala",
+        "Lean",
+        "Gasti",
+        "Fer"
+      ]
+    },
+    "winner": "team2",
+    "figura": "SEBA",
+    "organizerId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "7899e66a-a5f8-522a-ad71-70cb2f6392a2",
+    "date": "2026-01-23",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Villa",
+        "Tadeo",
+        "Petro",
+        "Mateo",
+        "Axel"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Char",
+        "Luki",
+        "Fer",
+        "Nacho",
+        "Cuñado luki"
+      ]
+    },
+    "winner": "draw",
+    "figura": "CHAR",
+    "organizerId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "10215471-17bc-54d1-a022-34a07efcb7de",
+    "date": "2026-02-27",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Villa",
+        "Petro",
+        "Axel",
+        "Char",
+        "Sonri"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Nacho",
+        "Sacks",
+        "Fran pony",
+        "Cala",
+        "Tade"
+      ]
+    },
+    "winner": "team2",
+    "figura": "LUCAS MATEO",
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "1cf260ee-5469-51f5-960e-f64f67ab85a1",
+    "date": "2026-03-06",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Seba",
+        "Petro",
+        "Mateo",
+        "Nacho",
+        "Sonry"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Villa",
+        "Ocampo",
+        "Char",
+        "Axel",
+        "Fer"
+      ]
+    },
+    "winner": "team1",
+    "figura": "NACHO",
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "d723b2fc-d362-5a6c-8474-720e10c15684",
+    "date": "2026-03-13",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Mateo",
+        "Jaime",
+        "Axel",
+        "Tobi",
+        "Sonri"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Char",
+        "Lean",
+        "Cuñado luki",
+        "Sacks",
+        "Agus hno fer"
+      ]
+    },
+    "winner": "team1",
+    "figura": "Mateo",
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "495953e9-2038-50c0-bf43-8849fd09135c",
+    "date": "2026-03-20",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Mateo",
+        "Cala",
+        "Char",
+        "Mark",
+        "Petro"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Agus hno fer",
+        "Axel",
+        "Lean",
+        "Amigo petro",
+        "Sacks"
+      ]
+    },
+    "winner": "team1",
+    "figura": "Petro",
+    "organizerId": "c5e19e7f-f3bf-5688-8b77-ddce9066fdd1",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "9a6cfa9b-b88e-543d-93cb-fd2f1f8fc4d4",
+    "date": "2026-03-27",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Seba",
+        "Sacks",
+        "Cala",
+        "Axel",
+        "Sonry"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Jaime",
+        "Petro",
+        "Char",
+        "Fer",
+        "Alan"
+      ]
+    },
+    "winner": "team2",
+    "figura": null,
+    "organizerId": "08c5045c-909e-5b5f-ac1d-22c3ccc2cbb2",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "e992a640-58a3-5ca2-a0f5-b0082a1715ca",
+    "date": "2026-04-03",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Nacho",
+        "Alan",
+        "Sonri",
+        "Alonso",
+        "Fer"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Jaime",
+        "Char",
+        "Petro",
+        "Sacks",
+        "Axel"
+      ]
+    },
+    "winner": "team1",
+    "figura": "Nacho",
+    "organizerId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "957f9a8a-5aaf-5134-af09-d565482ea91c",
+    "date": "2026-05-08",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Renzo",
+        "Char",
+        "Jaime",
+        "Alonso",
+        "Ocampo"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Nacho",
+        "Villa",
+        "Sergio",
+        "Cala",
+        "Axel"
+      ]
+    },
+    "winner": "team1",
+    "figura": "Renzo (LADRÓN)",
+    "organizerId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  },
+  {
+    "id": "6b8414b8-7ec7-5e0a-8244-7e0f7a9c0770",
+    "date": "2026-05-15",
+    "cancha": 5,
+    "team1": {
+      "formation": "2-2",
+      "players": [
+        "Nacho",
+        "Villa",
+        "Renzo",
+        "Cala",
+        "Sacks"
+      ]
+    },
+    "team2": {
+      "formation": "2-2",
+      "players": [
+        "Char",
+        "Petro",
+        "Mateo",
+        "Seba",
+        "Alonso"
+      ]
+    },
+    "winner": "team1",
+    "figura": "Cala/ La pelea de Petro y Char",
+    "organizerId": "0b1605ce-7cae-5c31-b609-b5858fc62292",
+    "creatorId": "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
+    "createdAt": "2026-06-08T19:53:54.782443-03:00",
+    "updatedAt": "2026-06-08T19:53:54.782443-03:00"
+  }
+]

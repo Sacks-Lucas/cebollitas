@@ -10,6 +10,7 @@ load_dotenv()
 from routes import (  # noqa: E402
     admin,
     auth,
+    cebollitas_matches,
     events,
     matches,
     monthly_events,
@@ -42,6 +43,7 @@ app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(roles.router)
 app.include_router(matches.router)
+app.include_router(cebollitas_matches.router)
 app.include_router(events.router)
 app.include_router(rankings.router)
 app.include_router(monthly_events.router)

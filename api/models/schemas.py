@@ -1,7 +1,7 @@
 from datetime import date, datetime, timezone
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 def _validate_match_date(value: date) -> date:
@@ -79,6 +79,70 @@ class PlayerWorldCups(BaseModel):
     userId: str
     playerName: str
     worldCups: int
+
+
+# ── Cebollitas matches (team matches) ────────────────────────────────────────
+
+Cancha = Literal[5, 6, 7, 8, 11]
+CebollitasWinner = Literal["team1", "team2", "draw"]
+
+# Allowed formations per cancha (players per team, goalkeeper included). The
+# numbers are the outfield lines; the goalkeeper is always 1 at the back, so
+# 1 + sum(parts) == cancha.
+CANCHA_FORMATIONS: dict[int, list[str]] = {
+    5: ["2-2", "1-2-1", "3-1", "1-3"],
+    6: ["2-1-2", "2-2-1", "1-2-2", "3-2"],
+    7: ["2-3-1", "3-2-1", "2-2-2", "3-3"],
+    8: ["3-3-1", "3-2-2", "2-3-2", "4-3"],
+    11: ["4-4-2", "4-3-3", "3-5-2", "5-3-2", "4-5-1"],
+}
+
+
+class CebollitasTeam(BaseModel):
+    formation: str
+    players: list[str]
+
+
+class CebollitasMatchBase(BaseModel):
+    date: date
+    cancha: Cancha
+    team1: CebollitasTeam
+    team2: CebollitasTeam
+    winner: CebollitasWinner
+    figura: str | None = Field(default=None, max_length=200)
+    organizerId: str
+
+
+def _validate_cebollitas_teams(model: "CebollitasMatchBase") -> "CebollitasMatchBase":
+    """Each team's formation must be valid for the cancha and have exactly that
+    many non-empty players. Only enforced on create/update, not on read."""
+    allowed = CANCHA_FORMATIONS.get(model.cancha, [])
+    for label, team in (("Equipo 1", model.team1), ("Equipo 2", model.team2)):
+        if team.formation not in allowed:
+            raise ValueError(f"Formación inválida para cancha de {model.cancha} ({label}).")
+        names = [p.strip() for p in team.players]
+        if len(names) != model.cancha or any(not name for name in names):
+            raise ValueError(f"{label} debe tener {model.cancha} jugadores sin vacíos.")
+        team.players = names
+    return model
+
+
+class CebollitasMatchCreate(CebollitasMatchBase):
+    _check_date = field_validator("date")(_validate_match_date)
+    _check_teams = model_validator(mode="after")(_validate_cebollitas_teams)
+
+
+class CebollitasMatchUpdate(CebollitasMatchBase):
+    _check_date = field_validator("date")(_validate_match_date)
+    _check_teams = model_validator(mode="after")(_validate_cebollitas_teams)
+
+
+class CebollitasMatch(CebollitasMatchBase):
+    id: str
+    organizerName: str
+    creatorId: str
+    createdAt: datetime
+    updatedAt: datetime
 
 
 class AuthGoogleRequest(BaseModel):

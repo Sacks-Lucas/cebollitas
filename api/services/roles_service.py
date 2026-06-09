@@ -61,3 +61,20 @@ def require_roles(*roles: str):
         return current_user
 
     return dependency
+
+
+def require_all_roles(*roles: str):
+    """Dependency factory that requires ALL of `roles` (ADMIN always passes)."""
+
+    from dependencies import get_current_user
+
+    def dependency(current_user: dict = Depends(get_current_user)) -> dict:
+        user_roles = get_user_roles(current_user)
+        if ROLE_ADMIN not in user_roles and not all(role in user_roles for role in roles):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="No tenés permiso para realizar esta acción.",
+            )
+        return current_user
+
+    return dependency

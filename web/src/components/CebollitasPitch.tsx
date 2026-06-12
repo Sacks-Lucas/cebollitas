@@ -7,12 +7,12 @@ import type { CebollitasMatch } from '../types'
 
 function PlayerToken({ name, shirtClass, figura }: { name: string; shirtClass: string; figura: boolean }) {
   return (
-    <div className="flex w-16 flex-col items-center gap-0.5">
+    <div className="flex w-12 flex-col items-center gap-0.5 sm:w-16">
       <div className="relative">
         <Shirt size={30} fill="currentColor" className={shirtClass} />
         {figura ? <span className="absolute -right-1.5 -top-1.5 text-sm">⭐</span> : null}
       </div>
-      <span className="max-w-[4.5rem] truncate text-center text-[11px] font-medium leading-tight text-white drop-shadow">
+      <span className="max-w-[3rem] truncate text-center text-[11px] font-medium leading-tight text-white drop-shadow sm:max-w-[4.5rem]">
         {name}
       </span>
     </div>

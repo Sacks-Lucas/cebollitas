@@ -1,8 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { CheckCircle2, X, XCircle } from 'lucide-react'
+import { CheckCircle2, Info, X, XCircle } from 'lucide-react'
 
-type ToastType = 'success' | 'error'
+type ToastType = 'success' | 'error' | 'info'
 type Toast = { id: number; message: string; type: ToastType }
 
 type ToastContextValue = {
@@ -46,11 +46,13 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: () => void }
     return () => clearTimeout(timer)
   }, [onDismiss])
 
-  const Icon = toast.type === 'success' ? CheckCircle2 : XCircle
+  const Icon = toast.type === 'success' ? CheckCircle2 : toast.type === 'info' ? Info : XCircle
   const accent =
     toast.type === 'success'
       ? 'border-green-500/40 bg-green-600 text-white'
-      : 'border-red-500/40 bg-red-600 text-white'
+      : toast.type === 'info'
+        ? 'border-argentina-celeste/40 bg-argentina-celesteDark text-white'
+        : 'border-red-500/40 bg-red-600 text-white'
 
   return (
     <div

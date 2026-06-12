@@ -3,6 +3,9 @@ import { useQueryClient } from '@tanstack/react-query'
 
 import { useAdminMe } from '../hooks/useAdmin'
 import { useLoginWithGoogle, useMe } from '../hooks/useAuth'
+import { useToast } from './ToastContext'
+import { es } from '../i18n/es'
+import { SESSION_EXPIRED_EVENT } from '../services/api'
 import type { RoleCode, User } from '../types'
 
 type AuthContextValue = {
@@ -24,6 +27,7 @@ const TOKEN_KEY = 'token'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const queryClient = useQueryClient()
+  const { showToast } = useToast()
   const [storedUser, setStoredUser] = useState<User | null>(() => {
     const raw = localStorage.getItem(USER_KEY)
     return raw ? (JSON.parse(raw) as User) : null
@@ -68,6 +72,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(TOKEN_KEY)
     queryClient.clear()
   }
+
+  // When a request 401s with an expired/invalid JWT, log out (ProtectedRoute
+  // then redirects to /login) and inform the user.
+  useEffect(() => {
+    const onSessionExpired = () => {
+      if (!localStorage.getItem(TOKEN_KEY)) return
+      logout()
+      showToast(es.sessionExpired, 'info')
+    }
+    window.addEventListener(SESSION_EXPIRED_EVENT, onSessionExpired)
+    return () => window.removeEventListener(SESSION_EXPIRED_EVENT, onSessionExpired)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const value = useMemo(
     () => ({

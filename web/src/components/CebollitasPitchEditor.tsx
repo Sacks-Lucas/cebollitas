@@ -26,13 +26,13 @@ function EditableToken({
   onChange: (value: string) => void
 }) {
   return (
-    <div className="flex w-16 flex-col items-center gap-1">
+    <div className="flex w-12 flex-col items-center gap-1 sm:w-16">
       <Shirt size={26} fill="currentColor" className={shirtClass} />
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={es.player}
-        className="w-16 rounded bg-white/90 px-1 py-0.5 text-center text-[11px] text-argentina-navy outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-white"
+        className="w-12 rounded bg-white/90 px-1 py-0.5 text-center text-[11px] text-argentina-navy outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-white sm:w-16"
       />
     </div>
   )

@@ -4,6 +4,7 @@ export const es = {
   loginWithGoogle: 'Iniciar sesión con Google',
   unauthorizedScreen: 'No tenés acceso al sistema. Pedile a un miembro que te agregue.',
   noAccess: 'No tenés permiso para ver esta sección.',
+  sessionExpired: 'Tu sesión venció. Volvé a iniciar sesión para seguir usando el sistema.',
   rankings: 'Rankings',
   rankingPoints: 'Puntos',
   rankingAttendance: 'Asistencia',

@@ -46,9 +46,12 @@ DEFAULT_SHEET_ID = "1iBuxhbkd7vKGyjC8VeCtRmFDYsLeAw5ySW4PvTPPFSI"
 # Sheet column order (1-based): Nombre | Fecha del partido | Resultado | Goles | Estadio.
 COL_NAME, COL_DATE, COL_RESULT, COL_GOALS, COL_STADIUM = 0, 1, 2, 3, 4
 
-# Excel result (Spanish) <-> canonical English code stored in the collection.
+# Excel result (Spanish) -> canonical English code stored in the collection.
+# Reading lowercases the cell first, so any casing in the sheet is accepted.
 RESULT_BY_LABEL = {"victoria": "win", "derrota": "loss", "empate": "draw"}
-LABEL_BY_RESULT = {v: k for k, v in RESULT_BY_LABEL.items()}
+# Canonical code -> label written back to the sheet. Capitalized to match the
+# sheet's valid values (Victoria / Empate / Derrota).
+LABEL_BY_RESULT = {"win": "Victoria", "loss": "Derrota", "draw": "Empate"}
 
 # Excel nickname (lowercased) -> canonical full name in allowed_users.
 NAME_BY_NICK = {

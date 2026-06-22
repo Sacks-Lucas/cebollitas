@@ -50,17 +50,21 @@ SYNC_DRY_RUN=true python scripts/sync_sheet_matches.py
 A dry run prints exactly what *would* change (inserts, appends, conflicts)
 without touching anything. Once it looks right, drop `SYNC_DRY_RUN`.
 
-## 4. Schedule it on Render (Mondays)
+## 4. Schedule it on GitHub Actions (Mondays)
 
-Two options:
+The workflow [`.github/workflows/sync-sheet.yml`](../../.github/workflows/sync-sheet.yml)
+runs the script every Monday at 12:00 UTC (09:00 ART) — free, no extra infra.
 
-- **Blueprint**: commit [`render.yaml`](../../render.yaml) and let Render create
-  the Cron Job, then fill in the `sync: false` secrets in the dashboard.
-- **By hand**: dashboard → **New → Cron Job**, root dir `api`, schedule
-  `0 12 * * 1` (Mon 09:00 ART), build `pip install -r requirements.txt`,
-  start `python scripts/sync_sheet_matches.py`, and add the env vars above.
+Add two **repository secrets** (GitHub → Settings → Secrets and variables →
+Actions → New repository secret):
 
-Each run's output (the report) shows up in the Cron Job's logs in Render.
+- `MONGODB_URI` — same value as the Render web service.
+- `GOOGLE_SERVICE_ACCOUNT_JSON` — the entire contents of the service-account
+  `.json` file (paste as-is).
+
+To test on demand: Actions tab → "Weekly Sheet <-> DB sync" → **Run workflow**.
+It defaults to a dry run (reports without writing); untick that box for a real
+run. Each run's report shows up in the job logs. Scheduled runs always write.
 
 ## Notes
 

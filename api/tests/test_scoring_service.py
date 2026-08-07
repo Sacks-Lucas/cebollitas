@@ -1,4 +1,18 @@
-from services.scoring_service import compute_rankings
+from services.scoring_service import TRIP_POINTS, compute_rankings
+
+
+def test_compute_rankings_awards_trip_points_once_per_attendee() -> None:
+    users = [
+        {"id": "u1", "name": "A", "email": "a@a.com"},
+        {"id": "u2", "name": "B", "email": "b@b.com"},
+    ]
+    trips = [{"id": "t1", "attendeeIds": ["u1", "u2"]}]
+
+    rankings = compute_rankings(users, [], trips)
+
+    by_user = {row["userId"]: row for row in rankings}
+    assert by_user["u1"]["totalPoints"] == TRIP_POINTS
+    assert by_user["u2"]["totalPoints"] == TRIP_POINTS
 
 
 def test_compute_rankings_awards_30_for_attendance_and_40_for_organizer() -> None:

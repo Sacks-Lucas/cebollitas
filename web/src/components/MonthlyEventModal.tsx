@@ -251,7 +251,7 @@ export function MonthlyEventModal({ month, monthLabel, organizerName, users, ini
                 {isUploading ? (
                   <>
                     <Loader2 size={20} className="animate-spin" />
-                    <span>Subiendo...</span>
+                    <span>{es.uploadingImage}</span>
                   </>
                 ) : (
                   <>

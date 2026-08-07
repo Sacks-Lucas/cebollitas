@@ -5,7 +5,7 @@
     "description": "Indescriptible, pasó de todo",
     "startDate": "2026-02-12",
     "endDate": "2026-02-12",
-    "destination": "Crucero",
+    "destinations": ["Crucero"],
     "attendeeIds": [
       "86d65b13-6d9c-438f-a0d9-1a61c6d30e3b",
       "13e75b34-e46a-57c2-aaad-0ccd39b8e488",

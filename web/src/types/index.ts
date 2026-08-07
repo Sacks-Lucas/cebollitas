@@ -133,10 +133,22 @@ export type Trip = {
   description: string
   startDate: string
   endDate: string
-  destination: string
+  destinations: string[]
+  photos: string[]
   attendeeIds: string[]
+  creatorId: string | null
   createdAt: string
   updatedAt: string
+}
+
+export type TripPayload = {
+  title: string
+  description: string
+  startDate: string
+  endDate: string
+  destinations: string[]
+  photos: string[]
+  attendeeIds: string[]
 }
 
 export type MyVote = {

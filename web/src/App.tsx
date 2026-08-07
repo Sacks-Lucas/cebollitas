@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Layout } from './components/Layout'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { RoleRoute } from './components/RoleRoute'
+import { LEGACY_REDIRECTS } from './lib/access'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ToastProvider } from './contexts/ToastContext'
@@ -19,6 +20,8 @@ import { FootballWorldCupsPage } from './pages/FootballWorldCupsPage'
 import { LoginPage } from './pages/LoginPage'
 import { MonthlyEventPage } from './pages/MonthlyEventPage'
 import { RankingsPage } from './pages/RankingsPage'
+import { TripDetailPage } from './pages/TripDetailPage'
+import { TripEventPage } from './pages/TripEventPage'
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? ''
 
@@ -36,22 +39,27 @@ function App() {
                     <Route element={<Layout />}>
                       <Route element={<RoleRoute roles={['CEBOLLITAS']} />}>
                         <Route path="/rankings" element={<RankingsPage />} />
-                        <Route path="/eventos" element={<EventsPage />} />
-                        <Route path="/evento-del-mes" element={<MonthlyEventPage />} />
+                        <Route path="/events" element={<EventsPage />} />
+                        <Route path="/events/monthly" element={<MonthlyEventPage />} />
+                        <Route path="/events/trips" element={<TripEventPage />} />
+                        <Route path="/events/trips/:tripId" element={<TripDetailPage />} />
                       </Route>
                       <Route element={<RoleRoute roles={['FUTBOL']} />}>
-                        <Route path="/football/estadisticas" element={<FootballStatsPage />} />
-                        <Route path="/football/partidos" element={<FootballMatchesPage />} />
-                        <Route path="/football/mundiales" element={<FootballWorldCupsPage />} />
+                        <Route path="/football/stats" element={<FootballStatsPage />} />
+                        <Route path="/football/matches" element={<FootballMatchesPage />} />
+                        <Route path="/football/world-cups" element={<FootballWorldCupsPage />} />
                       </Route>
                       <Route element={<RoleRoute roles={['FUTBOL', 'CEBOLLITAS']} />}>
-                        <Route path="/football/partidos-cebollitas" element={<FootballCebollitasMatchesPage />} />
+                        <Route path="/football/cebollitas-matches" element={<FootballCebollitasMatchesPage />} />
                       </Route>
                       <Route element={<RoleRoute roles={['ADMIN']} />}>
                         <Route path="/admin" element={<AdminPage />} />
                       </Route>
                     </Route>
                   </Route>
+                  {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+                    <Route key={from} path={from} element={<Navigate to={to} replace />} />
+                  ))}
                   <Route path="*" element={<Navigate to="/rankings" replace />} />
                 </Routes>
               </BrowserRouter>

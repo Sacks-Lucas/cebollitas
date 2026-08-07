@@ -25,6 +25,7 @@ export const qk = {
   trips: {
     all: ['trips'] as const,
     list: (filters: TripsFilters) => ['trips', 'list', filters] as const,
+    detail: (id: string) => ['trips', 'detail', id] as const,
   },
   monthlyEvents: {
     all: ['monthly-events'] as const,

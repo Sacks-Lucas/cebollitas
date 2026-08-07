@@ -31,7 +31,9 @@ function DesktopDropdown({ group }: { group: NavGroup }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const location = useLocation()
-  const groupActive = group.children.some((child) => child.to === location.pathname)
+  const groupActive = group.children.some((child) =>
+    child.exact ? child.to === location.pathname : location.pathname.startsWith(child.to),
+  )
 
   useEffect(() => {
     if (!open) {
@@ -63,6 +65,7 @@ function DesktopDropdown({ group }: { group: NavGroup }) {
             <NavLink
               key={child.to}
               to={child.to}
+              end={child.exact}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 `rounded px-3 py-2 transition hover:bg-argentina-celeste/10 dark:hover:bg-argentina-celeste/20 ${
@@ -90,6 +93,7 @@ export function DesktopNav() {
           <NavLink
             key={node.to}
             to={node.to}
+            end={node.exact}
             className={({ isActive }) => (isActive ? activeClass : '')}
           >
             {es[node.labelKey]}
@@ -116,13 +120,13 @@ export function MobileNav({ onNavigate }: { onNavigate: () => void }) {
               {es[node.labelKey]}
             </span>
             {node.children.map((child) => (
-              <NavLink key={child.to} to={child.to} onClick={onNavigate} className={(state) => `ml-2 ${linkClass(state)}`}>
+              <NavLink key={child.to} to={child.to} end={child.exact} onClick={onNavigate} className={(state) => `ml-2 ${linkClass(state)}`}>
                 {es[child.labelKey]}
               </NavLink>
             ))}
           </div>
         ) : (
-          <NavLink key={node.to} to={node.to} onClick={onNavigate} className={linkClass}>
+          <NavLink key={node.to} to={node.to} end={node.exact} onClick={onNavigate} className={linkClass}>
             {es[node.labelKey]}
           </NavLink>
         ),

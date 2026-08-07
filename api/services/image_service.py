@@ -6,9 +6,10 @@ from fastapi import HTTPException, UploadFile, status
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp"}
 MAX_SIZE_BYTES = 5 * 1024 * 1024
 CLOUDINARY_FOLDER = "cebollitas/monthly-events"
+TRIPS_FOLDER = "cebollitas/trips"
 
 
-def save_uploaded_image(upload: UploadFile) -> str:
+def save_uploaded_image(upload: UploadFile, folder: str = CLOUDINARY_FOLDER) -> str:
     if not upload.filename:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Falta el nombre del archivo.")
 
@@ -31,7 +32,7 @@ def save_uploaded_image(upload: UploadFile) -> str:
     try:
         result = cloudinary.uploader.upload(
             io.BytesIO(content),
-            folder=CLOUDINARY_FOLDER,
+            folder=folder,
             resource_type="image",
         )
     except Exception as exc:  # noqa: BLE001 - surface a clean error to the client

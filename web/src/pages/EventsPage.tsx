@@ -145,7 +145,7 @@ export function EventsPage() {
                       <h3 className="truncate font-semibold">{trip.title}</h3>
                     </div>
                     <p className="text-xs text-argentina-celesteDark dark:text-argentina-celeste/80">
-                      {dateText} · {es.destination}: {trip.destination} · {trip.attendeeIds.length} {es.eventAttendeesCount}
+                      {dateText} · {es.destinations}: {trip.destinations.join(' · ')} · {trip.attendeeIds.length} {es.eventAttendeesCount}
                     </p>
                   </div>
                 </li>

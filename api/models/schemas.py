@@ -1,7 +1,15 @@
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+# The group lives in Argentina, which has had no DST since 2009, so a fixed
+# offset is enough and avoids depending on the tz database.
+ARGENTINA_TZ = timezone(timedelta(hours=-3))
+
+
+def today_in_argentina() -> date:
+    return datetime.now(ARGENTINA_TZ).date()
 
 
 def _validate_match_date(value: date) -> date:
@@ -207,16 +215,78 @@ class EventDetail(BaseModel):
     attendees: list[UserRef] = Field(default_factory=list)
 
 
-class Trip(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
+MAX_TRIP_PHOTOS = 3
+MAX_TRIP_DESTINATIONS = 10
 
-    id: str
+
+class TripBase(BaseModel):
     title: str = Field(min_length=1, max_length=100)
     description: str = Field(min_length=1, max_length=1000)
     startDate: date
     endDate: date
-    destination: str = Field(min_length=1, max_length=200)
+    destinations: list[str] = Field(min_length=1, max_length=MAX_TRIP_DESTINATIONS)
+    photos: list[str] = Field(default_factory=list, max_length=MAX_TRIP_PHOTOS)
     attendeeIds: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _accept_legacy_destination(cls, data):
+        """Trips stored before multi-destination support carry a single
+        `destination` string. Read them as a one-item list."""
+        if isinstance(data, dict) and "destinations" not in data and "destination" in data:
+            data = {**data, "destinations": [data["destination"]]}
+            data.pop("destination", None)
+        return data
+
+    @field_validator("title", "description")
+    @classmethod
+    def _strip_text(cls, value: str) -> str:
+        """Mirror the client-side trim so direct API callers can't store
+        whitespace-only text."""
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("El campo no puede quedar vacío.")
+        return stripped
+
+    @field_validator("destinations")
+    @classmethod
+    def _strip_destinations(cls, values: list[str]) -> list[str]:
+        stripped = [value.strip() for value in values]
+        if any(not value for value in stripped):
+            raise ValueError("Los destinos no pueden quedar vacíos.")
+        if any(len(value) > 200 for value in stripped):
+            raise ValueError("Cada destino puede tener hasta 200 caracteres.")
+        if len(set(stripped)) != len(stripped):
+            raise ValueError("La lista de destinos tiene repetidos.")
+        return stripped
+
+
+def _validate_trip_dates(model: "TripBase") -> "TripBase":
+    """A trip can only be recorded once it is over: the end date must not be in
+    the future, and it can never precede the start date. "Today" is the
+    Argentine calendar day, matching what the client validates against."""
+    if model.endDate < model.startDate:
+        raise ValueError("La fecha hasta no puede ser anterior a la fecha desde.")
+    if model.endDate > today_in_argentina():
+        raise ValueError("La fecha hasta no puede ser posterior a hoy.")
+    return model
+
+
+class TripCreate(TripBase):
+    _check_dates = model_validator(mode="after")(_validate_trip_dates)
+
+
+class TripUpdate(TripBase):
+    _check_dates = model_validator(mode="after")(_validate_trip_dates)
+
+
+class Trip(TripBase):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    # Trips loaded before the ABM existed carry no creator, so only admins can
+    # edit those.
+    creatorId: str | None = None
     createdAt: datetime
     updatedAt: datetime
 
